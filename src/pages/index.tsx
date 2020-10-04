@@ -5,9 +5,11 @@ import Layout from "../layouts/Layout";
 import NextLink from "next/link";
 import { VideoCards } from "../utils/videoCards";
 import VideoCard from "../components/VideoCard/VideoCard";
+import { SocialItems } from "../utils/socialItems";
+import { Field, Form, Formik } from "formik";
 
 const IndexPage = () => (
-  <Layout title="Next.js + Typescript + Tailwind">
+  <Layout title="Next.js + Typescript + Tailwind" lang="pl-PL">
     <BackgroundVideo
       sources={[
         {
@@ -22,7 +24,10 @@ const IndexPage = () => (
         muted: true,
       }}
     />
-    <div className="container mx-auto px-4 py-12 md:px-0 md:py-24">
+    <div
+      className="container mx-auto grid grid-flow-row row-gap-8 md:row-gap-16 py-16 px-4"
+      style={{ gridTemplateColumns: "minmax(0, 1fr)" }}
+    >
       {/* O NAS MOBILE */}
       <div className="md:hidden">
         <Header>O nas</Header>
@@ -86,7 +91,7 @@ const IndexPage = () => (
         </div>
       </div>
       {/* Filmowanie */}
-      <div className="mt-16 md:mt-24">
+      <div>
         <div className="flex w-full justify-between items-baseline">
           <Header>Filmowanie</Header>
           <div className="hidden md:block  transform hover:-translate-y-1 hover:scale-105 transition-all ease-in-out duration-200">
@@ -97,7 +102,7 @@ const IndexPage = () => (
         </div>
         <div className="grid grid-flow-col grid-rows-3 md:grid-flow-row md:grid-cols-3 md:grid-rows-none gap-8 mt-12">
           {VideoCards.map((videoCard) => (
-            <VideoCard {...videoCard} />
+            <VideoCard key={videoCard.title} {...videoCard} />
           ))}
         </div>
         <div className="md:hidden mt-8">
@@ -106,6 +111,62 @@ const IndexPage = () => (
               Zobacz więcej
             </button>
           </NextLink>
+        </div>
+      </div>
+      {/* Kontakt */}
+      <div>
+        <Header>Kontakt</Header>
+        <div className="grid grid-flow-row gap-16 md:grid-flow-col md:grid-cols-2 mt-8">
+          <div>
+            <p>
+              Est ullamco deserunt eiusmod non do qui est quis. Deserunt ut esse
+              irure labore dolore aute ullamco sunt irure exercitation labore
+              non. Excepteur ea fugiat mollit deserunt amet consectetur irure
+              Lorem.
+            </p>
+            <div className="mt-8 ml-2 grid row-gap-4">
+              {SocialItems.map(({ href, icon, name }) => (
+                <NextLink key={name} href={href}>
+                  <div className="flex">
+                    {icon}
+                    <p className="ml-2 capitalize">{name}</p>
+                  </div>
+                </NextLink>
+              ))}
+            </div>
+          </div>
+          <div className="p-4 bg-gray-300">
+            <Formik
+              initialValues={{
+                email: "",
+                message: "",
+              }}
+              onSubmit={(values) => console.log("form sumbited:", values)}
+            >
+              {({}) => (
+                <Form className="grid grid-flow-row gap-4">
+                  <Field
+                    type="email"
+                    name="email"
+                    placeholder="Twój email"
+                    className="border-gray-500 border-solid border-2 p-2"
+                  />
+                  <Field
+                    name="message"
+                    component="textarea"
+                    placeholder="W czy możemy Ci pomóc?"
+                    className="border-gray-500 border-solid border-2 p-2 h-auto"
+                    rows="10"
+                  />
+                  <div className="flex justify-end">
+                    <button type="submit" className="py-2 px-4 bg-yellow-500">
+                      Wyślij
+                    </button>
+                  </div>
+                </Form>
+              )}
+            </Formik>
+          </div>
         </div>
       </div>
     </div>
