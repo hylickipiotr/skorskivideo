@@ -11,3 +11,8 @@ export interface SocialItem {
     href: string;
     icon: ReactChild,
 }
+
+export interface VideoSource {
+    src: string;
+    type: string;
+}

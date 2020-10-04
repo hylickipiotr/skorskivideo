@@ -5,7 +5,7 @@ import { SocialItems } from "../../utils/socialItems";
 
 const Header: React.FC<{}> = () => {
   return (
-    <header className="sticky flex w-full bg-black text-white p-6">
+    <header className="fixed flex w-full bg-black text-white p-6">
       <div className="md:hidden grid grid-cols-3 items-center">
         <button className="col-span-1">
           <svg
