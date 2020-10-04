@@ -1,6 +1,10 @@
+import React from "react";
 import BackgroundVideo from "../components/BackgroundVideo/BackgroundVideo";
 import Header from "../components/Header/Header";
 import Layout from "../layouts/Layout";
+import NextLink from "next/link";
+import { VideoCards } from "../utils/videoCards";
+import VideoCard from "../components/VideoCard/VideoCard";
 
 const IndexPage = () => (
   <Layout title="Next.js + Typescript + Tailwind">
@@ -79,6 +83,29 @@ const IndexPage = () => (
               accumsan. Etiam gravida rutrum malesuada.
             </p>
           </div>
+        </div>
+      </div>
+      {/* Filmowanie */}
+      <div className="mt-16 md:mt-24">
+        <div className="flex w-full justify-between items-baseline">
+          <Header>Filmowanie</Header>
+          <div className="hidden md:block  transform hover:-translate-y-1 hover:scale-105 transition-all ease-in-out duration-200">
+            <NextLink href="/filmowanie">
+              <button className="underline">Zobacz więcej</button>
+            </NextLink>
+          </div>
+        </div>
+        <div className="grid grid-flow-col grid-rows-3 md:grid-flow-row md:grid-cols-3 md:grid-rows-none gap-8 mt-12">
+          {VideoCards.map((videoCard) => (
+            <VideoCard {...videoCard} />
+          ))}
+        </div>
+        <div className="md:hidden mt-8">
+          <NextLink href="/filmowanie">
+            <button className="bg-yellow-500 w-full py-2 px-4 font-bold text-yellow-700 hover:bg-yellow-700 hover:text-white transition-colors ease-in-out duration-200">
+              Zobacz więcej
+            </button>
+          </NextLink>
         </div>
       </div>
     </div>
