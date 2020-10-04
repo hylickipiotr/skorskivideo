@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import Head from "next/head";
-import Header from "../components/Header/Header";
+import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 
 interface LayoutProps {
@@ -17,7 +17,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title, lang }) => (
       <meta lang={lang} />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-    <Header />
+    <Navbar />
     {children}
     <Footer />
   </div>
