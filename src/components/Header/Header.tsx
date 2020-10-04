@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import { MenuItems } from "../../utils/menuItems";
 import NextLink from "next/link";
+import { SocialItems } from "../../utils/socialItems";
 
 const Header: React.FC<{}> = () => {
   return (
@@ -31,32 +32,45 @@ const Header: React.FC<{}> = () => {
           </NextLink>
         </div>
       </div>
-      <div className="hidden w-full md:flex justify-between items-center">
-        {/* TODO: Change to original logo */}
-        <NextLink href="/">
-          <div className="cursor-pointer">
-            <p>Skorski Video</p>
+      <div className="hidden w-full md:block">
+        <div className="flex container mx-auto justify-between items-center">
+          <div className="flex">
+            <NextLink href="/">
+              <div className="cursor-pointer">
+                <p>Skorski Video</p>
+              </div>
+            </NextLink>
+            <div className="flex items-center">
+              {MenuItems.map(({ label, href, active }) => (
+                <div className="ml-6">
+                  {/* TODO: Create scroll navigation base on react-scroll */}
+                  <NextLink href={href}>
+                    <div className="relative">
+                      <p className="uppercase text-sm font-light tracking-wide cursor-pointer">
+                        {label}
+                      </p>
+                      {active && (
+                        <div
+                          className="absolute w-full bg-yellow-500 h-0.25"
+                          style={{ bottom: "-0.125rem" }}
+                        ></div>
+                      )}
+                    </div>
+                  </NextLink>
+                </div>
+              ))}
+            </div>
           </div>
-        </NextLink>
-        <div className="flex">
-          {MenuItems.map(({ label, href, active }) => (
-            <div className="ml-6">
-              {/* TODO: Create scroll navigation base on react-scroll */}
-              <NextLink href={href}>
-                <div className="relative">
-                  <p className="uppercase text-base font-light tracking-wide cursor-pointer">
-                    {label}
-                  </p>
-                  {active && (
-                    <div
-                      className="absolute w-full bg-yellow-500 h-0.25"
-                      style={{ bottom: "-0.125rem" }}
-                    ></div>
-                  )}
+          <div className="flex">
+            {SocialItems.map(({ href, icon, name }) => (
+              <NextLink key={name} href={href}>
+                <div className="ml-4">
+                  <div className="cursor-pointer">{icon}</div>
                 </div>
               </NextLink>
-            </div>
-          ))}
+            ))}
+          </div>
+          {/* TODO: Change to original logo */}
         </div>
       </div>
     </header>
