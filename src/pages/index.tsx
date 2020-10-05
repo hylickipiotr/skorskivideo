@@ -9,6 +9,7 @@ import Layout from "../layouts/Layout";
 import { Photos } from "../utils/photos";
 import { SocialItems } from "../utils/socialItems";
 import { VideoCards } from "../utils/videoCards";
+import { FaqItems } from "../utils/faqItems";
 
 const IndexPage = () => (
   <Layout title="Next.js + Typescript + Tailwind" lang="pl-PL">
@@ -134,6 +135,18 @@ const IndexPage = () => (
               Zobacz więcej
             </button>
           </NextLink>
+        </div>
+      </div>
+      {/* FAQ */}
+      <div>
+        <Header>FAQ</Header>
+        <div className="grid grid-flow-row row-gap-6 mt-12">
+          {FaqItems.map(({ answer, question }) => (
+            <div className="grid grid-flow-col grid-cols-12 col-gap-8">
+              <div className="font-medium col-span-5">{question}</div>
+              <div className="text-gray-800 col-span-7">{answer}</div>
+            </div>
+          ))}
         </div>
       </div>
       {/* Kontakt */}

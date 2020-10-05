@@ -16,3 +16,9 @@ export interface VideoSource {
     src: string;
     type: string;
 }
+
+export interface FaqItem {
+    question: string;
+    answer: string;
+    isOpen?: boolean;
+}
