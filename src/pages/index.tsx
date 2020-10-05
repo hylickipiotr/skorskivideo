@@ -1,14 +1,14 @@
+import { Field, Form, Formik } from "formik";
+import NextLink from "next/link";
 import React from "react";
 import BackgroundVideo from "../components/BackgroundVideo/BackgroundVideo";
+import MyGallery from "../components/MyGallery/MyGallery";
 import Header from "../components/Header/Header";
-import Layout from "../layouts/Layout";
-import NextLink from "next/link";
-import { VideoCards } from "../utils/videoCards";
 import VideoCard from "../components/VideoCard/VideoCard";
-import { SocialItems } from "../utils/socialItems";
-import { Field, Form, Formik } from "formik";
-import Gallery from "react-photo-gallery";
+import Layout from "../layouts/Layout";
 import { Photos } from "../utils/photos";
+import { SocialItems } from "../utils/socialItems";
+import { VideoCards } from "../utils/videoCards";
 
 const IndexPage = () => (
   <Layout title="Next.js + Typescript + Tailwind" lang="pl-PL">
@@ -126,7 +126,7 @@ const IndexPage = () => (
           </div>
         </div>
         <div className="mt-12">
-          <Gallery photos={Photos} />
+          <MyGallery photos={Photos} />
         </div>
         <div className="md:hidden mt-8">
           <NextLink href="/fotografia">
