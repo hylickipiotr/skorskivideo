@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import { MenuItems } from "../../utils/menuItems";
 import NextLink from "next/link";
 import { SocialItems } from "../../utils/socialItems";
+import { Link } from "react-scroll";
 
 const Navbar: React.FC<{}> = () => {
   return (
@@ -44,7 +45,13 @@ const Navbar: React.FC<{}> = () => {
               {MenuItems.map(({ label, href, active }) => (
                 <div key={label} className="ml-6">
                   {/* TODO: Create scroll navigation base on react-scroll */}
-                  <NextLink href={href}>
+                  <Link
+                    to={href}
+                    spy={true}
+                    smooth={true}
+                    offset={-100}
+                    duration={500}
+                  >
                     <div className="relative">
                       <p
                         className={`uppercase text-sm font-light tracking-wide cursor-pointer ${
@@ -62,7 +69,7 @@ const Navbar: React.FC<{}> = () => {
                         ></div>
                       )}
                     </div>
-                  </NextLink>
+                  </Link>
                 </div>
               ))}
             </div>

@@ -10,6 +10,7 @@ import { Photos } from "../utils/photos";
 import { SocialItems } from "../utils/socialItems";
 import { VideoCards } from "../utils/videoCards";
 import { FaqItems } from "../utils/faqItems";
+import { Element } from "react-scroll";
 
 const IndexPage = () => (
   <Layout title="Next.js + Typescript + Tailwind" lang="pl-PL">
@@ -62,7 +63,7 @@ const IndexPage = () => (
         </div>
       </div>
       {/* O NAS DESKTOP */}
-      <div className="hidden md:grid flex-col grid-cols-12">
+      <Element name="onas" className="hidden md:grid flex-col grid-cols-12">
         <div className="col-span-5">
           <img src="https://images.pexels.com/photos/4294045/pexels-photo-4294045.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
         </div>
@@ -92,9 +93,9 @@ const IndexPage = () => (
             </p>
           </div>
         </div>
-      </div>
+      </Element>
       {/* Filmowanie */}
-      <div>
+      <Element name="video">
         <div className="flex w-full justify-between items-baseline">
           <Header>Filmowanie</Header>
           <div className="hidden md:block  transform hover:-translate-y-1 hover:scale-105 transition-all ease-in-out duration-200">
@@ -115,9 +116,9 @@ const IndexPage = () => (
             </button>
           </NextLink>
         </div>
-      </div>
+      </Element>
       {/* Fotografia */}
-      <div>
+      <Element name="fotografia">
         <div className="flex w-full justify-between items-baseline">
           <Header>Fotografia</Header>
           <div className="hidden md:block  transform hover:-translate-y-1 hover:scale-105 transition-all ease-in-out duration-200">
@@ -136,9 +137,9 @@ const IndexPage = () => (
             </button>
           </NextLink>
         </div>
-      </div>
+      </Element>
       {/* FAQ */}
-      <div>
+      <Element name="faq">
         <Header>FAQ</Header>
         <div className="grid grid-flow-row row-gap-8 md:row-gap-6 mt-12">
           {FaqItems.map(({ answer, question }) => (
@@ -148,9 +149,9 @@ const IndexPage = () => (
             </div>
           ))}
         </div>
-      </div>
+      </Element>
       {/* Kontakt */}
-      <div>
+      <Element name="kontakt">
         <Header>Kontakt</Header>
         <div className="grid grid-flow-row gap-16 md:grid-flow-col md:grid-cols-2 mt-8">
           <div>
@@ -204,7 +205,7 @@ const IndexPage = () => (
             </Formik>
           </div>
         </div>
-      </div>
+      </Element>
     </div>
   </Layout>
 );
