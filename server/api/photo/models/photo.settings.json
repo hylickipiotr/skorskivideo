@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "photos",
+  "info": {
+    "name": "Photo"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "src": {
+      "type": "string",
+      "private": false,
+      "required": true
+    },
+    "width": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "default": 1
+    },
+    "height": {
+      "type": "integer",
+      "min": 1,
+      "default": 1,
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "minLength": 5
+    }
+  }
+}
