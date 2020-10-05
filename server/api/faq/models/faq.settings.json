@@ -18,6 +18,14 @@
       "type": "richtext",
       "required": true,
       "minLength": 5
+    },
+    "isPublished": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "publishedAt": {
+      "type": "datetime"
     }
   }
 }

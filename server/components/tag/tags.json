@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_tag_tags",
+  "info": {
+    "name": "Video",
+    "icon": "tags"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "minLength": 2,
+      "unique": true
+    }
+  }
+}
