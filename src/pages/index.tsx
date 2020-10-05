@@ -34,8 +34,8 @@ const IndexPage = () => (
       {/* O NAS MOBILE */}
       <div className="md:hidden">
         <Header>O nas</Header>
-        <div className="mt-8 max-w-xs ">
-          <img src="https://images.pexels.com/photos/5192248/pexels-photo-5192248.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
+        <div className="mt-8 ">
+          <img src="https://images.pexels.com/photos/4294045/pexels-photo-4294045.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
         </div>
         <div className="mt-8">
           <p>
@@ -62,11 +62,11 @@ const IndexPage = () => (
         </div>
       </div>
       {/* O NAS DESKTOP */}
-      <div className="hidden md:grid flex-col grid-cols-3">
-        <div className="col-span-1">
-          <img src="https://images.pexels.com/photos/5192248/pexels-photo-5192248.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
+      <div className="hidden md:grid flex-col grid-cols-12">
+        <div className="col-span-5">
+          <img src="https://images.pexels.com/photos/4294045/pexels-photo-4294045.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
         </div>
-        <div className="col-span-2 md:ml-16 mt-4">
+        <div className="col-span-7 md:ml-16 mt-4">
           <Header>O nas</Header>
           <div className="mt-8">
             <p>
@@ -140,11 +140,11 @@ const IndexPage = () => (
       {/* FAQ */}
       <div>
         <Header>FAQ</Header>
-        <div className="grid grid-flow-row row-gap-6 mt-12">
+        <div className="grid grid-flow-row row-gap-8 md:row-gap-6 mt-12">
           {FaqItems.map(({ answer, question }) => (
-            <div className="grid grid-flow-col grid-cols-12 col-gap-8">
-              <div className="font-medium col-span-5">{question}</div>
-              <div className="text-gray-800 col-span-7">{answer}</div>
+            <div className="grid row-gap-2 md:grid-flow-col md:grid-cols-12 md:col-gap-8">
+              <div className="font-medium md:col-span-5">{question}</div>
+              <div className="text-gray-800 md:col-span-7">{answer}</div>
             </div>
           ))}
         </div>
