@@ -1,5 +1,5 @@
 import React from "react";
-import PlayIcon from "../PlayIcon/PlayIcon";
+import PlayIcon from "../Icon/PlayIcon";
 
 export interface IVideoCard {
   thumbnailUrl: string;

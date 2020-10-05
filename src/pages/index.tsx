@@ -147,11 +147,11 @@ const IndexPage = () => (
               non. Excepteur ea fugiat mollit deserunt amet consectetur irure
               Lorem.
             </p>
-            <div className="mt-8 ml-2 grid row-gap-4">
+            <div className="mt-12 ml-4 grid row-gap-6">
               {SocialItems.map(({ href, icon, name }) => (
                 <NextLink key={name} href={href}>
-                  <div className="flex">
-                    {icon}
+                  <div className="flex cursor-pointer">
+                    <div className="fill-current text-black">{icon}</div>
                     <p className="ml-2 capitalize">{name}</p>
                   </div>
                 </NextLink>

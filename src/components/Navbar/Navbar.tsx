@@ -46,7 +46,13 @@ const Navbar: React.FC<{}> = () => {
                   {/* TODO: Create scroll navigation base on react-scroll */}
                   <NextLink href={href}>
                     <div className="relative">
-                      <p className="uppercase text-sm font-light tracking-wide cursor-pointer">
+                      <p
+                        className={`uppercase text-sm font-light tracking-wide cursor-pointer ${
+                          !active
+                            ? "transform ease-in-out duration-200 hover:-translate-y-0.5"
+                            : ""
+                        }`}
+                      >
                         {label}
                       </p>
                       {active && (
@@ -61,11 +67,11 @@ const Navbar: React.FC<{}> = () => {
               ))}
             </div>
           </div>
-          <div className="flex">
+          <div className="grid grid-flow-col col-gap-8">
             {SocialItems.map(({ href, icon, name }) => (
               <NextLink key={name} href={href}>
-                <div className="ml-4">
-                  <div className="cursor-pointer">{icon}</div>
+                <div className="cursor-pointer transform easy-in-out duration-200 hover:scale-110">
+                  {icon}
                 </div>
               </NextLink>
             ))}
