@@ -13,7 +13,7 @@ import { FaqItems } from "../utils/faqItems";
 import { Element } from "react-scroll";
 
 const IndexPage = () => (
-  <Layout title="Next.js + Typescript + Tailwind" lang="pl-PL">
+  <Layout title="SórskiVideo" lang="pl-PL">
     <BackgroundVideo
       sources={[
         {
