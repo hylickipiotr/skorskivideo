@@ -6,10 +6,6 @@ export const MenuItems: MenuItem[] = [
     href: "onas",
   },
   {
-    label: "Oferta",
-    href: "oferta",
-  },
-  {
     label: "Video",
     href: "video",
   },
