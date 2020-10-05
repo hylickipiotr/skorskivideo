@@ -7,6 +7,8 @@ import { VideoCards } from "../utils/videoCards";
 import VideoCard from "../components/VideoCard/VideoCard";
 import { SocialItems } from "../utils/socialItems";
 import { Field, Form, Formik } from "formik";
+import Gallery from "react-photo-gallery";
+import { Photos } from "../utils/photos";
 
 const IndexPage = () => (
   <Layout title="Next.js + Typescript + Tailwind" lang="pl-PL">
@@ -107,6 +109,27 @@ const IndexPage = () => (
         </div>
         <div className="md:hidden mt-8">
           <NextLink href="/filmowanie">
+            <button className="bg-yellow-500 w-full py-2 px-4 font-bold text-yellow-700 hover:bg-yellow-700 hover:text-white transition-colors ease-in-out duration-200">
+              Zobacz więcej
+            </button>
+          </NextLink>
+        </div>
+      </div>
+      {/* Fotografia */}
+      <div>
+        <div className="flex w-full justify-between items-baseline">
+          <Header>Fotografia</Header>
+          <div className="hidden md:block  transform hover:-translate-y-1 hover:scale-105 transition-all ease-in-out duration-200">
+            <NextLink href="/fotografia">
+              <button className="underline">Zobacz więcej</button>
+            </NextLink>
+          </div>
+        </div>
+        <div className="mt-12">
+          <Gallery photos={Photos} />
+        </div>
+        <div className="md:hidden mt-8">
+          <NextLink href="/fotografia">
             <button className="bg-yellow-500 w-full py-2 px-4 font-bold text-yellow-700 hover:bg-yellow-700 hover:text-white transition-colors ease-in-out duration-200">
               Zobacz więcej
             </button>
