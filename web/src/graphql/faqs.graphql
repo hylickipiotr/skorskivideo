@@ -1,0 +1,8 @@
+query Faqs($sort: String!, $limit: Int!, $start: Int) {
+  faqs(sort: $sort, limit: $limit, start: $start) {
+    id
+    created_at
+    question
+    answer
+  }
+}
