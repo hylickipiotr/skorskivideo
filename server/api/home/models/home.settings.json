@@ -1,0 +1,33 @@
+{
+  "kind": "singleType",
+  "collectionName": "homes",
+  "info": {
+    "name": "Home"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "backgroundVideoUrl": {
+      "type": "string",
+      "required": true
+    },
+    "aboutUsImageUrl": {
+      "type": "string",
+      "required": true
+    },
+    "aboutUsContent": {
+      "type": "richtext",
+      "required": true
+    },
+    "contactContent": {
+      "type": "richtext",
+      "required": true
+    },
+    "backgroundImageUrl": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

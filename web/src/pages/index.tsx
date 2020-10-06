@@ -6,16 +6,18 @@ import MyGallery from "../components/MyGallery/MyGallery";
 import Header from "../components/Header/Header";
 import VideoCard from "../components/VideoCard/VideoCard";
 import Layout from "../layouts/Layout";
-import { Photos } from "../utils/photos";
 import { SocialItems } from "../utils/socialItems";
 import { Element } from "react-scroll";
 import {
   useFaqsQuery,
+  useHomeQuery,
   usePhotosQuery,
   useVideosQuery,
 } from "../generated/graphql";
 
 const IndexPage = () => {
+  const { data: homeData } = useHomeQuery();
+
   const { data: faqsData } = useFaqsQuery({
     variables: {
       sort: "created_at:DESC",
@@ -40,11 +42,11 @@ const IndexPage = () => {
       <BackgroundVideo
         sources={[
           {
-            src: "https://www.w3schools.com/howto/rain.mp4",
+            src: homeData?.home?.backgroundVideoUrl as string,
             type: "video/mp4",
           },
         ]}
-        imgSrc="https://interactive-examples.mdn.mozilla.net/media/examples/plumeria.jpg"
+        imgSrc={homeData?.home?.backgroundImageUrl}
         options={{
           autoPlay: true,
           loop: true,
@@ -59,61 +61,21 @@ const IndexPage = () => {
         <div className="md:hidden">
           <Header>O nas</Header>
           <div className="mt-8 ">
-            <img src="https://images.pexels.com/photos/4294045/pexels-photo-4294045.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
+            <img src={homeData?.home?.aboutUsImageUrl} />
           </div>
           <div className="mt-8">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-              ut odio interdum quam molestie auctor. Pellentesque volutpat magna
-              ac tellus tempor blandit. Nulla neque nunc, malesuada in neque
-              quis, malesuada rutrum magna. Quisque lorem lacus, tincidunt ac
-              felis in, gravida ultrices velit. Etiam at finibus augue. Mauris
-              nibh felis, hendrerit eu diam et, mattis lacinia tortor. Nam
-              auctor fermentum nunc a gravida.
-            </p>
-            <p className="mt-4">
-              Nulla venenatis dapibus fringilla. Pellentesque non nisi
-              pellentesque purus pretium condimentum. Vivamus maximus quam nec
-              massa mollis semper. Vestibulum tempus lectus mauris, sit amet
-              interdum nunc vestibulum quis. Sed eu enim lacinia augue rhoncus
-              efficitur. Ut at tellus in nisi commodo dictum. Interdum et
-              malesuada fames ac ante ipsum primis in faucibus. Integer lacus
-              odio, maximus vitae lacus vel, lobortis eleifend mauris. Praesent
-              pharetra volutpat elit, ac laoreet tellus pharetra eget.
-              Suspendisse potenti. Maecenas at neque eget urna tincidunt
-              accumsan. Etiam gravida rutrum malesuada.
-            </p>
+            <p>{homeData?.home?.aboutUsContent}</p>
           </div>
         </div>
         {/* O NAS DESKTOP */}
         <Element name="onas" className="hidden md:grid flex-col grid-cols-12">
           <div className="col-span-5">
-            <img src="https://images.pexels.com/photos/4294045/pexels-photo-4294045.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
+            <img src={homeData?.home?.aboutUsImageUrl} />
           </div>
           <div className="col-span-7 md:ml-16 mt-4">
             <Header>O nas</Header>
             <div className="mt-8">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                ut odio interdum quam molestie auctor. Pellentesque volutpat
-                magna ac tellus tempor blandit. Nulla neque nunc, malesuada in
-                neque quis, malesuada rutrum magna. Quisque lorem lacus,
-                tincidunt ac felis in, gravida ultrices velit. Etiam at finibus
-                augue. Mauris nibh felis, hendrerit eu diam et, mattis lacinia
-                tortor. Nam auctor fermentum nunc a gravida.
-              </p>
-              <p className="mt-4">
-                Nulla venenatis dapibus fringilla. Pellentesque non nisi
-                pellentesque purus pretium condimentum. Vivamus maximus quam nec
-                massa mollis semper. Vestibulum tempus lectus mauris, sit amet
-                interdum nunc vestibulum quis. Sed eu enim lacinia augue rhoncus
-                efficitur. Ut at tellus in nisi commodo dictum. Interdum et
-                malesuada fames ac ante ipsum primis in faucibus. Integer lacus
-                odio, maximus vitae lacus vel, lobortis eleifend mauris.
-                Praesent pharetra volutpat elit, ac laoreet tellus pharetra
-                eget. Suspendisse potenti. Maecenas at neque eget urna tincidunt
-                accumsan. Etiam gravida rutrum malesuada.
-              </p>
+              <p>{homeData?.home?.aboutUsContent}</p>
             </div>
           </div>
         </Element>
@@ -129,7 +91,7 @@ const IndexPage = () => {
               </div>
             </div>
             <div
-              className={`grid grid-flow-col grid-rows-3 md:grid-flow-row md:grid-cols-3 md:grid-rows-none gap-8 mt-12`}
+              className={`grid grid-flow-col md:grid-flow-row md:grid-cols-3 md:grid-rows-none gap-8 mt-12`}
             >
               {videosData.videos.map(
                 (video) =>
@@ -210,12 +172,7 @@ const IndexPage = () => {
           <Header>Kontakt</Header>
           <div className="grid grid-flow-row gap-16 md:grid-flow-col md:grid-cols-2 mt-8">
             <div>
-              <p>
-                Est ullamco deserunt eiusmod non do qui est quis. Deserunt ut
-                esse irure labore dolore aute ullamco sunt irure exercitation
-                labore non. Excepteur ea fugiat mollit deserunt amet consectetur
-                irure Lorem.
-              </p>
+              <p>{homeData?.home?.contactContent}</p>
               <div className="mt-12 ml-4 grid row-gap-6">
                 {SocialItems.map(({ href, icon, name }) => (
                   <NextLink key={name} href={href}>

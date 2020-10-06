@@ -28,6 +28,7 @@ export type Query = {
   faq?: Maybe<Faq>;
   faqs?: Maybe<Array<Maybe<Faq>>>;
   faqsConnection?: Maybe<FaqConnection>;
+  home?: Maybe<Home>;
   photo?: Maybe<Photo>;
   photos?: Maybe<Array<Maybe<Photo>>>;
   photosConnection?: Maybe<PhotoConnection>;
@@ -244,6 +245,18 @@ export type FaqAggregator = {
   __typename?: 'FaqAggregator';
   count?: Maybe<Scalars['Int']>;
   totalCount?: Maybe<Scalars['Int']>;
+};
+
+export type Home = {
+  __typename?: 'Home';
+  id: Scalars['ID'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  backgroundVideoUrl: Scalars['String'];
+  aboutUsImageUrl: Scalars['String'];
+  aboutUsContent: Scalars['String'];
+  contactContent: Scalars['String'];
+  backgroundImageUrl: Scalars['String'];
 };
 
 export type Photo = {
@@ -497,7 +510,7 @@ export type UploadFileRelatedArgs = {
   where?: Maybe<Scalars['JSON']>;
 };
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Faq | FaqConnection | FaqAggregator | FaqGroupBy | FaqConnectionId | FaqConnectionCreated_At | FaqConnectionUpdated_At | FaqConnectionQuestion | FaqConnectionAnswer | FaqConnectionIsPublished | FaqConnectionPublishedAt | CreateFaqPayload | UpdateFaqPayload | DeleteFaqPayload | Photo | PhotoConnection | PhotoAggregator | PhotoAggregatorSum | PhotoAggregatorAvg | PhotoAggregatorMin | PhotoAggregatorMax | PhotoGroupBy | PhotoConnectionId | PhotoConnectionCreated_At | PhotoConnectionUpdated_At | PhotoConnectionUrl | PhotoConnectionWidth | PhotoConnectionHeight | PhotoConnectionTitle | PhotoConnectionIsPublished | PhotoConnectionPublishedAt | CreatePhotoPayload | UpdatePhotoPayload | DeletePhotoPayload | Video | VideoConnection | VideoAggregator | VideoGroupBy | VideoConnectionId | VideoConnectionCreated_At | VideoConnectionUpdated_At | VideoConnectionUrl | VideoConnectionTitle | VideoConnectionDescription | VideoConnectionIsPublished | VideoConnectionPublishedAt | VideoConnectionThumbnailUrl | CreateVideoPayload | UpdateVideoPayload | DeleteVideoPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentTagTags;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Faq | FaqConnection | FaqAggregator | FaqGroupBy | FaqConnectionId | FaqConnectionCreated_At | FaqConnectionUpdated_At | FaqConnectionQuestion | FaqConnectionAnswer | FaqConnectionIsPublished | FaqConnectionPublishedAt | CreateFaqPayload | UpdateFaqPayload | DeleteFaqPayload | Home | UpdateHomePayload | DeleteHomePayload | Photo | PhotoConnection | PhotoAggregator | PhotoAggregatorSum | PhotoAggregatorAvg | PhotoAggregatorMin | PhotoAggregatorMax | PhotoGroupBy | PhotoConnectionId | PhotoConnectionCreated_At | PhotoConnectionUpdated_At | PhotoConnectionUrl | PhotoConnectionWidth | PhotoConnectionHeight | PhotoConnectionTitle | PhotoConnectionIsPublished | PhotoConnectionPublishedAt | CreatePhotoPayload | UpdatePhotoPayload | DeletePhotoPayload | Video | VideoConnection | VideoAggregator | VideoGroupBy | VideoConnectionId | VideoConnectionCreated_At | VideoConnectionUpdated_At | VideoConnectionUrl | VideoConnectionTitle | VideoConnectionDescription | VideoConnectionIsPublished | VideoConnectionPublishedAt | VideoConnectionThumbnailUrl | CreateVideoPayload | UpdateVideoPayload | DeleteVideoPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentTagTags;
 
 export type UsersPermissionsMe = {
   __typename?: 'UsersPermissionsMe';
@@ -541,6 +554,16 @@ export type UpdateFaqPayload = {
 export type DeleteFaqPayload = {
   __typename?: 'deleteFaqPayload';
   faq?: Maybe<Faq>;
+};
+
+export type UpdateHomePayload = {
+  __typename?: 'updateHomePayload';
+  home?: Maybe<Home>;
+};
+
+export type DeleteHomePayload = {
+  __typename?: 'deleteHomePayload';
+  home?: Maybe<Home>;
 };
 
 export type CreatePhotoPayload = {
@@ -951,6 +974,8 @@ export type Mutation = {
   createFaq?: Maybe<CreateFaqPayload>;
   updateFaq?: Maybe<UpdateFaqPayload>;
   deleteFaq?: Maybe<DeleteFaqPayload>;
+  updateHome?: Maybe<UpdateHomePayload>;
+  deleteHome?: Maybe<DeleteHomePayload>;
   createPhoto?: Maybe<CreatePhotoPayload>;
   updatePhoto?: Maybe<UpdatePhotoPayload>;
   deletePhoto?: Maybe<DeletePhotoPayload>;
@@ -992,6 +1017,11 @@ export type MutationUpdateFaqArgs = {
 
 export type MutationDeleteFaqArgs = {
   input?: Maybe<DeleteFaqInput>;
+};
+
+
+export type MutationUpdateHomeArgs = {
+  input?: Maybe<UpdateHomeInput>;
 };
 
 
@@ -1138,6 +1168,20 @@ export type EditFaqInput = {
 
 export type DeleteFaqInput = {
   where?: Maybe<InputId>;
+};
+
+export type UpdateHomeInput = {
+  data?: Maybe<EditHomeInput>;
+};
+
+export type EditHomeInput = {
+  backgroundVideoUrl?: Maybe<Scalars['String']>;
+  aboutUsImageUrl?: Maybe<Scalars['String']>;
+  aboutUsContent?: Maybe<Scalars['String']>;
+  contactContent?: Maybe<Scalars['String']>;
+  backgroundImageUrl?: Maybe<Scalars['String']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
 };
 
 export type CreatePhotoInput = {
@@ -1312,6 +1356,16 @@ export type UsersPermissionsRegisterInput = {
   password: Scalars['String'];
 };
 
+export type HomeInput = {
+  backgroundVideoUrl: Scalars['String'];
+  aboutUsImageUrl: Scalars['String'];
+  aboutUsContent: Scalars['String'];
+  contactContent: Scalars['String'];
+  backgroundImageUrl: Scalars['String'];
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
 export type FileInput = {
   name: Scalars['String'];
   alternativeText?: Maybe<Scalars['String']>;
@@ -1381,6 +1435,17 @@ export type FaqsQuery = (
     { __typename?: 'Faq' }
     & Pick<Faq, 'id' | 'created_at' | 'question' | 'answer'>
   )>>> }
+);
+
+export type HomeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type HomeQuery = (
+  { __typename?: 'Query' }
+  & { home?: Maybe<(
+    { __typename?: 'Home' }
+    & Pick<Home, 'backgroundVideoUrl' | 'backgroundImageUrl' | 'aboutUsImageUrl' | 'aboutUsContent' | 'contactContent'>
+  )> }
 );
 
 export type PhotosQueryVariables = Exact<{
@@ -1454,6 +1519,42 @@ export function useFaqsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FaqsQ
 export type FaqsQueryHookResult = ReturnType<typeof useFaqsQuery>;
 export type FaqsLazyQueryHookResult = ReturnType<typeof useFaqsLazyQuery>;
 export type FaqsQueryResult = Apollo.QueryResult<FaqsQuery, FaqsQueryVariables>;
+export const HomeDocument = gql`
+    query Home {
+  home {
+    backgroundVideoUrl
+    backgroundImageUrl
+    aboutUsImageUrl
+    aboutUsContent
+    contactContent
+  }
+}
+    `;
+
+/**
+ * __useHomeQuery__
+ *
+ * To run a query within a React component, call `useHomeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useHomeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useHomeQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useHomeQuery(baseOptions?: Apollo.QueryHookOptions<HomeQuery, HomeQueryVariables>) {
+        return Apollo.useQuery<HomeQuery, HomeQueryVariables>(HomeDocument, baseOptions);
+      }
+export function useHomeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<HomeQuery, HomeQueryVariables>) {
+          return Apollo.useLazyQuery<HomeQuery, HomeQueryVariables>(HomeDocument, baseOptions);
+        }
+export type HomeQueryHookResult = ReturnType<typeof useHomeQuery>;
+export type HomeLazyQueryHookResult = ReturnType<typeof useHomeLazyQuery>;
+export type HomeQueryResult = Apollo.QueryResult<HomeQuery, HomeQueryVariables>;
 export const PhotosDocument = gql`
     query Photos($limit: Int!, $start: Int) {
   photos(limit: $limit, start: $start) {

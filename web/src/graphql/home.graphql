@@ -1,0 +1,9 @@
+query Home {
+  home {
+    backgroundVideoUrl
+    backgroundImageUrl
+    aboutUsImageUrl
+    aboutUsContent
+    contactContent
+  }
+}
