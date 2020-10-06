@@ -40,6 +40,12 @@
     "publishedAt": {
       "type": "datetime",
       "private": false
+    },
+    "thumbnailUrl": {
+      "type": "string",
+      "private": false,
+      "required": true,
+      "minLength": 2
     }
   }
 }
