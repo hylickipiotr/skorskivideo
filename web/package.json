@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@apollo/client": "^3.2.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.11",
     "formik": "^2.1.7",
     "graphql": "^15.3.0",
     "graphql-tag": "^2.11.0",
