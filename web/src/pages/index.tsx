@@ -14,6 +14,7 @@ import {
   usePhotosQuery,
   useVideosQuery,
 } from "../generated/graphql";
+import { isServer } from "../utils/isServer";
 
 const IndexPage = () => {
   const { data: homeData } = useHomeQuery();
@@ -35,6 +36,7 @@ const IndexPage = () => {
     variables: {
       limit: 10,
     },
+    skip: isServer(),
   });
 
   return (
