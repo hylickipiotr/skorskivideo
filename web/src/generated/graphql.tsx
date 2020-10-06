@@ -378,6 +378,7 @@ export type Video = {
   tags?: Maybe<Array<Maybe<ComponentTagTags>>>;
   isPublished: Scalars['Boolean'];
   publishedAt?: Maybe<Scalars['DateTime']>;
+  thumbnailUrl: Scalars['String'];
 };
 
 export type ComponentTagTags = {
@@ -403,6 +404,7 @@ export type VideoGroupBy = {
   description?: Maybe<Array<Maybe<VideoConnectionDescription>>>;
   isPublished?: Maybe<Array<Maybe<VideoConnectionIsPublished>>>;
   publishedAt?: Maybe<Array<Maybe<VideoConnectionPublishedAt>>>;
+  thumbnailUrl?: Maybe<Array<Maybe<VideoConnectionThumbnailUrl>>>;
 };
 
 export type VideoConnectionId = {
@@ -453,6 +455,12 @@ export type VideoConnectionPublishedAt = {
   connection?: Maybe<VideoConnection>;
 };
 
+export type VideoConnectionThumbnailUrl = {
+  __typename?: 'VideoConnectionThumbnailUrl';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<VideoConnection>;
+};
+
 export type VideoAggregator = {
   __typename?: 'VideoAggregator';
   count?: Maybe<Scalars['Int']>;
@@ -489,7 +497,7 @@ export type UploadFileRelatedArgs = {
   where?: Maybe<Scalars['JSON']>;
 };
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Faq | FaqConnection | FaqAggregator | FaqGroupBy | FaqConnectionId | FaqConnectionCreated_At | FaqConnectionUpdated_At | FaqConnectionQuestion | FaqConnectionAnswer | FaqConnectionIsPublished | FaqConnectionPublishedAt | CreateFaqPayload | UpdateFaqPayload | DeleteFaqPayload | Photo | PhotoConnection | PhotoAggregator | PhotoAggregatorSum | PhotoAggregatorAvg | PhotoAggregatorMin | PhotoAggregatorMax | PhotoGroupBy | PhotoConnectionId | PhotoConnectionCreated_At | PhotoConnectionUpdated_At | PhotoConnectionUrl | PhotoConnectionWidth | PhotoConnectionHeight | PhotoConnectionTitle | PhotoConnectionIsPublished | PhotoConnectionPublishedAt | CreatePhotoPayload | UpdatePhotoPayload | DeletePhotoPayload | Video | VideoConnection | VideoAggregator | VideoGroupBy | VideoConnectionId | VideoConnectionCreated_At | VideoConnectionUpdated_At | VideoConnectionUrl | VideoConnectionTitle | VideoConnectionDescription | VideoConnectionIsPublished | VideoConnectionPublishedAt | CreateVideoPayload | UpdateVideoPayload | DeleteVideoPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentTagTags;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Faq | FaqConnection | FaqAggregator | FaqGroupBy | FaqConnectionId | FaqConnectionCreated_At | FaqConnectionUpdated_At | FaqConnectionQuestion | FaqConnectionAnswer | FaqConnectionIsPublished | FaqConnectionPublishedAt | CreateFaqPayload | UpdateFaqPayload | DeleteFaqPayload | Photo | PhotoConnection | PhotoAggregator | PhotoAggregatorSum | PhotoAggregatorAvg | PhotoAggregatorMin | PhotoAggregatorMax | PhotoGroupBy | PhotoConnectionId | PhotoConnectionCreated_At | PhotoConnectionUpdated_At | PhotoConnectionUrl | PhotoConnectionWidth | PhotoConnectionHeight | PhotoConnectionTitle | PhotoConnectionIsPublished | PhotoConnectionPublishedAt | CreatePhotoPayload | UpdatePhotoPayload | DeletePhotoPayload | Video | VideoConnection | VideoAggregator | VideoGroupBy | VideoConnectionId | VideoConnectionCreated_At | VideoConnectionUpdated_At | VideoConnectionUrl | VideoConnectionTitle | VideoConnectionDescription | VideoConnectionIsPublished | VideoConnectionPublishedAt | VideoConnectionThumbnailUrl | CreateVideoPayload | UpdateVideoPayload | DeleteVideoPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentTagTags;
 
 export type UsersPermissionsMe = {
   __typename?: 'UsersPermissionsMe';
@@ -1178,6 +1186,7 @@ export type VideoInput = {
   tags?: Maybe<Array<ComponentTagTagInput>>;
   isPublished?: Maybe<Scalars['Boolean']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
+  thumbnailUrl: Scalars['String'];
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -1198,6 +1207,7 @@ export type EditVideoInput = {
   tags?: Maybe<Array<Maybe<EditComponentTagTagInput>>>;
   isPublished?: Maybe<Scalars['Boolean']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
+  thumbnailUrl?: Maybe<Scalars['String']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -1373,6 +1383,24 @@ export type FaqsQuery = (
   )>>> }
 );
 
+export type VideosQueryVariables = Exact<{
+  limit: Scalars['Int'];
+  start?: Maybe<Scalars['Int']>;
+}>;
+
+
+export type VideosQuery = (
+  { __typename?: 'Query' }
+  & { videos?: Maybe<Array<Maybe<(
+    { __typename?: 'Video' }
+    & Pick<Video, 'id' | 'url' | 'thumbnailUrl' | 'title' | 'description'>
+    & { tags?: Maybe<Array<Maybe<(
+      { __typename?: 'ComponentTagTags' }
+      & Pick<ComponentTagTags, 'id' | 'name'>
+    )>>> }
+  )>>> }
+);
+
 
 export const FaqsDocument = gql`
     query Faqs($sort: String!, $limit: Int!, $start: Int) {
@@ -1412,3 +1440,45 @@ export function useFaqsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FaqsQ
 export type FaqsQueryHookResult = ReturnType<typeof useFaqsQuery>;
 export type FaqsLazyQueryHookResult = ReturnType<typeof useFaqsLazyQuery>;
 export type FaqsQueryResult = Apollo.QueryResult<FaqsQuery, FaqsQueryVariables>;
+export const VideosDocument = gql`
+    query Videos($limit: Int!, $start: Int) {
+  videos(limit: $limit, start: $start) {
+    id
+    url
+    thumbnailUrl
+    title
+    description
+    tags {
+      id
+      name
+    }
+  }
+}
+    `;
+
+/**
+ * __useVideosQuery__
+ *
+ * To run a query within a React component, call `useVideosQuery` and pass it any options that fit your needs.
+ * When your component renders, `useVideosQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useVideosQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      start: // value for 'start'
+ *   },
+ * });
+ */
+export function useVideosQuery(baseOptions?: Apollo.QueryHookOptions<VideosQuery, VideosQueryVariables>) {
+        return Apollo.useQuery<VideosQuery, VideosQueryVariables>(VideosDocument, baseOptions);
+      }
+export function useVideosLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<VideosQuery, VideosQueryVariables>) {
+          return Apollo.useLazyQuery<VideosQuery, VideosQueryVariables>(VideosDocument, baseOptions);
+        }
+export type VideosQueryHookResult = ReturnType<typeof useVideosQuery>;
+export type VideosLazyQueryHookResult = ReturnType<typeof useVideosLazyQuery>;
+export type VideosQueryResult = Apollo.QueryResult<VideosQuery, VideosQueryVariables>;

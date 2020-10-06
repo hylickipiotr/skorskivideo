@@ -1,0 +1,13 @@
+query Videos($limit: Int!, $start: Int) {
+  videos(limit: $limit, start: $start) {
+    id
+    url
+    thumbnailUrl
+    title
+    description
+    tags {
+      id
+      name
+    }
+  }
+}

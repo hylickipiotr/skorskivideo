@@ -10,13 +10,19 @@ import { Photos } from "../utils/photos";
 import { SocialItems } from "../utils/socialItems";
 import { VideoCards } from "../utils/videoCards";
 import { Element } from "react-scroll";
-import { useFaqsQuery } from "../generated/graphql";
+import { useFaqsQuery, useVideosQuery } from "../generated/graphql";
 
 const IndexPage = () => {
   const { data: faqsData } = useFaqsQuery({
     variables: {
       sort: "created_at:DESC",
       limit: 30,
+    },
+  });
+
+  const { data: videosData } = useVideosQuery({
+    variables: {
+      limit: 3,
     },
   });
 
@@ -103,28 +109,39 @@ const IndexPage = () => {
           </div>
         </Element>
         {/* Filmowanie */}
-        <Element name="video">
-          <div className="flex w-full justify-between items-baseline">
-            <Header>Filmowanie</Header>
-            <div className="hidden md:block  transform hover:-translate-y-1 hover:scale-105 transition-all ease-in-out duration-200">
+        {videosData?.videos && (
+          <Element name="video">
+            <div className="flex w-full justify-between items-baseline">
+              <Header>Filmowanie</Header>
+              <div className="hidden md:block  transform hover:-translate-y-1 hover:scale-105 transition-all ease-in-out duration-200">
+                <NextLink href="/filmowanie">
+                  <button className="underline">Zobacz więcej</button>
+                </NextLink>
+              </div>
+            </div>
+            <div
+              className={`grid grid-flow-col grid-rows-3 md:grid-flow-row md:grid-cols-3 md:grid-rows-none gap-8 mt-12`}
+            >
+              {videosData.videos.map(
+                (video) =>
+                  video && (
+                    <VideoCard
+                      key={video.id}
+                      sourceUrl={video.url}
+                      {...video}
+                    />
+                  )
+              )}
+            </div>
+            <div className="md:hidden mt-8">
               <NextLink href="/filmowanie">
-                <button className="underline">Zobacz więcej</button>
+                <button className="bg-yellow-500 w-full py-2 px-4 font-bold text-yellow-700 hover:bg-yellow-700 hover:text-white transition-colors ease-in-out duration-200">
+                  Zobacz więcej
+                </button>
               </NextLink>
             </div>
-          </div>
-          <div className="grid grid-flow-col grid-rows-3 md:grid-flow-row md:grid-cols-3 md:grid-rows-none gap-8 mt-12">
-            {VideoCards.map((videoCard) => (
-              <VideoCard key={videoCard.title} {...videoCard} />
-            ))}
-          </div>
-          <div className="md:hidden mt-8">
-            <NextLink href="/filmowanie">
-              <button className="bg-yellow-500 w-full py-2 px-4 font-bold text-yellow-700 hover:bg-yellow-700 hover:text-white transition-colors ease-in-out duration-200">
-                Zobacz więcej
-              </button>
-            </NextLink>
-          </div>
-        </Element>
+          </Element>
+        )}
         {/* Fotografia */}
         <Element name="fotografia">
           <div className="flex w-full justify-between items-baseline">
