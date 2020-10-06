@@ -1383,6 +1383,20 @@ export type FaqsQuery = (
   )>>> }
 );
 
+export type PhotosQueryVariables = Exact<{
+  limit: Scalars['Int'];
+  start?: Maybe<Scalars['Int']>;
+}>;
+
+
+export type PhotosQuery = (
+  { __typename?: 'Query' }
+  & { photos?: Maybe<Array<Maybe<(
+    { __typename?: 'Photo' }
+    & Pick<Photo, 'id' | 'url' | 'width' | 'height' | 'title'>
+  )>>> }
+);
+
 export type VideosQueryVariables = Exact<{
   limit: Scalars['Int'];
   start?: Maybe<Scalars['Int']>;
@@ -1440,6 +1454,44 @@ export function useFaqsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FaqsQ
 export type FaqsQueryHookResult = ReturnType<typeof useFaqsQuery>;
 export type FaqsLazyQueryHookResult = ReturnType<typeof useFaqsLazyQuery>;
 export type FaqsQueryResult = Apollo.QueryResult<FaqsQuery, FaqsQueryVariables>;
+export const PhotosDocument = gql`
+    query Photos($limit: Int!, $start: Int) {
+  photos(limit: $limit, start: $start) {
+    id
+    url
+    width
+    height
+    title
+  }
+}
+    `;
+
+/**
+ * __usePhotosQuery__
+ *
+ * To run a query within a React component, call `usePhotosQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePhotosQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePhotosQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      start: // value for 'start'
+ *   },
+ * });
+ */
+export function usePhotosQuery(baseOptions?: Apollo.QueryHookOptions<PhotosQuery, PhotosQueryVariables>) {
+        return Apollo.useQuery<PhotosQuery, PhotosQueryVariables>(PhotosDocument, baseOptions);
+      }
+export function usePhotosLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PhotosQuery, PhotosQueryVariables>) {
+          return Apollo.useLazyQuery<PhotosQuery, PhotosQueryVariables>(PhotosDocument, baseOptions);
+        }
+export type PhotosQueryHookResult = ReturnType<typeof usePhotosQuery>;
+export type PhotosLazyQueryHookResult = ReturnType<typeof usePhotosLazyQuery>;
+export type PhotosQueryResult = Apollo.QueryResult<PhotosQuery, PhotosQueryVariables>;
 export const VideosDocument = gql`
     query Videos($limit: Int!, $start: Int) {
   videos(limit: $limit, start: $start) {

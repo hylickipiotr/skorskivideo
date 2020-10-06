@@ -8,9 +8,12 @@ import VideoCard from "../components/VideoCard/VideoCard";
 import Layout from "../layouts/Layout";
 import { Photos } from "../utils/photos";
 import { SocialItems } from "../utils/socialItems";
-import { VideoCards } from "../utils/videoCards";
 import { Element } from "react-scroll";
-import { useFaqsQuery, useVideosQuery } from "../generated/graphql";
+import {
+  useFaqsQuery,
+  usePhotosQuery,
+  useVideosQuery,
+} from "../generated/graphql";
 
 const IndexPage = () => {
   const { data: faqsData } = useFaqsQuery({
@@ -23,6 +26,12 @@ const IndexPage = () => {
   const { data: videosData } = useVideosQuery({
     variables: {
       limit: 3,
+    },
+  });
+
+  const { data: photosData } = usePhotosQuery({
+    variables: {
+      limit: 10,
     },
   });
 
@@ -143,26 +152,35 @@ const IndexPage = () => {
           </Element>
         )}
         {/* Fotografia */}
-        <Element name="fotografia">
-          <div className="flex w-full justify-between items-baseline">
-            <Header>Fotografia</Header>
-            <div className="hidden md:block  transform hover:-translate-y-1 hover:scale-105 transition-all ease-in-out duration-200">
+        {photosData?.photos && (
+          <Element name="fotografia">
+            <div className="flex w-full justify-between items-baseline">
+              <Header>Fotografia</Header>
+              <div className="hidden md:block  transform hover:-translate-y-1 hover:scale-105 transition-all ease-in-out duration-200">
+                <NextLink href="/fotografia">
+                  <button className="underline">Zobacz więcej</button>
+                </NextLink>
+              </div>
+            </div>
+            <div className="mt-12">
+              <MyGallery
+                photos={photosData.photos.map((photo) => ({
+                  src: photo?.url || "",
+                  width: photo?.width || 1,
+                  height: photo?.height || 1,
+                  alt: photo?.title,
+                }))}
+              />
+            </div>
+            <div className="md:hidden mt-8">
               <NextLink href="/fotografia">
-                <button className="underline">Zobacz więcej</button>
+                <button className="bg-yellow-500 w-full py-2 px-4 font-bold text-yellow-700 hover:bg-yellow-700 hover:text-white transition-colors ease-in-out duration-200">
+                  Zobacz więcej
+                </button>
               </NextLink>
             </div>
-          </div>
-          <div className="mt-12">
-            <MyGallery photos={Photos} />
-          </div>
-          <div className="md:hidden mt-8">
-            <NextLink href="/fotografia">
-              <button className="bg-yellow-500 w-full py-2 px-4 font-bold text-yellow-700 hover:bg-yellow-700 hover:text-white transition-colors ease-in-out duration-200">
-                Zobacz więcej
-              </button>
-            </NextLink>
-          </div>
-        </Element>
+          </Element>
+        )}
         {/* FAQ */}
         {faqsData?.faqs && (
           <Element name="faq">
