@@ -15,6 +15,7 @@ import {
   useVideosQuery,
 } from "../generated/graphql";
 import { isServer } from "../utils/isServer";
+import { withApollo } from "../utils/withApollo";
 
 const IndexPage = () => {
   const { data: homeData } = useHomeQuery();
@@ -224,4 +225,4 @@ const IndexPage = () => {
     </Layout>
   );
 };
-export default IndexPage;
+export default withApollo({ ssr: true })(IndexPage);
