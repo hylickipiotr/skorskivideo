@@ -61,7 +61,7 @@ const IndexPage = () => {
         }}
       />
       <div
-        className="container mx-auto grid grid-flow-row row-gap-8 md:row-gap-16 py-16 px-4"
+        className="container mx-auto grid grid-flow-row row-gap-8 md:row-gap-16 py-16 px-4 xl:px-12"
         style={{ gridTemplateColumns: "minmax(0, 1fr)" }}
       >
         {/* O NAS MOBILE */}
@@ -71,7 +71,7 @@ const IndexPage = () => {
             <img src={homeData?.home?.aboutUsImageUrl} />
           </div>
           <div className="mt-8">
-            <p>{homeData?.home?.aboutUsContent}</p>
+            <p className="font-secondary">{homeData?.home?.aboutUsContent}</p>
           </div>
         </div>
         {/* O NAS DESKTOP */}
@@ -82,7 +82,9 @@ const IndexPage = () => {
           <div className="col-span-7 md:ml-16 mt-4">
             <Header>O nas</Header>
             <div className="mt-8">
-              <p>{homeData?.home?.aboutUsContent}</p>
+              <p className="font-secondary leading-relaxed">
+                {homeData?.home?.aboutUsContent}
+              </p>
             </div>
           </div>
         </Element>
@@ -93,7 +95,9 @@ const IndexPage = () => {
               <Header>Filmowanie</Header>
               <div className="hidden md:block  transform hover:-translate-y-1 hover:scale-105 transition-all ease-in-out duration-200">
                 <NextLink href="/filmowanie">
-                  <button className="underline">Zobacz więcej</button>
+                  <button className="underline font-semibold">
+                    Zobacz więcej
+                  </button>
                 </NextLink>
               </div>
             </div>
@@ -113,7 +117,7 @@ const IndexPage = () => {
             </div>
             <div className="md:hidden mt-8">
               <NextLink href="/filmowanie">
-                <button className="bg-yellow-500 w-full py-2 px-4 font-bold text-yellow-700 hover:bg-yellow-700 hover:text-white transition-colors ease-in-out duration-200">
+                <button className="bg-yellow-500 w-full py-2 px-4 font-semibold hover:bg-yellow-700 transition-colors ease-in-out duration-200">
                   Zobacz więcej
                 </button>
               </NextLink>
@@ -127,7 +131,9 @@ const IndexPage = () => {
               <Header>Fotografia</Header>
               <div className="hidden md:block  transform hover:-translate-y-1 hover:scale-105 transition-all ease-in-out duration-200">
                 <NextLink href="/fotografia">
-                  <button className="underline">Zobacz więcej</button>
+                  <button className="underline font-semibold">
+                    Zobacz więcej
+                  </button>
                 </NextLink>
               </div>
             </div>
@@ -143,7 +149,7 @@ const IndexPage = () => {
             </div>
             <div className="md:hidden mt-8">
               <NextLink href="/fotografia">
-                <button className="bg-yellow-500 w-full py-2 px-4 font-bold text-yellow-700 hover:bg-yellow-700 hover:text-white transition-colors ease-in-out duration-200">
+                <button className="bg-yellow-500 w-full py-2 px-4 font-semibold hover:bg-yellow-700 transition-colors ease-in-out duration-200">
                   Zobacz więcej
                 </button>
               </NextLink>
@@ -162,10 +168,10 @@ const IndexPage = () => {
                       key={faq.id}
                       className="grid row-gap-2 md:grid-flow-col md:grid-cols-12 md:col-gap-8"
                     >
-                      <div className="font-medium md:col-span-5">
+                      <div className="font-semibold text-lg md:col-span-5">
                         {faq.question}
                       </div>
-                      <div className="text-gray-800 md:col-span-7">
+                      <div className="text-gray-800 font-secondary leading-relaxed md:col-span-7">
                         {faq.answer}
                       </div>
                     </div>
@@ -179,7 +185,9 @@ const IndexPage = () => {
           <Header>Kontakt</Header>
           <div className="grid grid-flow-row gap-16 md:grid-flow-col md:grid-cols-2 mt-8">
             <div>
-              <p>{homeData?.home?.contactContent}</p>
+              <p className="font-secondary leading-relaxed">
+                {homeData?.home?.contactContent}
+              </p>
               {socialsData?.socials && (
                 <div className="mt-12 ml-4 grid row-gap-6">
                   {socialsData.socials.map((social) => (
@@ -223,7 +231,10 @@ const IndexPage = () => {
                       rows="10"
                     />
                     <div className="flex justify-end">
-                      <button type="submit" className="py-2 px-4 bg-yellow-500">
+                      <button
+                        type="submit"
+                        className="py-2 px-4 bg-yellow-500 font-semibold"
+                      >
                         Wyślij
                       </button>
                     </div>

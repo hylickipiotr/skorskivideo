@@ -22,7 +22,7 @@ const Footer: React.FC<{}> = ({}) => {
           ))}
         </div>
       )}
-      <p className="text-sm mt-3">
+      <p className="text-xs font-secondary mt-4">
         Copyright Skórski Video. All Right Reserved {new Date().getFullYear()}
       </p>
     </footer>

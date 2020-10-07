@@ -27,8 +27,8 @@ const VideoCard: React.FC<IVideoCard> = ({
           title={title}
         />
       </div>
-      <p className="mt-4 text-xl font-medium">{title}</p>
-      <p className="mt-1">{description}</p>
+      <p className="mt-4 text-xl font-semibold">{title}</p>
+      <p className="mt-1 text-sm font-secondary leading-6">{description}</p>
     </div>
   );
 };

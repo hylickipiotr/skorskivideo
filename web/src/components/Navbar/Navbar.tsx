@@ -11,33 +11,35 @@ const Navbar: React.FC<{}> = () => {
   const { data: socialsData } = useSocialsQuery();
 
   return (
-    <header className="fixed flex w-full bg-black text-white p-6 z-50">
-      <div className="md:hidden grid grid-cols-3 items-center">
-        <button className="col-span-1">
-          <svg
-            className="block h-6 w-6"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-        </button>
+    <header className="fixed flex w-full bg-black text-white z-50">
+      <div className="md:hidden grid grid-cols-3 items-center w-full m-6">
         <div>
+          <button>
+            <svg
+              className="block h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+        <div className="flex justify-center">
           <NextLink href="/">
             <div className="cursor-pointer">
-              <Logo className="fill-current text-white h-4 w-auto" />
+              <Logo className="fill-current text-white h-8 w-auto" />
             </div>
           </NextLink>
         </div>
       </div>
-      <div className="hidden w-full md:block">
+      <div className="hidden w-full my-6 mx-12 md:block ">
         <div className="flex container mx-auto justify-between items-center">
           <div className="flex">
             <NextLink href="/">
@@ -45,9 +47,9 @@ const Navbar: React.FC<{}> = () => {
                 <Logo className="fill-current text-white h-10 w-auto" />
               </div>
             </NextLink>
-            <div className="flex items-center">
+            <div className="grid grid-flow-col col-gap-6 xl:col-gap-8 items-center ml-12 xl:ml-16">
               {MenuItems.map(({ label, href, active }) => (
-                <div key={label} className="ml-6">
+                <div key={label}>
                   <Link
                     to={href}
                     spy={true}
@@ -78,7 +80,7 @@ const Navbar: React.FC<{}> = () => {
             </div>
           </div>
           {socialsData?.socials && (
-            <div className="grid grid-flow-col col-gap-8">
+            <div className="grid grid-flow-col col-gap-8 xl:col-gap-12">
               {socialsData?.socials?.map((social) => (
                 <FontAwesomeIcon
                   key={social?.id}
