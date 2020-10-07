@@ -5,6 +5,7 @@ import React from "react";
 import { Link } from "react-scroll";
 import { useSocialsQuery } from "../../generated/graphql";
 import { MenuItems } from "../../utils/menuItems";
+import Logo from "../Logo/Logo";
 
 const Navbar: React.FC<{}> = () => {
   const { data: socialsData } = useSocialsQuery();
@@ -29,10 +30,9 @@ const Navbar: React.FC<{}> = () => {
           </svg>
         </button>
         <div>
-          {/* TODO: Change to original logo */}
           <NextLink href="/">
             <div className="cursor-pointer">
-              <p>Skorski Video</p>
+              <Logo className="fill-current text-white h-4 w-auto" />
             </div>
           </NextLink>
         </div>
@@ -42,13 +42,12 @@ const Navbar: React.FC<{}> = () => {
           <div className="flex">
             <NextLink href="/">
               <div className="cursor-pointer">
-                <p>Skorski Video</p>
+                <Logo className="fill-current text-white h-10 w-auto" />
               </div>
             </NextLink>
             <div className="flex items-center">
               {MenuItems.map(({ label, href, active }) => (
                 <div key={label} className="ml-6">
-                  {/* TODO: Create scroll navigation base on react-scroll */}
                   <Link
                     to={href}
                     spy={true}
@@ -89,7 +88,6 @@ const Navbar: React.FC<{}> = () => {
               ))}
             </div>
           )}
-          {/* TODO: Change to original logo */}
         </div>
       </div>
     </header>
