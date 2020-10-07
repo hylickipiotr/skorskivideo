@@ -12,13 +12,17 @@ import {
   useFaqsQuery,
   useHomeQuery,
   usePhotosQuery,
+  useSocialsQuery,
   useVideosQuery,
 } from "../generated/graphql";
 import { isServer } from "../utils/isServer";
 import { withApollo } from "../utils/withApollo";
+import { IconName } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const IndexPage = () => {
   const { data: homeData } = useHomeQuery();
+  const { data: socialsData } = useSocialsQuery();
 
   const { data: faqsData } = useFaqsQuery({
     variables: {
@@ -176,16 +180,24 @@ const IndexPage = () => {
           <div className="grid grid-flow-row gap-16 md:grid-flow-col md:grid-cols-2 mt-8">
             <div>
               <p>{homeData?.home?.contactContent}</p>
-              <div className="mt-12 ml-4 grid row-gap-6">
-                {SocialItems.map(({ href, icon, name }) => (
-                  <NextLink key={name} href={href}>
-                    <div className="flex cursor-pointer">
-                      <div className="fill-current text-black">{icon}</div>
-                      <p className="ml-2 capitalize">{name}</p>
-                    </div>
-                  </NextLink>
-                ))}
-              </div>
+              {socialsData?.socials && (
+                <div className="mt-12 ml-4 grid row-gap-6">
+                  {socialsData.socials.map((social) => (
+                    <NextLink key={social?.id} href={social?.url as string}>
+                      <div className="flex items-center cursor-pointer text-black">
+                        <div className="flex justify-center items-center h-4 w-4">
+                          <FontAwesomeIcon
+                            key={social?.id}
+                            icon={["fab", social?.icon as IconName]}
+                            className="text-xl"
+                          />
+                        </div>
+                        <p className="ml-4 capitalize">{social?.label}</p>
+                      </div>
+                    </NextLink>
+                  ))}
+                </div>
+              )}
             </div>
             <div className="p-4 bg-gray-300">
               <Formik

@@ -1,0 +1,8 @@
+query Socials {
+  socials {
+    id
+    label
+    icon
+    url
+  }
+}

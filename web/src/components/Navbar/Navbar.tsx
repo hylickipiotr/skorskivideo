@@ -1,10 +1,14 @@
-import React, { ReactNode } from "react";
-import { MenuItems } from "../../utils/menuItems";
+import { IconName } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NextLink from "next/link";
-import { SocialItems } from "../../utils/socialItems";
+import React from "react";
 import { Link } from "react-scroll";
+import { useSocialsQuery } from "../../generated/graphql";
+import { MenuItems } from "../../utils/menuItems";
 
 const Navbar: React.FC<{}> = () => {
+  const { data: socialsData } = useSocialsQuery();
+
   return (
     <header className="fixed flex w-full bg-black text-white p-6 z-50">
       <div className="md:hidden grid grid-cols-3 items-center">
@@ -74,15 +78,17 @@ const Navbar: React.FC<{}> = () => {
               ))}
             </div>
           </div>
-          <div className="grid grid-flow-col col-gap-8">
-            {SocialItems.map(({ href, icon, name }) => (
-              <NextLink key={name} href={href}>
-                <div className="cursor-pointer transform easy-in-out duration-200 hover:scale-110">
-                  {icon}
-                </div>
-              </NextLink>
-            ))}
-          </div>
+          {socialsData?.socials && (
+            <div className="grid grid-flow-col col-gap-8">
+              {socialsData?.socials?.map((social) => (
+                <FontAwesomeIcon
+                  key={social?.id}
+                  icon={["fab", social?.icon as IconName]}
+                  className="cursor-pointer transform easy-in-out text-xl duration-200 hover:scale-110"
+                />
+              ))}
+            </div>
+          )}
           {/* TODO: Change to original logo */}
         </div>
       </div>

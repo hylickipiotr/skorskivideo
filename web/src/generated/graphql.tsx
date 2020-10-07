@@ -32,6 +32,9 @@ export type Query = {
   photo?: Maybe<Photo>;
   photos?: Maybe<Array<Maybe<Photo>>>;
   photosConnection?: Maybe<PhotoConnection>;
+  social?: Maybe<Social>;
+  socials?: Maybe<Array<Maybe<Social>>>;
+  socialsConnection?: Maybe<SocialConnection>;
   video?: Maybe<Video>;
   videos?: Maybe<Array<Maybe<Video>>>;
   videosConnection?: Maybe<VideoConnection>;
@@ -83,6 +86,27 @@ export type QueryPhotosArgs = {
 
 
 export type QueryPhotosConnectionArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+
+export type QuerySocialArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QuerySocialsArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+
+export type QuerySocialsConnectionArgs = {
   sort?: Maybe<Scalars['String']>;
   limit?: Maybe<Scalars['Int']>;
   start?: Maybe<Scalars['Int']>;
@@ -380,6 +404,91 @@ export type PhotoAggregatorMax = {
   height?: Maybe<Scalars['Float']>;
 };
 
+export type Social = {
+  __typename?: 'Social';
+  id: Scalars['ID'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  url: Scalars['String'];
+  icon: Scalars['String'];
+  isPublished: Scalars['Boolean'];
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  label: Scalars['String'];
+};
+
+export type SocialConnection = {
+  __typename?: 'SocialConnection';
+  values?: Maybe<Array<Maybe<Social>>>;
+  groupBy?: Maybe<SocialGroupBy>;
+  aggregate?: Maybe<SocialAggregator>;
+};
+
+export type SocialGroupBy = {
+  __typename?: 'SocialGroupBy';
+  id?: Maybe<Array<Maybe<SocialConnectionId>>>;
+  created_at?: Maybe<Array<Maybe<SocialConnectionCreated_At>>>;
+  updated_at?: Maybe<Array<Maybe<SocialConnectionUpdated_At>>>;
+  url?: Maybe<Array<Maybe<SocialConnectionUrl>>>;
+  icon?: Maybe<Array<Maybe<SocialConnectionIcon>>>;
+  isPublished?: Maybe<Array<Maybe<SocialConnectionIsPublished>>>;
+  publishedAt?: Maybe<Array<Maybe<SocialConnectionPublishedAt>>>;
+  label?: Maybe<Array<Maybe<SocialConnectionLabel>>>;
+};
+
+export type SocialConnectionId = {
+  __typename?: 'SocialConnectionId';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<SocialConnection>;
+};
+
+export type SocialConnectionCreated_At = {
+  __typename?: 'SocialConnectionCreated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<SocialConnection>;
+};
+
+export type SocialConnectionUpdated_At = {
+  __typename?: 'SocialConnectionUpdated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<SocialConnection>;
+};
+
+export type SocialConnectionUrl = {
+  __typename?: 'SocialConnectionUrl';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<SocialConnection>;
+};
+
+export type SocialConnectionIcon = {
+  __typename?: 'SocialConnectionIcon';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<SocialConnection>;
+};
+
+export type SocialConnectionIsPublished = {
+  __typename?: 'SocialConnectionIsPublished';
+  key?: Maybe<Scalars['Boolean']>;
+  connection?: Maybe<SocialConnection>;
+};
+
+export type SocialConnectionPublishedAt = {
+  __typename?: 'SocialConnectionPublishedAt';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<SocialConnection>;
+};
+
+export type SocialConnectionLabel = {
+  __typename?: 'SocialConnectionLabel';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<SocialConnection>;
+};
+
+export type SocialAggregator = {
+  __typename?: 'SocialAggregator';
+  count?: Maybe<Scalars['Int']>;
+  totalCount?: Maybe<Scalars['Int']>;
+};
+
 export type Video = {
   __typename?: 'Video';
   id: Scalars['ID'];
@@ -510,7 +619,7 @@ export type UploadFileRelatedArgs = {
   where?: Maybe<Scalars['JSON']>;
 };
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Faq | FaqConnection | FaqAggregator | FaqGroupBy | FaqConnectionId | FaqConnectionCreated_At | FaqConnectionUpdated_At | FaqConnectionQuestion | FaqConnectionAnswer | FaqConnectionIsPublished | FaqConnectionPublishedAt | CreateFaqPayload | UpdateFaqPayload | DeleteFaqPayload | Home | UpdateHomePayload | DeleteHomePayload | Photo | PhotoConnection | PhotoAggregator | PhotoAggregatorSum | PhotoAggregatorAvg | PhotoAggregatorMin | PhotoAggregatorMax | PhotoGroupBy | PhotoConnectionId | PhotoConnectionCreated_At | PhotoConnectionUpdated_At | PhotoConnectionUrl | PhotoConnectionWidth | PhotoConnectionHeight | PhotoConnectionTitle | PhotoConnectionIsPublished | PhotoConnectionPublishedAt | CreatePhotoPayload | UpdatePhotoPayload | DeletePhotoPayload | Video | VideoConnection | VideoAggregator | VideoGroupBy | VideoConnectionId | VideoConnectionCreated_At | VideoConnectionUpdated_At | VideoConnectionUrl | VideoConnectionTitle | VideoConnectionDescription | VideoConnectionIsPublished | VideoConnectionPublishedAt | VideoConnectionThumbnailUrl | CreateVideoPayload | UpdateVideoPayload | DeleteVideoPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentTagTags;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Faq | FaqConnection | FaqAggregator | FaqGroupBy | FaqConnectionId | FaqConnectionCreated_At | FaqConnectionUpdated_At | FaqConnectionQuestion | FaqConnectionAnswer | FaqConnectionIsPublished | FaqConnectionPublishedAt | CreateFaqPayload | UpdateFaqPayload | DeleteFaqPayload | Home | UpdateHomePayload | DeleteHomePayload | Photo | PhotoConnection | PhotoAggregator | PhotoAggregatorSum | PhotoAggregatorAvg | PhotoAggregatorMin | PhotoAggregatorMax | PhotoGroupBy | PhotoConnectionId | PhotoConnectionCreated_At | PhotoConnectionUpdated_At | PhotoConnectionUrl | PhotoConnectionWidth | PhotoConnectionHeight | PhotoConnectionTitle | PhotoConnectionIsPublished | PhotoConnectionPublishedAt | CreatePhotoPayload | UpdatePhotoPayload | DeletePhotoPayload | Social | SocialConnection | SocialAggregator | SocialGroupBy | SocialConnectionId | SocialConnectionCreated_At | SocialConnectionUpdated_At | SocialConnectionUrl | SocialConnectionIcon | SocialConnectionIsPublished | SocialConnectionPublishedAt | SocialConnectionLabel | CreateSocialPayload | UpdateSocialPayload | DeleteSocialPayload | Video | VideoConnection | VideoAggregator | VideoGroupBy | VideoConnectionId | VideoConnectionCreated_At | VideoConnectionUpdated_At | VideoConnectionUrl | VideoConnectionTitle | VideoConnectionDescription | VideoConnectionIsPublished | VideoConnectionPublishedAt | VideoConnectionThumbnailUrl | CreateVideoPayload | UpdateVideoPayload | DeleteVideoPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentTagTags;
 
 export type UsersPermissionsMe = {
   __typename?: 'UsersPermissionsMe';
@@ -579,6 +688,21 @@ export type UpdatePhotoPayload = {
 export type DeletePhotoPayload = {
   __typename?: 'deletePhotoPayload';
   photo?: Maybe<Photo>;
+};
+
+export type CreateSocialPayload = {
+  __typename?: 'createSocialPayload';
+  social?: Maybe<Social>;
+};
+
+export type UpdateSocialPayload = {
+  __typename?: 'updateSocialPayload';
+  social?: Maybe<Social>;
+};
+
+export type DeleteSocialPayload = {
+  __typename?: 'deleteSocialPayload';
+  social?: Maybe<Social>;
 };
 
 export type CreateVideoPayload = {
@@ -979,6 +1103,9 @@ export type Mutation = {
   createPhoto?: Maybe<CreatePhotoPayload>;
   updatePhoto?: Maybe<UpdatePhotoPayload>;
   deletePhoto?: Maybe<DeletePhotoPayload>;
+  createSocial?: Maybe<CreateSocialPayload>;
+  updateSocial?: Maybe<UpdateSocialPayload>;
+  deleteSocial?: Maybe<DeleteSocialPayload>;
   createVideo?: Maybe<CreateVideoPayload>;
   updateVideo?: Maybe<UpdateVideoPayload>;
   deleteVideo?: Maybe<DeleteVideoPayload>;
@@ -1037,6 +1164,21 @@ export type MutationUpdatePhotoArgs = {
 
 export type MutationDeletePhotoArgs = {
   input?: Maybe<DeletePhotoInput>;
+};
+
+
+export type MutationCreateSocialArgs = {
+  input?: Maybe<CreateSocialInput>;
+};
+
+
+export type MutationUpdateSocialArgs = {
+  input?: Maybe<UpdateSocialInput>;
+};
+
+
+export type MutationDeleteSocialArgs = {
+  input?: Maybe<DeleteSocialInput>;
 };
 
 
@@ -1216,6 +1358,39 @@ export type EditPhotoInput = {
 };
 
 export type DeletePhotoInput = {
+  where?: Maybe<InputId>;
+};
+
+export type CreateSocialInput = {
+  data?: Maybe<SocialInput>;
+};
+
+export type SocialInput = {
+  url: Scalars['String'];
+  icon: Scalars['String'];
+  isPublished?: Maybe<Scalars['Boolean']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  label: Scalars['String'];
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type UpdateSocialInput = {
+  where?: Maybe<InputId>;
+  data?: Maybe<EditSocialInput>;
+};
+
+export type EditSocialInput = {
+  url?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['String']>;
+  isPublished?: Maybe<Scalars['Boolean']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  label?: Maybe<Scalars['String']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type DeleteSocialInput = {
   where?: Maybe<InputId>;
 };
 
@@ -1462,6 +1637,17 @@ export type PhotosQuery = (
   )>>> }
 );
 
+export type SocialsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SocialsQuery = (
+  { __typename?: 'Query' }
+  & { socials?: Maybe<Array<Maybe<(
+    { __typename?: 'Social' }
+    & Pick<Social, 'id' | 'label' | 'icon' | 'url'>
+  )>>> }
+);
+
 export type VideosQueryVariables = Exact<{
   limit: Scalars['Int'];
   start?: Maybe<Scalars['Int']>;
@@ -1593,6 +1779,41 @@ export function usePhotosLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Pho
 export type PhotosQueryHookResult = ReturnType<typeof usePhotosQuery>;
 export type PhotosLazyQueryHookResult = ReturnType<typeof usePhotosLazyQuery>;
 export type PhotosQueryResult = Apollo.QueryResult<PhotosQuery, PhotosQueryVariables>;
+export const SocialsDocument = gql`
+    query Socials {
+  socials {
+    id
+    label
+    icon
+    url
+  }
+}
+    `;
+
+/**
+ * __useSocialsQuery__
+ *
+ * To run a query within a React component, call `useSocialsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSocialsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSocialsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useSocialsQuery(baseOptions?: Apollo.QueryHookOptions<SocialsQuery, SocialsQueryVariables>) {
+        return Apollo.useQuery<SocialsQuery, SocialsQueryVariables>(SocialsDocument, baseOptions);
+      }
+export function useSocialsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SocialsQuery, SocialsQueryVariables>) {
+          return Apollo.useLazyQuery<SocialsQuery, SocialsQueryVariables>(SocialsDocument, baseOptions);
+        }
+export type SocialsQueryHookResult = ReturnType<typeof useSocialsQuery>;
+export type SocialsLazyQueryHookResult = ReturnType<typeof useSocialsLazyQuery>;
+export type SocialsQueryResult = Apollo.QueryResult<SocialsQuery, SocialsQueryVariables>;
 export const VideosDocument = gql`
     query Videos($limit: Int!, $start: Int) {
   videos(limit: $limit, start: $start) {
