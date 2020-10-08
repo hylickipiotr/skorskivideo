@@ -8,6 +8,7 @@ import BackgroundVideo from "../components/BackgroundVideo/BackgroundVideo";
 import Header from "../components/Header/Header";
 import MyGallery from "../components/MyGallery/MyGallery";
 import VideoCard from "../components/VideoCard/VideoCard";
+import { ROUTES } from "../constans/router";
 import {
   Tag,
   useFaqsQuery,
@@ -96,7 +97,7 @@ const IndexPage = () => {
             <div className="flex w-full justify-between items-baseline">
               <Header>Filmowanie</Header>
               <div className="hidden md:block  transform hover:-translate-y-1 hover:scale-105 transition-all ease-in-out duration-200">
-                <NextLink href="/filmowanie">
+                <NextLink href={ROUTES.VIDEO}>
                   <button className="underline font-semibold">
                     Zobacz więcej
                   </button>
@@ -119,7 +120,7 @@ const IndexPage = () => {
               )}
             </div>
             <div className="md:hidden mt-8">
-              <NextLink href="/filmowanie">
+              <NextLink href={ROUTES.VIDEO}>
                 <button className="bg-yellow-500 w-full py-2 px-4 font-semibold hover:bg-yellow-700 transition-colors ease-in-out duration-200">
                   Zobacz więcej
                 </button>
@@ -133,7 +134,7 @@ const IndexPage = () => {
             <div className="flex w-full justify-between items-baseline">
               <Header>Fotografia</Header>
               <div className="hidden md:block  transform hover:-translate-y-1 hover:scale-105 transition-all ease-in-out duration-200">
-                <NextLink href="/fotografia">
+                <NextLink href={ROUTES.PHOTO}>
                   <button className="underline font-semibold">
                     Zobacz więcej
                   </button>
@@ -151,7 +152,7 @@ const IndexPage = () => {
               />
             </div>
             <div className="md:hidden mt-8">
-              <NextLink href="/fotografia">
+              <NextLink href={ROUTES.PHOTO}>
                 <button className="bg-yellow-500 w-full py-2 px-4 font-semibold hover:bg-yellow-700 transition-colors ease-in-out duration-200">
                   Zobacz więcej
                 </button>

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NextLink from "next/link";
 import React from "react";
 import { Link } from "react-scroll";
+import { ROUTES } from "../../constans/router";
 import { useSocialsQuery } from "../../generated/graphql";
 import { MenuItems } from "../../utils/menuItems";
 import Logo from "../Logo/Logo";
@@ -32,7 +33,7 @@ const Navbar: React.FC<{}> = () => {
           </button>
         </div>
         <div className="flex justify-center">
-          <NextLink href="/">
+          <NextLink href={ROUTES.HOME}>
             <div className="cursor-pointer">
               <Logo className="fill-current text-white h-8 w-auto" />
             </div>
@@ -42,7 +43,7 @@ const Navbar: React.FC<{}> = () => {
       <div className="hidden w-full my-6 mx-12 md:block ">
         <div className="flex container mx-auto justify-between items-center">
           <div className="flex">
-            <NextLink href="/">
+            <NextLink href={ROUTES.HOME}>
               <div className="cursor-pointer">
                 <Logo className="fill-current text-white h-10 w-auto" />
               </div>
@@ -54,7 +55,7 @@ const Navbar: React.FC<{}> = () => {
                     to={href}
                     spy={true}
                     smooth={true}
-                    offset={-100}
+                    offset={-130}
                     duration={500}
                   >
                     <div className="relative">
