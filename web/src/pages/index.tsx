@@ -1,3 +1,4 @@
+import { useApolloClient } from "@apollo/client";
 import { IconName } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Field, Form, Formik } from "formik";
@@ -19,9 +20,12 @@ import {
 } from "../generated/graphql";
 import Layout from "../layouts/Layout";
 import { isServer } from "../utils/isServer";
+import { useResetStore } from "../utils/useResetStore";
 import { withApollo } from "../utils/withApollo";
 
 const IndexPage = () => {
+  const client = useApolloClient();
+  useResetStore(client);
   const { data: homePageData } = useHomeQuery();
   const { data: socialsData } = useSocialsQuery();
 
@@ -133,9 +137,9 @@ const IndexPage = () => {
           <Element name="fotografia">
             <div className="flex w-full justify-between items-baseline">
               <Header>Fotografia</Header>
-              <div className="hidden md:block  transform hover:-translate-y-1 hover:scale-105 transition-all ease-in-out duration-200">
+              <div className="hidden md:block  transform">
                 <NextLink href={ROUTES.PHOTO}>
-                  <button className="underline font-semibold">
+                  <button className="font-semibold border-2 border-black px-4 py-2 hover:border-yellow-500">
                     Zobacz więcej
                   </button>
                 </NextLink>

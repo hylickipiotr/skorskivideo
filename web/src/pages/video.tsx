@@ -1,3 +1,4 @@
+import { useApolloClient } from "@apollo/client";
 import React, { useState } from "react";
 import Header from "../components/Header/Header";
 import TagCard, { IOnClickTagCard } from "../components/TagCard/TagCard";
@@ -12,6 +13,7 @@ import {
   VideosQueryVariables,
 } from "../generated/graphql";
 import Layout from "../layouts/Layout";
+import { useResetStore } from "../utils/useResetStore";
 import { withApollo } from "../utils/withApollo";
 
 const initVideoQueryVariables: VideosQueryVariables = {
@@ -19,6 +21,8 @@ const initVideoQueryVariables: VideosQueryVariables = {
 };
 
 const VideoPage = () => {
+  const client = useApolloClient();
+  useResetStore(client);
   const [activeCard, setActiveCard] = useState("Wszystkie");
   const { data: videoPageData } = useVideoPageQuery();
   const { data: tagsData } = useTagsQuery();
