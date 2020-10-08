@@ -1,0 +1,6 @@
+query VideoPage {
+  videoPage {
+    description
+    imageUrl
+  }
+}

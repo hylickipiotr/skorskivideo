@@ -35,6 +35,10 @@ export type Query = {
   social?: Maybe<Social>;
   socials?: Maybe<Array<Maybe<Social>>>;
   socialsConnection?: Maybe<SocialConnection>;
+  tag?: Maybe<Tag>;
+  tags?: Maybe<Array<Maybe<Tag>>>;
+  tagsConnection?: Maybe<TagConnection>;
+  videoPage?: Maybe<VideoPage>;
   video?: Maybe<Video>;
   videos?: Maybe<Array<Maybe<Video>>>;
   videosConnection?: Maybe<VideoConnection>;
@@ -47,6 +51,7 @@ export type Query = {
   user?: Maybe<UsersPermissionsUser>;
   users?: Maybe<Array<Maybe<UsersPermissionsUser>>>;
   usersConnection?: Maybe<UsersPermissionsUserConnection>;
+  videosCountPublished: Scalars['Int'];
   me?: Maybe<UsersPermissionsMe>;
 };
 
@@ -107,6 +112,27 @@ export type QuerySocialsArgs = {
 
 
 export type QuerySocialsConnectionArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+
+export type QueryTagArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryTagsArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+
+export type QueryTagsConnectionArgs = {
   sort?: Maybe<Scalars['String']>;
   limit?: Maybe<Scalars['Int']>;
   start?: Maybe<Scalars['Int']>;
@@ -190,6 +216,11 @@ export type QueryUsersConnectionArgs = {
   limit?: Maybe<Scalars['Int']>;
   start?: Maybe<Scalars['Int']>;
   where?: Maybe<Scalars['JSON']>;
+};
+
+
+export type QueryVideosCountPublishedArgs = {
+  tagName?: Maybe<Scalars['String']>;
 };
 
 export type Faq = {
@@ -489,6 +520,23 @@ export type SocialAggregator = {
   totalCount?: Maybe<Scalars['Int']>;
 };
 
+export type Tag = {
+  __typename?: 'Tag';
+  id: Scalars['ID'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  name: Scalars['String'];
+  videos?: Maybe<Array<Maybe<Video>>>;
+};
+
+
+export type TagVideosArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
 export type Video = {
   __typename?: 'Video';
   id: Scalars['ID'];
@@ -497,16 +545,72 @@ export type Video = {
   url: Scalars['String'];
   title: Scalars['String'];
   description: Scalars['String'];
-  tags?: Maybe<Array<Maybe<ComponentTagTags>>>;
   isPublished: Scalars['Boolean'];
   publishedAt?: Maybe<Scalars['DateTime']>;
   thumbnailUrl: Scalars['String'];
+  tags?: Maybe<Array<Maybe<Tag>>>;
 };
 
-export type ComponentTagTags = {
-  __typename?: 'ComponentTagTags';
+
+export type VideoTagsArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+export type TagConnection = {
+  __typename?: 'TagConnection';
+  values?: Maybe<Array<Maybe<Tag>>>;
+  groupBy?: Maybe<TagGroupBy>;
+  aggregate?: Maybe<TagAggregator>;
+};
+
+export type TagGroupBy = {
+  __typename?: 'TagGroupBy';
+  id?: Maybe<Array<Maybe<TagConnectionId>>>;
+  created_at?: Maybe<Array<Maybe<TagConnectionCreated_At>>>;
+  updated_at?: Maybe<Array<Maybe<TagConnectionUpdated_At>>>;
+  name?: Maybe<Array<Maybe<TagConnectionName>>>;
+};
+
+export type TagConnectionId = {
+  __typename?: 'TagConnectionId';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<TagConnection>;
+};
+
+export type TagConnectionCreated_At = {
+  __typename?: 'TagConnectionCreated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<TagConnection>;
+};
+
+export type TagConnectionUpdated_At = {
+  __typename?: 'TagConnectionUpdated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<TagConnection>;
+};
+
+export type TagConnectionName = {
+  __typename?: 'TagConnectionName';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<TagConnection>;
+};
+
+export type TagAggregator = {
+  __typename?: 'TagAggregator';
+  count?: Maybe<Scalars['Int']>;
+  totalCount?: Maybe<Scalars['Int']>;
+};
+
+export type VideoPage = {
+  __typename?: 'VideoPage';
   id: Scalars['ID'];
-  name: Scalars['String'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  description?: Maybe<Scalars['String']>;
+  imageUrl?: Maybe<Scalars['String']>;
 };
 
 export type VideoConnection = {
@@ -619,7 +723,7 @@ export type UploadFileRelatedArgs = {
   where?: Maybe<Scalars['JSON']>;
 };
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Faq | FaqConnection | FaqAggregator | FaqGroupBy | FaqConnectionId | FaqConnectionCreated_At | FaqConnectionUpdated_At | FaqConnectionQuestion | FaqConnectionAnswer | FaqConnectionIsPublished | FaqConnectionPublishedAt | CreateFaqPayload | UpdateFaqPayload | DeleteFaqPayload | Home | UpdateHomePayload | DeleteHomePayload | Photo | PhotoConnection | PhotoAggregator | PhotoAggregatorSum | PhotoAggregatorAvg | PhotoAggregatorMin | PhotoAggregatorMax | PhotoGroupBy | PhotoConnectionId | PhotoConnectionCreated_At | PhotoConnectionUpdated_At | PhotoConnectionUrl | PhotoConnectionWidth | PhotoConnectionHeight | PhotoConnectionTitle | PhotoConnectionIsPublished | PhotoConnectionPublishedAt | CreatePhotoPayload | UpdatePhotoPayload | DeletePhotoPayload | Social | SocialConnection | SocialAggregator | SocialGroupBy | SocialConnectionId | SocialConnectionCreated_At | SocialConnectionUpdated_At | SocialConnectionUrl | SocialConnectionIcon | SocialConnectionIsPublished | SocialConnectionPublishedAt | SocialConnectionLabel | CreateSocialPayload | UpdateSocialPayload | DeleteSocialPayload | Video | VideoConnection | VideoAggregator | VideoGroupBy | VideoConnectionId | VideoConnectionCreated_At | VideoConnectionUpdated_At | VideoConnectionUrl | VideoConnectionTitle | VideoConnectionDescription | VideoConnectionIsPublished | VideoConnectionPublishedAt | VideoConnectionThumbnailUrl | CreateVideoPayload | UpdateVideoPayload | DeleteVideoPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentTagTags;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Faq | FaqConnection | FaqAggregator | FaqGroupBy | FaqConnectionId | FaqConnectionCreated_At | FaqConnectionUpdated_At | FaqConnectionQuestion | FaqConnectionAnswer | FaqConnectionIsPublished | FaqConnectionPublishedAt | CreateFaqPayload | UpdateFaqPayload | DeleteFaqPayload | Home | UpdateHomePayload | DeleteHomePayload | Photo | PhotoConnection | PhotoAggregator | PhotoAggregatorSum | PhotoAggregatorAvg | PhotoAggregatorMin | PhotoAggregatorMax | PhotoGroupBy | PhotoConnectionId | PhotoConnectionCreated_At | PhotoConnectionUpdated_At | PhotoConnectionUrl | PhotoConnectionWidth | PhotoConnectionHeight | PhotoConnectionTitle | PhotoConnectionIsPublished | PhotoConnectionPublishedAt | CreatePhotoPayload | UpdatePhotoPayload | DeletePhotoPayload | Social | SocialConnection | SocialAggregator | SocialGroupBy | SocialConnectionId | SocialConnectionCreated_At | SocialConnectionUpdated_At | SocialConnectionUrl | SocialConnectionIcon | SocialConnectionIsPublished | SocialConnectionPublishedAt | SocialConnectionLabel | CreateSocialPayload | UpdateSocialPayload | DeleteSocialPayload | Tag | TagConnection | TagAggregator | TagGroupBy | TagConnectionId | TagConnectionCreated_At | TagConnectionUpdated_At | TagConnectionName | CreateTagPayload | UpdateTagPayload | DeleteTagPayload | VideoPage | UpdateVideoPagePayload | DeleteVideoPagePayload | Video | VideoConnection | VideoAggregator | VideoGroupBy | VideoConnectionId | VideoConnectionCreated_At | VideoConnectionUpdated_At | VideoConnectionUrl | VideoConnectionTitle | VideoConnectionDescription | VideoConnectionIsPublished | VideoConnectionPublishedAt | VideoConnectionThumbnailUrl | CreateVideoPayload | UpdateVideoPayload | DeleteVideoPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentTagTags;
 
 export type UsersPermissionsMe = {
   __typename?: 'UsersPermissionsMe';
@@ -703,6 +807,31 @@ export type UpdateSocialPayload = {
 export type DeleteSocialPayload = {
   __typename?: 'deleteSocialPayload';
   social?: Maybe<Social>;
+};
+
+export type CreateTagPayload = {
+  __typename?: 'createTagPayload';
+  tag?: Maybe<Tag>;
+};
+
+export type UpdateTagPayload = {
+  __typename?: 'updateTagPayload';
+  tag?: Maybe<Tag>;
+};
+
+export type DeleteTagPayload = {
+  __typename?: 'deleteTagPayload';
+  tag?: Maybe<Tag>;
+};
+
+export type UpdateVideoPagePayload = {
+  __typename?: 'updateVideoPagePayload';
+  videoPage?: Maybe<VideoPage>;
+};
+
+export type DeleteVideoPagePayload = {
+  __typename?: 'deleteVideoPagePayload';
+  videoPage?: Maybe<VideoPage>;
 };
 
 export type CreateVideoPayload = {
@@ -1093,6 +1222,12 @@ export type DeleteUserPayload = {
   user?: Maybe<UsersPermissionsUser>;
 };
 
+export type ComponentTagTags = {
+  __typename?: 'ComponentTagTags';
+  id: Scalars['ID'];
+  name: Scalars['String'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createFaq?: Maybe<CreateFaqPayload>;
@@ -1106,6 +1241,11 @@ export type Mutation = {
   createSocial?: Maybe<CreateSocialPayload>;
   updateSocial?: Maybe<UpdateSocialPayload>;
   deleteSocial?: Maybe<DeleteSocialPayload>;
+  createTag?: Maybe<CreateTagPayload>;
+  updateTag?: Maybe<UpdateTagPayload>;
+  deleteTag?: Maybe<DeleteTagPayload>;
+  updateVideoPage?: Maybe<UpdateVideoPagePayload>;
+  deleteVideoPage?: Maybe<DeleteVideoPagePayload>;
   createVideo?: Maybe<CreateVideoPayload>;
   updateVideo?: Maybe<UpdateVideoPayload>;
   deleteVideo?: Maybe<DeleteVideoPayload>;
@@ -1179,6 +1319,26 @@ export type MutationUpdateSocialArgs = {
 
 export type MutationDeleteSocialArgs = {
   input?: Maybe<DeleteSocialInput>;
+};
+
+
+export type MutationCreateTagArgs = {
+  input?: Maybe<CreateTagInput>;
+};
+
+
+export type MutationUpdateTagArgs = {
+  input?: Maybe<UpdateTagInput>;
+};
+
+
+export type MutationDeleteTagArgs = {
+  input?: Maybe<DeleteTagInput>;
+};
+
+
+export type MutationUpdateVideoPageArgs = {
+  input?: Maybe<UpdateVideoPageInput>;
 };
 
 
@@ -1394,6 +1554,44 @@ export type DeleteSocialInput = {
   where?: Maybe<InputId>;
 };
 
+export type CreateTagInput = {
+  data?: Maybe<TagInput>;
+};
+
+export type TagInput = {
+  name: Scalars['String'];
+  videos?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type UpdateTagInput = {
+  where?: Maybe<InputId>;
+  data?: Maybe<EditTagInput>;
+};
+
+export type EditTagInput = {
+  name?: Maybe<Scalars['String']>;
+  videos?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type DeleteTagInput = {
+  where?: Maybe<InputId>;
+};
+
+export type UpdateVideoPageInput = {
+  data?: Maybe<EditVideoPageInput>;
+};
+
+export type EditVideoPageInput = {
+  description?: Maybe<Scalars['String']>;
+  imageUrl?: Maybe<Scalars['String']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
 export type CreateVideoInput = {
   data?: Maybe<VideoInput>;
 };
@@ -1402,16 +1600,12 @@ export type VideoInput = {
   url: Scalars['String'];
   title: Scalars['String'];
   description: Scalars['String'];
-  tags?: Maybe<Array<ComponentTagTagInput>>;
   isPublished?: Maybe<Scalars['Boolean']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   thumbnailUrl: Scalars['String'];
+  tags?: Maybe<Array<Maybe<Scalars['ID']>>>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
-};
-
-export type ComponentTagTagInput = {
-  name: Scalars['String'];
 };
 
 export type UpdateVideoInput = {
@@ -1423,17 +1617,12 @@ export type EditVideoInput = {
   url?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
-  tags?: Maybe<Array<Maybe<EditComponentTagTagInput>>>;
   isPublished?: Maybe<Scalars['Boolean']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   thumbnailUrl?: Maybe<Scalars['String']>;
+  tags?: Maybe<Array<Maybe<Scalars['ID']>>>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
-};
-
-export type EditComponentTagTagInput = {
-  id?: Maybe<Scalars['ID']>;
-  name?: Maybe<Scalars['String']>;
 };
 
 export type DeleteVideoInput = {
@@ -1541,6 +1730,13 @@ export type HomeInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
+export type VideoPageInput = {
+  description?: Maybe<Scalars['String']>;
+  imageUrl?: Maybe<Scalars['String']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
 export type FileInput = {
   name: Scalars['String'];
   alternativeText?: Maybe<Scalars['String']>;
@@ -1579,6 +1775,15 @@ export type EditFileInput = {
   related?: Maybe<Array<Maybe<Scalars['ID']>>>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type ComponentTagTagInput = {
+  name: Scalars['String'];
+};
+
+export type EditComponentTagTagInput = {
+  id?: Maybe<Scalars['ID']>;
+  name?: Maybe<Scalars['String']>;
 };
 
 export type AdminUser = {
@@ -1648,9 +1853,36 @@ export type SocialsQuery = (
   )>>> }
 );
 
+export type TagsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TagsQuery = (
+  { __typename?: 'Query' }
+  & { tags?: Maybe<Array<Maybe<(
+    { __typename?: 'Tag' }
+    & Pick<Tag, 'id' | 'name'>
+    & { videos?: Maybe<Array<Maybe<(
+      { __typename?: 'Video' }
+      & Pick<Video, 'id'>
+    )>>> }
+  )>>> }
+);
+
+export type VideoPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type VideoPageQuery = (
+  { __typename?: 'Query' }
+  & { videoPage?: Maybe<(
+    { __typename?: 'VideoPage' }
+    & Pick<VideoPage, 'description' | 'imageUrl'>
+  )> }
+);
+
 export type VideosQueryVariables = Exact<{
   limit: Scalars['Int'];
   start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
 }>;
 
 
@@ -1660,10 +1892,20 @@ export type VideosQuery = (
     { __typename?: 'Video' }
     & Pick<Video, 'id' | 'url' | 'thumbnailUrl' | 'title' | 'description'>
     & { tags?: Maybe<Array<Maybe<(
-      { __typename?: 'ComponentTagTags' }
-      & Pick<ComponentTagTags, 'id' | 'name'>
+      { __typename?: 'Tag' }
+      & Pick<Tag, 'id' | 'name'>
     )>>> }
   )>>> }
+);
+
+export type VideosCountPublishedQueryVariables = Exact<{
+  tagName?: Maybe<Scalars['String']>;
+}>;
+
+
+export type VideosCountPublishedQuery = (
+  { __typename?: 'Query' }
+  & Pick<Query, 'videosCountPublished'>
 );
 
 
@@ -1814,9 +2056,78 @@ export function useSocialsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<So
 export type SocialsQueryHookResult = ReturnType<typeof useSocialsQuery>;
 export type SocialsLazyQueryHookResult = ReturnType<typeof useSocialsLazyQuery>;
 export type SocialsQueryResult = Apollo.QueryResult<SocialsQuery, SocialsQueryVariables>;
+export const TagsDocument = gql`
+    query Tags {
+  tags {
+    id
+    name
+    videos {
+      id
+    }
+  }
+}
+    `;
+
+/**
+ * __useTagsQuery__
+ *
+ * To run a query within a React component, call `useTagsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTagsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTagsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useTagsQuery(baseOptions?: Apollo.QueryHookOptions<TagsQuery, TagsQueryVariables>) {
+        return Apollo.useQuery<TagsQuery, TagsQueryVariables>(TagsDocument, baseOptions);
+      }
+export function useTagsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TagsQuery, TagsQueryVariables>) {
+          return Apollo.useLazyQuery<TagsQuery, TagsQueryVariables>(TagsDocument, baseOptions);
+        }
+export type TagsQueryHookResult = ReturnType<typeof useTagsQuery>;
+export type TagsLazyQueryHookResult = ReturnType<typeof useTagsLazyQuery>;
+export type TagsQueryResult = Apollo.QueryResult<TagsQuery, TagsQueryVariables>;
+export const VideoPageDocument = gql`
+    query VideoPage {
+  videoPage {
+    description
+    imageUrl
+  }
+}
+    `;
+
+/**
+ * __useVideoPageQuery__
+ *
+ * To run a query within a React component, call `useVideoPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useVideoPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useVideoPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useVideoPageQuery(baseOptions?: Apollo.QueryHookOptions<VideoPageQuery, VideoPageQueryVariables>) {
+        return Apollo.useQuery<VideoPageQuery, VideoPageQueryVariables>(VideoPageDocument, baseOptions);
+      }
+export function useVideoPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<VideoPageQuery, VideoPageQueryVariables>) {
+          return Apollo.useLazyQuery<VideoPageQuery, VideoPageQueryVariables>(VideoPageDocument, baseOptions);
+        }
+export type VideoPageQueryHookResult = ReturnType<typeof useVideoPageQuery>;
+export type VideoPageLazyQueryHookResult = ReturnType<typeof useVideoPageLazyQuery>;
+export type VideoPageQueryResult = Apollo.QueryResult<VideoPageQuery, VideoPageQueryVariables>;
 export const VideosDocument = gql`
-    query Videos($limit: Int!, $start: Int) {
-  videos(limit: $limit, start: $start) {
+    query Videos($limit: Int!, $start: Int, $where: JSON) {
+  videos(limit: $limit, start: $start, where: $where) {
     id
     url
     thumbnailUrl
@@ -1844,6 +2155,7 @@ export const VideosDocument = gql`
  *   variables: {
  *      limit: // value for 'limit'
  *      start: // value for 'start'
+ *      where: // value for 'where'
  *   },
  * });
  */
@@ -1856,3 +2168,34 @@ export function useVideosLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Vid
 export type VideosQueryHookResult = ReturnType<typeof useVideosQuery>;
 export type VideosLazyQueryHookResult = ReturnType<typeof useVideosLazyQuery>;
 export type VideosQueryResult = Apollo.QueryResult<VideosQuery, VideosQueryVariables>;
+export const VideosCountPublishedDocument = gql`
+    query VideosCountPublished($tagName: String) {
+  videosCountPublished(tagName: $tagName)
+}
+    `;
+
+/**
+ * __useVideosCountPublishedQuery__
+ *
+ * To run a query within a React component, call `useVideosCountPublishedQuery` and pass it any options that fit your needs.
+ * When your component renders, `useVideosCountPublishedQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useVideosCountPublishedQuery({
+ *   variables: {
+ *      tagName: // value for 'tagName'
+ *   },
+ * });
+ */
+export function useVideosCountPublishedQuery(baseOptions?: Apollo.QueryHookOptions<VideosCountPublishedQuery, VideosCountPublishedQueryVariables>) {
+        return Apollo.useQuery<VideosCountPublishedQuery, VideosCountPublishedQueryVariables>(VideosCountPublishedDocument, baseOptions);
+      }
+export function useVideosCountPublishedLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<VideosCountPublishedQuery, VideosCountPublishedQueryVariables>) {
+          return Apollo.useLazyQuery<VideosCountPublishedQuery, VideosCountPublishedQueryVariables>(VideosCountPublishedDocument, baseOptions);
+        }
+export type VideosCountPublishedQueryHookResult = ReturnType<typeof useVideosCountPublishedQuery>;
+export type VideosCountPublishedLazyQueryHookResult = ReturnType<typeof useVideosCountPublishedLazyQuery>;
+export type VideosCountPublishedQueryResult = Apollo.QueryResult<VideosCountPublishedQuery, VideosCountPublishedQueryVariables>;

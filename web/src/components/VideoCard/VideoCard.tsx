@@ -1,11 +1,22 @@
 import React from "react";
+import { Maybe, Tag as TTag } from "../../generated/graphql";
 import PlayIcon from "../Icon/PlayIcon";
+import Tag from "../Tag/Tag";
 
 export interface IVideoCard {
   thumbnailUrl: string;
   title: string;
   description: string;
   sourceUrl: string;
+  tags?:
+    | Maybe<
+        {
+          __typename?: "Tag" | undefined;
+        } & Pick<TTag, "id" | "name">
+      >[]
+    | null
+    | undefined;
+  showTags?: boolean;
 }
 
 const VideoCard: React.FC<IVideoCard> = ({
@@ -13,6 +24,8 @@ const VideoCard: React.FC<IVideoCard> = ({
   title,
   description,
   sourceUrl,
+  tags,
+  showTags,
 }) => {
   return (
     <div>
@@ -29,6 +42,15 @@ const VideoCard: React.FC<IVideoCard> = ({
       </div>
       <p className="mt-4 text-xl font-semibold">{title}</p>
       <p className="mt-1 text-sm font-secondary leading-6">{description}</p>
+      {tags && showTags && (
+        <div className="mt-4 flex flex-wrap gap-4">
+          {tags.map((tag) => (
+            <Tag key={tag?.id} name={tag?.name as string} variant="small">
+              {tag?.name}
+            </Tag>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

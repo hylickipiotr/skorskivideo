@@ -1,0 +1,3 @@
+query VideosCountPublished($tagName: String) {
+  videosCountPublished(tagName: $tagName)
+}

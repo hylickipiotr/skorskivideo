@@ -10,7 +10,19 @@ const httpLink = createHttpLink({
 const createClient = () =>
   new ApolloClient({
     link: httpLink,
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      typePolicies: {
+        Videos: {
+          fields: {
+            videos: {
+              merge(existing, incoming, { mergeObjects }) {
+                return mergeObjects(existing, incoming);
+              },
+            },
+          },
+        },
+      },
+    }),
   });
 
 export const withApollo = createWithApollo(createClient);

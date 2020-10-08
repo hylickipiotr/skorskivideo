@@ -1,5 +1,5 @@
-query Videos($limit: Int!, $start: Int) {
-  videos(limit: $limit, start: $start) {
+query Videos($limit: Int!, $start: Int, $where: JSON) {
+  videos(limit: $limit, start: $start, where: $where) {
     id
     url
     thumbnailUrl

@@ -9,19 +9,14 @@ module.exports = {
   find: async (ctx) => {
     let entities;
 
-    ctx.query = {
-      ...ctx.query,
-      _sort: "created_at:DESC",
-    };
-
     if (ctx.query._q) {
-      entities = await strapi.services.video.search(ctx.query);
+      entities = await strapi.services.tag.search(ctx.query);
     } else {
-      entities = await strapi.services.video.find(ctx.query);
+      entities = await strapi.services.tag.find(ctx.query);
     }
 
-    return entities.map((entity) =>
-      sanitizeEntity(entity, { model: strapi.models.video })
-    );
+    return entities
+      .filter((entity) => entity.videos.length)
+      .map((entity) => sanitizeEntity(entity, { model: strapi.models.tag }));
   },
 };

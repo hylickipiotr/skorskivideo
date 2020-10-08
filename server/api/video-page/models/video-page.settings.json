@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "video_pages",
+  "info": {
+    "name": "VideoPage"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "description": {
+      "type": "richtext",
+      "required": false
+    },
+    "imageUrl": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

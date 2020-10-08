@@ -1,27 +1,27 @@
+import { IconName } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Field, Form, Formik } from "formik";
 import NextLink from "next/link";
 import React from "react";
-import BackgroundVideo from "../components/BackgroundVideo/BackgroundVideo";
-import MyGallery from "../components/MyGallery/MyGallery";
-import Header from "../components/Header/Header";
-import VideoCard from "../components/VideoCard/VideoCard";
-import Layout from "../layouts/Layout";
-import { SocialItems } from "../utils/socialItems";
 import { Element } from "react-scroll";
+import BackgroundVideo from "../components/BackgroundVideo/BackgroundVideo";
+import Header from "../components/Header/Header";
+import MyGallery from "../components/MyGallery/MyGallery";
+import VideoCard from "../components/VideoCard/VideoCard";
 import {
+  Tag,
   useFaqsQuery,
   useHomeQuery,
   usePhotosQuery,
   useSocialsQuery,
   useVideosQuery,
 } from "../generated/graphql";
+import Layout from "../layouts/Layout";
 import { isServer } from "../utils/isServer";
 import { withApollo } from "../utils/withApollo";
-import { IconName } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const IndexPage = () => {
-  const { data: homeData } = useHomeQuery();
+  const { data: homePageData } = useHomeQuery();
   const { data: socialsData } = useSocialsQuery();
 
   const { data: faqsData } = useFaqsQuery({
@@ -49,11 +49,11 @@ const IndexPage = () => {
       <BackgroundVideo
         sources={[
           {
-            src: homeData?.home?.backgroundVideoUrl as string,
+            src: homePageData?.home?.backgroundVideoUrl as string,
             type: "video/mp4",
           },
         ]}
-        imgSrc={homeData?.home?.backgroundImageUrl}
+        imgSrc={homePageData?.home?.backgroundImageUrl}
         options={{
           autoPlay: true,
           loop: true,
@@ -68,22 +68,24 @@ const IndexPage = () => {
         <div className="md:hidden">
           <Header>O nas</Header>
           <div className="mt-8 ">
-            <img src={homeData?.home?.aboutUsImageUrl} />
+            <img src={homePageData?.home?.aboutUsImageUrl} />
           </div>
           <div className="mt-8">
-            <p className="font-secondary">{homeData?.home?.aboutUsContent}</p>
+            <p className="font-secondary">
+              {homePageData?.home?.aboutUsContent}
+            </p>
           </div>
         </div>
         {/* O NAS DESKTOP */}
         <Element name="onas" className="hidden md:grid flex-col grid-cols-12">
           <div className="col-span-5">
-            <img src={homeData?.home?.aboutUsImageUrl} />
+            <img src={homePageData?.home?.aboutUsImageUrl} />
           </div>
           <div className="col-span-7 md:ml-16 mt-4">
             <Header>O nas</Header>
             <div className="mt-8">
               <p className="font-secondary leading-relaxed">
-                {homeData?.home?.aboutUsContent}
+                {homePageData?.home?.aboutUsContent}
               </p>
             </div>
           </div>
@@ -110,6 +112,7 @@ const IndexPage = () => {
                     <VideoCard
                       key={video.id}
                       sourceUrl={video.url}
+                      tags={video.tags as Tag[]}
                       {...video}
                     />
                   )
@@ -186,7 +189,7 @@ const IndexPage = () => {
           <div className="grid grid-flow-row gap-16 md:grid-flow-col md:grid-cols-2 mt-8">
             <div>
               <p className="font-secondary leading-relaxed">
-                {homeData?.home?.contactContent}
+                {homePageData?.home?.contactContent}
               </p>
               {socialsData?.socials && (
                 <div className="mt-12 ml-4 grid row-gap-6">

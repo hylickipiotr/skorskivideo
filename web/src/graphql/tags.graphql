@@ -1,0 +1,9 @@
+query Tags {
+  tags {
+    id
+    name
+    videos {
+      id
+    }
+  }
+}
