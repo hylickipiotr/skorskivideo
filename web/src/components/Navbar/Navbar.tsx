@@ -48,7 +48,7 @@ const Navbar: React.FC<{}> = () => {
                 <Logo className="fill-current text-white h-10 w-auto" />
               </div>
             </NextLink>
-            <div className="grid grid-flow-col col-gap-6 xl:col-gap-8 items-center ml-12 xl:ml-16">
+            <div className="grid grid-flow-col col-gap-6 xl:col-gap-12 items-center ml-12 xl:ml-16">
               {MenuItems.map(({ label, href, active }) => (
                 <div key={label}>
                   <Link
@@ -60,7 +60,7 @@ const Navbar: React.FC<{}> = () => {
                   >
                     <div className="relative">
                       <p
-                        className={`uppercase text-sm font-light tracking-wide cursor-pointer ${
+                        className={`uppercase text-sm tracking-wider cursor-pointer ${
                           !active
                             ? "transform ease-in-out duration-200 hover:-translate-y-0.5"
                             : ""
@@ -83,11 +83,12 @@ const Navbar: React.FC<{}> = () => {
           {socialsData?.socials && (
             <div className="grid grid-flow-col col-gap-8 xl:col-gap-12">
               {socialsData?.socials?.map((social) => (
-                <FontAwesomeIcon
-                  key={social?.id}
-                  icon={["fab", social?.icon as IconName]}
-                  className="cursor-pointer transform easy-in-out text-xl duration-200 hover:scale-110"
-                />
+                <NextLink href={social?.url as string} key={social?.id}>
+                  <FontAwesomeIcon
+                    icon={["fab", social?.icon as IconName]}
+                    className="cursor-pointer transform easy-in-out text-xl duration-200 hover:scale-110"
+                  />
+                </NextLink>
               ))}
             </div>
           )}

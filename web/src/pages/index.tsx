@@ -98,18 +98,18 @@ const IndexPage = () => {
         {/* Filmowanie */}
         {videosData?.videos && (
           <Element name="video">
-            <div className="flex w-full justify-between items-baseline">
+            <div className="flex w-full justify-between items-start">
               <Header>Filmowanie</Header>
-              <div className="hidden md:block  transform hover:-translate-y-1 hover:scale-105 transition-all ease-in-out duration-200">
+              <div className="hidden md:block">
                 <NextLink href={ROUTES.VIDEO}>
-                  <button className="underline font-semibold">
+                  <button className="font-semibold border-2 border-black px-4 py-2 hover:bg-yellow-500 translate duration-200 ease-in-out">
                     Zobacz więcej
                   </button>
                 </NextLink>
               </div>
             </div>
             <div
-              className={`grid grid-flow-col md:grid-flow-row md:grid-cols-3 md:grid-rows-none gap-8 mt-12`}
+              className={`grid md:grid-flow-row md:grid-cols-3 md:grid-rows-none gap-8 mt-12`}
             >
               {videosData.videos.map(
                 (video) =>
@@ -125,7 +125,7 @@ const IndexPage = () => {
             </div>
             <div className="md:hidden mt-8">
               <NextLink href={ROUTES.VIDEO}>
-                <button className="bg-yellow-500 w-full py-2 px-4 font-semibold hover:bg-yellow-700 transition-colors ease-in-out duration-200">
+                <button className="bg-yellow-500 w-full px-4 py-2">
                   Zobacz więcej
                 </button>
               </NextLink>
@@ -135,11 +135,11 @@ const IndexPage = () => {
         {/* Fotografia */}
         {photosData?.photos && (
           <Element name="fotografia">
-            <div className="flex w-full justify-between items-baseline">
+            <div className="flex w-full justify-between items-start">
               <Header>Fotografia</Header>
-              <div className="hidden md:block  transform">
+              <div className="hidden md:block">
                 <NextLink href={ROUTES.PHOTO}>
-                  <button className="font-semibold border-2 border-black px-4 py-2 hover:border-yellow-500">
+                  <button className="font-semibold border-2 border-black px-4 py-2 hover:bg-yellow-500 translate duration-200 ease-in-out">
                     Zobacz więcej
                   </button>
                 </NextLink>
@@ -157,7 +157,7 @@ const IndexPage = () => {
             </div>
             <div className="md:hidden mt-8">
               <NextLink href={ROUTES.PHOTO}>
-                <button className="bg-yellow-500 w-full py-2 px-4 font-semibold hover:bg-yellow-700 transition-colors ease-in-out duration-200">
+                <button className="bg-yellow-500 w-full px-4 py-2">
                   Zobacz więcej
                 </button>
               </NextLink>
@@ -168,15 +168,16 @@ const IndexPage = () => {
         {faqsData?.faqs && (
           <Element name="faq">
             <Header>FAQ</Header>
-            <div className="grid grid-flow-row row-gap-8 md:row-gap-6 mt-12">
+            <div className="grid md:grid-cols-12 gap-8 md:gap-6 mt-12">
               {faqsData?.faqs?.map(
                 (faq) =>
                   faq && (
                     <div
                       key={faq.id}
-                      className="grid row-gap-2 md:grid-flow-col md:grid-cols-12 md:col-gap-8"
+                      className="md:col-span-6 bg-yellow-100 border-l-4 border-solid border-yellow-500 pl-4 pt-4 pb-3"
+                      // className="grid row-gap-2 md:grid-flow-col md:grid-cols-12 md:col-gap-8"
                     >
-                      <div className="font-semibold text-lg md:col-span-5">
+                      <div className="font-secondary font-semibold md:col-span-5">
                         {faq.question}
                       </div>
                       <div className="text-gray-800 font-secondary leading-relaxed md:col-span-7">
