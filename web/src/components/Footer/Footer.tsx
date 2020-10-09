@@ -10,7 +10,7 @@ const Footer: React.FC<{}> = ({}) => {
   return (
     <footer className="sticky flex flex-col w-full justify-center items-center bg-black text-white p-8">
       {socialsData?.socials && (
-        <div className="grid grid-flow-col col-gap-6">
+        <div className="grid grid-flow-col col-gap-8">
           {socialsData.socials.map((social) => (
             <NextLink key={social?.id} href={social?.url as string}>
               <FontAwesomeIcon
@@ -22,7 +22,7 @@ const Footer: React.FC<{}> = ({}) => {
           ))}
         </div>
       )}
-      <p className="text-xs font-secondary mt-4">
+      <p className="text-xs font-secondary mt-5">
         Copyright Skórski Video. All Right Reserved {new Date().getFullYear()}
       </p>
     </footer>

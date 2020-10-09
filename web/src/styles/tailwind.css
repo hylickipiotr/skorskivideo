@@ -7,4 +7,5 @@
 
 html {
   @apply font-primary;
+  @apply text-gray-900;
 }

@@ -180,7 +180,7 @@ const IndexPage = () => {
                       <div className="font-secondary font-semibold md:col-span-5">
                         {faq.question}
                       </div>
-                      <div className="text-gray-800 font-secondary leading-relaxed md:col-span-7">
+                      <div className="text-gray-700 font-secondary leading-relaxed md:col-span-7">
                         {faq.answer}
                       </div>
                     </div>
@@ -201,12 +201,12 @@ const IndexPage = () => {
                 <div className="mt-12 ml-4 grid row-gap-6">
                   {socialsData.socials.map((social) => (
                     <NextLink key={social?.id} href={social?.url as string}>
-                      <div className="flex items-center cursor-pointer text-black">
+                      <div className="flex items-center cursor-pointer">
                         <div className="flex justify-center items-center h-4 w-4">
                           <FontAwesomeIcon
                             key={social?.id}
                             icon={["fab", social?.icon as IconName]}
-                            className="text-xl"
+                            className="text-xl text-gray-900"
                             style={
                               social?.colorHex ? { color: social.colorHex } : {}
                             }
@@ -219,7 +219,7 @@ const IndexPage = () => {
                 </div>
               )}
             </div>
-            <div className="p-4 bg-gray-300">
+            <div className="p-4 bg-gray-100">
               <Formik
                 initialValues={{
                   email: "",
@@ -233,13 +233,13 @@ const IndexPage = () => {
                       type="email"
                       name="email"
                       placeholder="Twój email"
-                      className="border-gray-500 border-solid border-2 p-2"
+                      className="border-gray-300 border-solid border-2 p-2"
                     />
                     <Field
                       name="message"
                       component="textarea"
                       placeholder="W czy możemy Ci pomóc?"
-                      className="border-gray-500 border-solid border-2 p-2 h-auto"
+                      className="border-gray-300 border-solid border-2 p-2 h-auto"
                       rows="10"
                     />
                     <div className="flex justify-end">

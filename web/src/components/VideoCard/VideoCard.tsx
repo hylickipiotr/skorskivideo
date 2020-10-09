@@ -41,7 +41,9 @@ const VideoCard: React.FC<IVideoCard> = ({
         />
       </div>
       <p className="mt-4 text-xl font-semibold">{title}</p>
-      <p className="mt-1 text-sm font-secondary leading-6">{description}</p>
+      <p className="mt-1 text-sm font-secondary leading-6 text-gray-700">
+        {description}
+      </p>
       {tags && showTags && (
         <div className="mt-4 flex flex-wrap gap-4">
           {tags.map((tag) => (
