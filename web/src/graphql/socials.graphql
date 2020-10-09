@@ -4,5 +4,6 @@ query Socials {
     label
     icon
     url
+    colorHex
   }
 }

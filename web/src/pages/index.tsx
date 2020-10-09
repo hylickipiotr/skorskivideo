@@ -207,6 +207,9 @@ const IndexPage = () => {
                             key={social?.id}
                             icon={["fab", social?.icon as IconName]}
                             className="text-xl"
+                            style={
+                              social?.colorHex ? { color: social.colorHex } : {}
+                            }
                           />
                         </div>
                         <p className="ml-4 capitalize">{social?.label}</p>
