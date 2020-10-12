@@ -1,7 +1,7 @@
 import { IconName } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NextLink from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-scroll";
 import { ROUTES } from "../../constans/router";
 import { useSocialsQuery } from "../../generated/graphql";
@@ -10,34 +10,67 @@ import Logo from "../Logo/Logo";
 
 const Navbar: React.FC<{}> = () => {
   const { data: socialsData } = useSocialsQuery();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <header className="fixed flex w-full bg-black text-white z-50">
-      <div className="md:hidden grid grid-cols-3 items-center w-full m-6">
-        <div>
-          <button>
-            <svg
-              className="block h-6 w-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+      <div className={`md:hidden p-6 w-full ${isMenuOpen ? "h-screen" : ""}`}>
+        <div className="grid grid-cols-3 items-center w-full">
+          <div className="flex items-center">
+            <button
+              onClick={() => {
+                console.log(isMenuOpen);
+                setIsMenuOpen(!isMenuOpen);
+              }}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
+              <svg
+                className="block h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  className={isMenuOpen ? "hidden" : "block"}
+                  strokeLinecap="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+                <path
+                  className={isMenuOpen ? "block" : "hidden"}
+                  strokeLinecap="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
+          <div className="flex justify-center">
+            <NextLink href={ROUTES.HOME}>
+              <div className="cursor-pointer">
+                <Logo className="fill-current text-white h-8 w-auto" />
+              </div>
+            </NextLink>
+          </div>
         </div>
-        <div className="flex justify-center">
-          <NextLink href={ROUTES.HOME}>
-            <div className="cursor-pointer">
-              <Logo className="fill-current text-white h-8 w-auto" />
+        <div
+          className={`${
+            isMenuOpen ? "flex" : "hidden"
+          } w-full h-full flex-col justify-center items-center`}
+        >
+          {MenuItems.map(({ label, href }) => (
+            <div key={label} className="py-4 uppercase text-xl">
+              <Link
+                to={href}
+                spy={true}
+                smooth={true}
+                offset={-100}
+                duration={500}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {label}
+              </Link>
             </div>
-          </NextLink>
+          ))}
         </div>
       </div>
       <div className="hidden w-full my-6 mx-12 md:block ">
