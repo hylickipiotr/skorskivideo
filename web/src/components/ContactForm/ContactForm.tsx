@@ -6,6 +6,7 @@ import {
 } from "../../generated/graphql";
 import { useToasts } from "react-toast-notifications";
 import { mapArrayToObject } from "../../utils/mapArrayToObject";
+import RichText from "../RichText/RichText";
 
 interface FormValues {
   firstname: string;
@@ -168,7 +169,7 @@ const ContactForm: React.FC<{}> = ({}) => {
               <label className="col-span-2">
                 <Field type="checkbox" name="agreement" required />
                 <span className="ml-1 font-secondary text-sm">
-                  {contactFormConfig.contactForm.agreement}
+                  <RichText>{contactFormConfig.contactForm.agreement}</RichText>
                 </span>
               </label>
             )}

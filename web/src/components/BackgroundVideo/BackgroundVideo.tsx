@@ -11,7 +11,6 @@ interface IBackgroundVideo {
   };
 }
 
-// TODO: Implement react-player
 const BackgroundVideo: React.FC<IBackgroundVideo> = ({
   sources,
   options,

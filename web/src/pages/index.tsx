@@ -9,6 +9,7 @@ import BackgroundVideo from "../components/BackgroundVideo/BackgroundVideo";
 import ContactForm from "../components/ContactForm/ContactForm";
 import Header from "../components/Header/Header";
 import MyGallery from "../components/MyGallery/MyGallery";
+import RichText from "../components/RichText/RichText";
 import VideoCard from "../components/VideoCard/VideoCard";
 import { ROUTES } from "../constans/router";
 import {
@@ -82,10 +83,8 @@ const IndexPage = () => {
             <div className="hidden md:block">
               <Header>O nas</Header>
             </div>
-            <div className="md:mt-8">
-              <p className="font-secondary leading-relaxed">
-                {homePageData?.home?.aboutUsContent}
-              </p>
+            <div className="md:mt-8 font-secondary leading-relaxed">
+              <RichText>{homePageData?.home?.aboutUsContent}</RichText>
             </div>
           </div>
         </Element>
@@ -169,13 +168,12 @@ const IndexPage = () => {
                     <div
                       key={faq.id}
                       className="md:col-span-6 bg-yellow-100 border-l-4 border-solid border-yellow-500 pl-4 pt-4 pb-3"
-                      // className="grid row-gap-2 md:grid-flow-col md:grid-cols-12 md:col-gap-8"
                     >
                       <div className="font-secondary font-semibold md:col-span-5">
                         {faq.question}
                       </div>
                       <div className="text-gray-700 font-secondary leading-relaxed md:col-span-7">
-                        {faq.answer}
+                        <RichText>{faq.answer}</RichText>
                       </div>
                     </div>
                   )
@@ -187,10 +185,8 @@ const IndexPage = () => {
         <Element name="kontakt">
           <Header>Kontakt</Header>
           <div className="grid grid-flow-row gap-16 md:grid-flow-col md:grid-cols-2 mt-8">
-            <div>
-              <p className="font-secondary leading-relaxed">
-                {homePageData?.home?.contactContent}
-              </p>
+            <div className="font-secondary leading-relaxed">
+              <RichText>{homePageData?.home?.contactContent}</RichText>
               {socialsData?.socials && (
                 <div className="mt-12 ml-4 grid row-gap-6">
                   {socialsData.socials.map((social) => (

@@ -1,6 +1,7 @@
 import { useApolloClient } from "@apollo/client";
 import React, { useState } from "react";
 import Header from "../components/Header/Header";
+import RichText from "../components/RichText/RichText";
 import TagCard, { IOnClickTagCard } from "../components/TagCard/TagCard";
 import VideoCard from "../components/VideoCard/VideoCard";
 import {
@@ -104,10 +105,8 @@ const VideoPage = () => {
             }`}
           >
             <Header>Video</Header>
-            <div className="mt-8">
-              <p className="font-secondary leading-relaxed">
-                {videoPageData?.videoPage?.description}
-              </p>
+            <div className="mt-8 font-secondary leading-relaxed">
+              <RichText>{videoPageData?.videoPage?.description}</RichText>
             </div>
           </div>
           {videoPageData?.videoPage?.imageUrl && (
