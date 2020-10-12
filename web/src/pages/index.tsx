@@ -6,6 +6,7 @@ import NextLink from "next/link";
 import React from "react";
 import { Element } from "react-scroll";
 import BackgroundVideo from "../components/BackgroundVideo/BackgroundVideo";
+import ContactForm from "../components/ContactForm/ContactForm";
 import Header from "../components/Header/Header";
 import MyGallery from "../components/MyGallery/MyGallery";
 import VideoCard from "../components/VideoCard/VideoCard";
@@ -200,60 +201,30 @@ const IndexPage = () => {
               {socialsData?.socials && (
                 <div className="mt-12 ml-4 grid row-gap-6">
                   {socialsData.socials.map((social) => (
-                    <NextLink key={social?.id} href={social?.url as string}>
-                      <div className="flex items-center cursor-pointer">
-                        <div className="flex justify-center items-center h-4 w-4">
-                          <FontAwesomeIcon
-                            key={social?.id}
-                            icon={["fab", social?.icon as IconName]}
-                            className="text-xl text-gray-900"
-                            style={
-                              social?.colorHex ? { color: social.colorHex } : {}
-                            }
-                          />
+                    <div key={social?.id}>
+                      <NextLink href={social?.url as string}>
+                        <div className="inline-flex items-center cursor-pointer">
+                          <div className="flex justify-center items-center h-4 w-4">
+                            <FontAwesomeIcon
+                              key={social?.id}
+                              icon={["fab", social?.icon as IconName]}
+                              className="text-xl text-gray-900"
+                              style={
+                                social?.colorHex
+                                  ? { color: social.colorHex }
+                                  : {}
+                              }
+                            />
+                          </div>
+                          <p className="ml-4 capitalize">{social?.label}</p>
                         </div>
-                        <p className="ml-4 capitalize">{social?.label}</p>
-                      </div>
-                    </NextLink>
+                      </NextLink>
+                    </div>
                   ))}
                 </div>
               )}
             </div>
-            <div className="p-4 bg-gray-100">
-              <Formik
-                initialValues={{
-                  email: "",
-                  message: "",
-                }}
-                onSubmit={(values) => console.log("form sumbited:", values)}
-              >
-                {({}) => (
-                  <Form className="grid grid-flow-row gap-4">
-                    <Field
-                      type="email"
-                      name="email"
-                      placeholder="Twój email"
-                      className="border-gray-300 border-solid border-2 p-2"
-                    />
-                    <Field
-                      name="message"
-                      component="textarea"
-                      placeholder="W czy możemy Ci pomóc?"
-                      className="border-gray-300 border-solid border-2 p-2 h-auto"
-                      rows="10"
-                    />
-                    <div className="flex justify-end">
-                      <button
-                        type="submit"
-                        className="py-2 px-4 bg-yellow-500 font-semibold"
-                      >
-                        Wyślij
-                      </button>
-                    </div>
-                  </Form>
-                )}
-              </Formik>
-            </div>
+            <ContactForm />
           </div>
         </Element>
       </div>

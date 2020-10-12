@@ -1,0 +1,39 @@
+{
+  "kind": "singleType",
+  "collectionName": "contact_forms",
+  "info": {
+    "name": "ContactForm"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "body": {
+      "type": "richtext"
+    },
+    "subject": {
+      "type": "richtext"
+    },
+    "styles": {
+      "type": "component",
+      "repeatable": true,
+      "component": "contant-form-style.contant-form-style",
+      "required": true
+    },
+    "agreement": {
+      "type": "richtext",
+      "required": true
+    },
+    "placeholders": {
+      "type": "component",
+      "repeatable": true,
+      "component": "contact-form-placeholders.contact-form-placeholders",
+      "required": false
+    }
+  }
+}

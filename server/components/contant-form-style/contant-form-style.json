@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_contant_form_style_contant_form_styles",
+  "info": {
+    "name": "contantFormStyle",
+    "icon": "coffee"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

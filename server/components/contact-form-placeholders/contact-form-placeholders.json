@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_contact_form_placeholders_contact_form_placeholders",
+  "info": {
+    "name": "contactFormPlaceholders",
+    "icon": "font"
+  },
+  "options": {},
+  "attributes": {
+    "field": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "placeholder": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

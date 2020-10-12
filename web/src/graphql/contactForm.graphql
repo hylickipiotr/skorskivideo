@@ -1,0 +1,12 @@
+query ContactForm {
+  contactForm {
+    styles {
+      name
+    }
+    agreement
+    placeholders {
+      field
+      placeholder
+    }
+  }
+}

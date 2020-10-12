@@ -9,3 +9,8 @@ html {
   @apply font-primary;
   @apply text-gray-900;
 }
+
+input::placeholder,
+textarea::placeholder {
+  @apply text-gray-300;
+}
