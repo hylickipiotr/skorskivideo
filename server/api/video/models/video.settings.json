@@ -35,16 +35,19 @@
       "type": "datetime",
       "private": false
     },
-    "thumbnailUrl": {
-      "type": "string",
-      "private": false,
-      "required": true,
-      "minLength": 2
-    },
     "tags": {
       "collection": "tag",
       "via": "videos",
       "dominant": true
+    },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true
     }
   }
 }

@@ -1,4 +1,5 @@
 import { useApolloClient } from "@apollo/client";
+import { title } from "process";
 import React, { useState } from "react";
 import Header from "../components/Header/Header";
 import RichText from "../components/RichText/RichText";
@@ -14,6 +15,7 @@ import {
   VideosQueryVariables,
 } from "../generated/graphql";
 import Layout from "../layouts/Layout";
+import { createMediaUrl } from "../utils/createMediaUrl";
 import { useResetStore } from "../utils/useResetStore";
 import { withApollo } from "../utils/withApollo";
 
@@ -101,7 +103,7 @@ const VideoPage = () => {
         <div className="md:grid flex-col grid-cols-12 col-gap-16">
           <div
             className={`${
-              videoPageData?.videoPage?.imageUrl ? "col-span-7" : "col-span-12"
+              videoPageData?.videoPage?.image ? "col-span-7" : "col-span-12"
             }`}
           >
             <Header>Video</Header>
@@ -109,9 +111,15 @@ const VideoPage = () => {
               <RichText>{videoPageData?.videoPage?.description}</RichText>
             </div>
           </div>
-          {videoPageData?.videoPage?.imageUrl && (
+          {videoPageData?.videoPage?.image && (
             <div className="col-span-5">
-              <img src={videoPageData.videoPage.imageUrl} />
+              <img
+                src={createMediaUrl(
+                  videoPageData.videoPage.image.formats.large.url
+                )}
+                alt={videoPageData.videoPage.image.alternativeText || ""}
+                title={videoPageData.videoPage.image.caption || ""}
+              />
             </div>
           )}
         </div>
@@ -146,6 +154,13 @@ const VideoPage = () => {
                         key={video.id}
                         sourceUrl={video.url}
                         showTags={true}
+                        thumbnail={{
+                          url: createMediaUrl(
+                            video.thumbnail?.formats.small.url
+                          ),
+                          alt: video.thumbnail?.alternativeText,
+                          title: video.thumbnail?.caption,
+                        }}
                         tags={video.tags as Tag[]}
                       />
                     )

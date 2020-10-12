@@ -1,6 +1,10 @@
 query VideoPage {
   videoPage {
     description
-    imageUrl
+    image {
+      caption
+      alternativeText
+      formats
+    }
   }
 }

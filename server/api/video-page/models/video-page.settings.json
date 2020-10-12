@@ -13,9 +13,14 @@
       "type": "richtext",
       "required": false
     },
-    "imageUrl": {
-      "type": "string",
-      "required": false
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true
     }
   }
 }

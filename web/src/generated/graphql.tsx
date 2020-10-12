@@ -335,10 +335,106 @@ export type Home = {
   created_at: Scalars['DateTime'];
   updated_at: Scalars['DateTime'];
   backgroundVideoUrl: Scalars['String'];
-  aboutUsImageUrl: Scalars['String'];
   aboutUsContent: Scalars['String'];
   contactContent: Scalars['String'];
-  backgroundImageUrl: Scalars['String'];
+  aboutUsImage?: Maybe<UploadFile>;
+  backgroundImage?: Maybe<UploadFile>;
+};
+
+export type UploadFile = {
+  __typename?: 'UploadFile';
+  id: Scalars['ID'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  name: Scalars['String'];
+  alternativeText?: Maybe<Scalars['String']>;
+  caption?: Maybe<Scalars['String']>;
+  width?: Maybe<Scalars['Int']>;
+  height?: Maybe<Scalars['Int']>;
+  formats?: Maybe<Scalars['JSON']>;
+  hash: Scalars['String'];
+  ext?: Maybe<Scalars['String']>;
+  mime: Scalars['String'];
+  size: Scalars['Float'];
+  url: Scalars['String'];
+  previewUrl?: Maybe<Scalars['String']>;
+  provider: Scalars['String'];
+  provider_metadata?: Maybe<Scalars['JSON']>;
+  related?: Maybe<Array<Maybe<Morph>>>;
+};
+
+
+export type UploadFileRelatedArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | ContactForm | UpdateContactFormPayload | DeleteContactFormPayload | Faq | FaqConnection | FaqAggregator | FaqGroupBy | FaqConnectionId | FaqConnectionCreated_At | FaqConnectionUpdated_At | FaqConnectionQuestion | FaqConnectionAnswer | FaqConnectionIsPublished | FaqConnectionPublishedAt | CreateFaqPayload | UpdateFaqPayload | DeleteFaqPayload | Home | UpdateHomePayload | DeleteHomePayload | Photo | PhotoConnection | PhotoAggregator | PhotoGroupBy | PhotoConnectionId | PhotoConnectionCreated_At | PhotoConnectionUpdated_At | PhotoConnectionTitle | PhotoConnectionIsPublished | PhotoConnectionPublishedAt | PhotoConnectionImage | CreatePhotoPayload | UpdatePhotoPayload | DeletePhotoPayload | Social | SocialConnection | SocialAggregator | SocialGroupBy | SocialConnectionId | SocialConnectionCreated_At | SocialConnectionUpdated_At | SocialConnectionUrl | SocialConnectionIcon | SocialConnectionIsPublished | SocialConnectionPublishedAt | SocialConnectionLabel | SocialConnectionColorHex | CreateSocialPayload | UpdateSocialPayload | DeleteSocialPayload | Tag | TagConnection | TagAggregator | TagGroupBy | TagConnectionId | TagConnectionCreated_At | TagConnectionUpdated_At | TagConnectionName | CreateTagPayload | UpdateTagPayload | DeleteTagPayload | VideoPage | UpdateVideoPagePayload | DeleteVideoPagePayload | Video | VideoConnection | VideoAggregator | VideoGroupBy | VideoConnectionId | VideoConnectionCreated_At | VideoConnectionUpdated_At | VideoConnectionUrl | VideoConnectionTitle | VideoConnectionDescription | VideoConnectionIsPublished | VideoConnectionPublishedAt | VideoConnectionThumbnail | CreateVideoPayload | UpdateVideoPayload | DeleteVideoPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentContactFormPlaceholdersContactFormPlaceholders | ComponentContantFormStyleContantFormStyle | ComponentTagTags;
+
+export type UsersPermissionsMe = {
+  __typename?: 'UsersPermissionsMe';
+  id: Scalars['ID'];
+  username: Scalars['String'];
+  email: Scalars['String'];
+  confirmed?: Maybe<Scalars['Boolean']>;
+  blocked?: Maybe<Scalars['Boolean']>;
+  role?: Maybe<UsersPermissionsMeRole>;
+};
+
+export type UsersPermissionsMeRole = {
+  __typename?: 'UsersPermissionsMeRole';
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+};
+
+export type UsersPermissionsLoginPayload = {
+  __typename?: 'UsersPermissionsLoginPayload';
+  jwt?: Maybe<Scalars['String']>;
+  user: UsersPermissionsMe;
+};
+
+export type UserPermissionsPasswordPayload = {
+  __typename?: 'UserPermissionsPasswordPayload';
+  ok: Scalars['Boolean'];
+};
+
+export type UpdateContactFormPayload = {
+  __typename?: 'updateContactFormPayload';
+  contactForm?: Maybe<ContactForm>;
+};
+
+export type DeleteContactFormPayload = {
+  __typename?: 'deleteContactFormPayload';
+  contactForm?: Maybe<ContactForm>;
+};
+
+export type CreateFaqPayload = {
+  __typename?: 'createFaqPayload';
+  faq?: Maybe<Faq>;
+};
+
+export type UpdateFaqPayload = {
+  __typename?: 'updateFaqPayload';
+  faq?: Maybe<Faq>;
+};
+
+export type DeleteFaqPayload = {
+  __typename?: 'deleteFaqPayload';
+  faq?: Maybe<Faq>;
+};
+
+export type UpdateHomePayload = {
+  __typename?: 'updateHomePayload';
+  home?: Maybe<Home>;
+};
+
+export type DeleteHomePayload = {
+  __typename?: 'deleteHomePayload';
+  home?: Maybe<Home>;
 };
 
 export type Photo = {
@@ -346,12 +442,10 @@ export type Photo = {
   id: Scalars['ID'];
   created_at: Scalars['DateTime'];
   updated_at: Scalars['DateTime'];
-  url: Scalars['String'];
-  width: Scalars['Int'];
-  height: Scalars['Int'];
   title: Scalars['String'];
   isPublished: Scalars['Boolean'];
   publishedAt?: Maybe<Scalars['DateTime']>;
+  image?: Maybe<UploadFile>;
 };
 
 export type PhotoConnection = {
@@ -366,12 +460,10 @@ export type PhotoGroupBy = {
   id?: Maybe<Array<Maybe<PhotoConnectionId>>>;
   created_at?: Maybe<Array<Maybe<PhotoConnectionCreated_At>>>;
   updated_at?: Maybe<Array<Maybe<PhotoConnectionUpdated_At>>>;
-  url?: Maybe<Array<Maybe<PhotoConnectionUrl>>>;
-  width?: Maybe<Array<Maybe<PhotoConnectionWidth>>>;
-  height?: Maybe<Array<Maybe<PhotoConnectionHeight>>>;
   title?: Maybe<Array<Maybe<PhotoConnectionTitle>>>;
   isPublished?: Maybe<Array<Maybe<PhotoConnectionIsPublished>>>;
   publishedAt?: Maybe<Array<Maybe<PhotoConnectionPublishedAt>>>;
+  image?: Maybe<Array<Maybe<PhotoConnectionImage>>>;
 };
 
 export type PhotoConnectionId = {
@@ -389,24 +481,6 @@ export type PhotoConnectionCreated_At = {
 export type PhotoConnectionUpdated_At = {
   __typename?: 'PhotoConnectionUpdated_at';
   key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<PhotoConnection>;
-};
-
-export type PhotoConnectionUrl = {
-  __typename?: 'PhotoConnectionUrl';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<PhotoConnection>;
-};
-
-export type PhotoConnectionWidth = {
-  __typename?: 'PhotoConnectionWidth';
-  key?: Maybe<Scalars['Int']>;
-  connection?: Maybe<PhotoConnection>;
-};
-
-export type PhotoConnectionHeight = {
-  __typename?: 'PhotoConnectionHeight';
-  key?: Maybe<Scalars['Int']>;
   connection?: Maybe<PhotoConnection>;
 };
 
@@ -428,38 +502,31 @@ export type PhotoConnectionPublishedAt = {
   connection?: Maybe<PhotoConnection>;
 };
 
+export type PhotoConnectionImage = {
+  __typename?: 'PhotoConnectionImage';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<PhotoConnection>;
+};
+
 export type PhotoAggregator = {
   __typename?: 'PhotoAggregator';
   count?: Maybe<Scalars['Int']>;
   totalCount?: Maybe<Scalars['Int']>;
-  sum?: Maybe<PhotoAggregatorSum>;
-  avg?: Maybe<PhotoAggregatorAvg>;
-  min?: Maybe<PhotoAggregatorMin>;
-  max?: Maybe<PhotoAggregatorMax>;
 };
 
-export type PhotoAggregatorSum = {
-  __typename?: 'PhotoAggregatorSum';
-  width?: Maybe<Scalars['Float']>;
-  height?: Maybe<Scalars['Float']>;
+export type CreatePhotoPayload = {
+  __typename?: 'createPhotoPayload';
+  photo?: Maybe<Photo>;
 };
 
-export type PhotoAggregatorAvg = {
-  __typename?: 'PhotoAggregatorAvg';
-  width?: Maybe<Scalars['Float']>;
-  height?: Maybe<Scalars['Float']>;
+export type UpdatePhotoPayload = {
+  __typename?: 'updatePhotoPayload';
+  photo?: Maybe<Photo>;
 };
 
-export type PhotoAggregatorMin = {
-  __typename?: 'PhotoAggregatorMin';
-  width?: Maybe<Scalars['Float']>;
-  height?: Maybe<Scalars['Float']>;
-};
-
-export type PhotoAggregatorMax = {
-  __typename?: 'PhotoAggregatorMax';
-  width?: Maybe<Scalars['Float']>;
-  height?: Maybe<Scalars['Float']>;
+export type DeletePhotoPayload = {
+  __typename?: 'deletePhotoPayload';
+  photo?: Maybe<Photo>;
 };
 
 export type Social = {
@@ -555,6 +622,21 @@ export type SocialAggregator = {
   totalCount?: Maybe<Scalars['Int']>;
 };
 
+export type CreateSocialPayload = {
+  __typename?: 'createSocialPayload';
+  social?: Maybe<Social>;
+};
+
+export type UpdateSocialPayload = {
+  __typename?: 'updateSocialPayload';
+  social?: Maybe<Social>;
+};
+
+export type DeleteSocialPayload = {
+  __typename?: 'deleteSocialPayload';
+  social?: Maybe<Social>;
+};
+
 export type Tag = {
   __typename?: 'Tag';
   id: Scalars['ID'];
@@ -582,7 +664,7 @@ export type Video = {
   description: Scalars['String'];
   isPublished: Scalars['Boolean'];
   publishedAt?: Maybe<Scalars['DateTime']>;
-  thumbnailUrl: Scalars['String'];
+  thumbnail?: Maybe<UploadFile>;
   tags?: Maybe<Array<Maybe<Tag>>>;
 };
 
@@ -639,13 +721,38 @@ export type TagAggregator = {
   totalCount?: Maybe<Scalars['Int']>;
 };
 
+export type CreateTagPayload = {
+  __typename?: 'createTagPayload';
+  tag?: Maybe<Tag>;
+};
+
+export type UpdateTagPayload = {
+  __typename?: 'updateTagPayload';
+  tag?: Maybe<Tag>;
+};
+
+export type DeleteTagPayload = {
+  __typename?: 'deleteTagPayload';
+  tag?: Maybe<Tag>;
+};
+
 export type VideoPage = {
   __typename?: 'VideoPage';
   id: Scalars['ID'];
   created_at: Scalars['DateTime'];
   updated_at: Scalars['DateTime'];
   description?: Maybe<Scalars['String']>;
-  imageUrl?: Maybe<Scalars['String']>;
+  image?: Maybe<UploadFile>;
+};
+
+export type UpdateVideoPagePayload = {
+  __typename?: 'updateVideoPagePayload';
+  videoPage?: Maybe<VideoPage>;
+};
+
+export type DeleteVideoPagePayload = {
+  __typename?: 'deleteVideoPagePayload';
+  videoPage?: Maybe<VideoPage>;
 };
 
 export type VideoConnection = {
@@ -665,7 +772,7 @@ export type VideoGroupBy = {
   description?: Maybe<Array<Maybe<VideoConnectionDescription>>>;
   isPublished?: Maybe<Array<Maybe<VideoConnectionIsPublished>>>;
   publishedAt?: Maybe<Array<Maybe<VideoConnectionPublishedAt>>>;
-  thumbnailUrl?: Maybe<Array<Maybe<VideoConnectionThumbnailUrl>>>;
+  thumbnail?: Maybe<Array<Maybe<VideoConnectionThumbnail>>>;
 };
 
 export type VideoConnectionId = {
@@ -716,9 +823,9 @@ export type VideoConnectionPublishedAt = {
   connection?: Maybe<VideoConnection>;
 };
 
-export type VideoConnectionThumbnailUrl = {
-  __typename?: 'VideoConnectionThumbnailUrl';
-  key?: Maybe<Scalars['String']>;
+export type VideoConnectionThumbnail = {
+  __typename?: 'VideoConnectionThumbnail';
+  key?: Maybe<Scalars['ID']>;
   connection?: Maybe<VideoConnection>;
 };
 
@@ -726,157 +833,6 @@ export type VideoAggregator = {
   __typename?: 'VideoAggregator';
   count?: Maybe<Scalars['Int']>;
   totalCount?: Maybe<Scalars['Int']>;
-};
-
-export type UploadFile = {
-  __typename?: 'UploadFile';
-  id: Scalars['ID'];
-  created_at: Scalars['DateTime'];
-  updated_at: Scalars['DateTime'];
-  name: Scalars['String'];
-  alternativeText?: Maybe<Scalars['String']>;
-  caption?: Maybe<Scalars['String']>;
-  width?: Maybe<Scalars['Int']>;
-  height?: Maybe<Scalars['Int']>;
-  formats?: Maybe<Scalars['JSON']>;
-  hash: Scalars['String'];
-  ext?: Maybe<Scalars['String']>;
-  mime: Scalars['String'];
-  size: Scalars['Float'];
-  url: Scalars['String'];
-  previewUrl?: Maybe<Scalars['String']>;
-  provider: Scalars['String'];
-  provider_metadata?: Maybe<Scalars['JSON']>;
-  related?: Maybe<Array<Maybe<Morph>>>;
-};
-
-
-export type UploadFileRelatedArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
-};
-
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | ContactForm | UpdateContactFormPayload | DeleteContactFormPayload | Faq | FaqConnection | FaqAggregator | FaqGroupBy | FaqConnectionId | FaqConnectionCreated_At | FaqConnectionUpdated_At | FaqConnectionQuestion | FaqConnectionAnswer | FaqConnectionIsPublished | FaqConnectionPublishedAt | CreateFaqPayload | UpdateFaqPayload | DeleteFaqPayload | Home | UpdateHomePayload | DeleteHomePayload | Photo | PhotoConnection | PhotoAggregator | PhotoAggregatorSum | PhotoAggregatorAvg | PhotoAggregatorMin | PhotoAggregatorMax | PhotoGroupBy | PhotoConnectionId | PhotoConnectionCreated_At | PhotoConnectionUpdated_At | PhotoConnectionUrl | PhotoConnectionWidth | PhotoConnectionHeight | PhotoConnectionTitle | PhotoConnectionIsPublished | PhotoConnectionPublishedAt | CreatePhotoPayload | UpdatePhotoPayload | DeletePhotoPayload | Social | SocialConnection | SocialAggregator | SocialGroupBy | SocialConnectionId | SocialConnectionCreated_At | SocialConnectionUpdated_At | SocialConnectionUrl | SocialConnectionIcon | SocialConnectionIsPublished | SocialConnectionPublishedAt | SocialConnectionLabel | SocialConnectionColorHex | CreateSocialPayload | UpdateSocialPayload | DeleteSocialPayload | Tag | TagConnection | TagAggregator | TagGroupBy | TagConnectionId | TagConnectionCreated_At | TagConnectionUpdated_At | TagConnectionName | CreateTagPayload | UpdateTagPayload | DeleteTagPayload | VideoPage | UpdateVideoPagePayload | DeleteVideoPagePayload | Video | VideoConnection | VideoAggregator | VideoGroupBy | VideoConnectionId | VideoConnectionCreated_At | VideoConnectionUpdated_At | VideoConnectionUrl | VideoConnectionTitle | VideoConnectionDescription | VideoConnectionIsPublished | VideoConnectionPublishedAt | VideoConnectionThumbnailUrl | CreateVideoPayload | UpdateVideoPayload | DeleteVideoPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentContactFormPlaceholdersContactFormPlaceholders | ComponentContantFormStyleContantFormStyle | ComponentTagTags;
-
-export type UsersPermissionsMe = {
-  __typename?: 'UsersPermissionsMe';
-  id: Scalars['ID'];
-  username: Scalars['String'];
-  email: Scalars['String'];
-  confirmed?: Maybe<Scalars['Boolean']>;
-  blocked?: Maybe<Scalars['Boolean']>;
-  role?: Maybe<UsersPermissionsMeRole>;
-};
-
-export type UsersPermissionsMeRole = {
-  __typename?: 'UsersPermissionsMeRole';
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
-};
-
-export type UsersPermissionsLoginPayload = {
-  __typename?: 'UsersPermissionsLoginPayload';
-  jwt?: Maybe<Scalars['String']>;
-  user: UsersPermissionsMe;
-};
-
-export type UserPermissionsPasswordPayload = {
-  __typename?: 'UserPermissionsPasswordPayload';
-  ok: Scalars['Boolean'];
-};
-
-export type UpdateContactFormPayload = {
-  __typename?: 'updateContactFormPayload';
-  contactForm?: Maybe<ContactForm>;
-};
-
-export type DeleteContactFormPayload = {
-  __typename?: 'deleteContactFormPayload';
-  contactForm?: Maybe<ContactForm>;
-};
-
-export type CreateFaqPayload = {
-  __typename?: 'createFaqPayload';
-  faq?: Maybe<Faq>;
-};
-
-export type UpdateFaqPayload = {
-  __typename?: 'updateFaqPayload';
-  faq?: Maybe<Faq>;
-};
-
-export type DeleteFaqPayload = {
-  __typename?: 'deleteFaqPayload';
-  faq?: Maybe<Faq>;
-};
-
-export type UpdateHomePayload = {
-  __typename?: 'updateHomePayload';
-  home?: Maybe<Home>;
-};
-
-export type DeleteHomePayload = {
-  __typename?: 'deleteHomePayload';
-  home?: Maybe<Home>;
-};
-
-export type CreatePhotoPayload = {
-  __typename?: 'createPhotoPayload';
-  photo?: Maybe<Photo>;
-};
-
-export type UpdatePhotoPayload = {
-  __typename?: 'updatePhotoPayload';
-  photo?: Maybe<Photo>;
-};
-
-export type DeletePhotoPayload = {
-  __typename?: 'deletePhotoPayload';
-  photo?: Maybe<Photo>;
-};
-
-export type CreateSocialPayload = {
-  __typename?: 'createSocialPayload';
-  social?: Maybe<Social>;
-};
-
-export type UpdateSocialPayload = {
-  __typename?: 'updateSocialPayload';
-  social?: Maybe<Social>;
-};
-
-export type DeleteSocialPayload = {
-  __typename?: 'deleteSocialPayload';
-  social?: Maybe<Social>;
-};
-
-export type CreateTagPayload = {
-  __typename?: 'createTagPayload';
-  tag?: Maybe<Tag>;
-};
-
-export type UpdateTagPayload = {
-  __typename?: 'updateTagPayload';
-  tag?: Maybe<Tag>;
-};
-
-export type DeleteTagPayload = {
-  __typename?: 'deleteTagPayload';
-  tag?: Maybe<Tag>;
-};
-
-export type UpdateVideoPagePayload = {
-  __typename?: 'updateVideoPagePayload';
-  videoPage?: Maybe<VideoPage>;
-};
-
-export type DeleteVideoPagePayload = {
-  __typename?: 'deleteVideoPagePayload';
-  videoPage?: Maybe<VideoPage>;
 };
 
 export type CreateVideoPayload = {
@@ -1562,10 +1518,10 @@ export type UpdateHomeInput = {
 
 export type EditHomeInput = {
   backgroundVideoUrl?: Maybe<Scalars['String']>;
-  aboutUsImageUrl?: Maybe<Scalars['String']>;
   aboutUsContent?: Maybe<Scalars['String']>;
   contactContent?: Maybe<Scalars['String']>;
-  backgroundImageUrl?: Maybe<Scalars['String']>;
+  aboutUsImage?: Maybe<Scalars['ID']>;
+  backgroundImage?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -1575,12 +1531,10 @@ export type CreatePhotoInput = {
 };
 
 export type PhotoInput = {
-  url: Scalars['String'];
-  width?: Maybe<Scalars['Int']>;
-  height?: Maybe<Scalars['Int']>;
   title: Scalars['String'];
   isPublished?: Maybe<Scalars['Boolean']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
+  image?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -1591,12 +1545,10 @@ export type UpdatePhotoInput = {
 };
 
 export type EditPhotoInput = {
-  url?: Maybe<Scalars['String']>;
-  width?: Maybe<Scalars['Int']>;
-  height?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
   isPublished?: Maybe<Scalars['Boolean']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
+  image?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -1673,7 +1625,7 @@ export type UpdateVideoPageInput = {
 
 export type EditVideoPageInput = {
   description?: Maybe<Scalars['String']>;
-  imageUrl?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -1688,8 +1640,8 @@ export type VideoInput = {
   description: Scalars['String'];
   isPublished?: Maybe<Scalars['Boolean']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
-  thumbnailUrl: Scalars['String'];
   tags?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  thumbnail?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -1705,8 +1657,8 @@ export type EditVideoInput = {
   description?: Maybe<Scalars['String']>;
   isPublished?: Maybe<Scalars['Boolean']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
-  thumbnailUrl?: Maybe<Scalars['String']>;
   tags?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  thumbnail?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -1843,17 +1795,17 @@ export type ComponentContactFormPlaceholdersContactFormPlaceholderInput = {
 
 export type HomeInput = {
   backgroundVideoUrl: Scalars['String'];
-  aboutUsImageUrl: Scalars['String'];
   aboutUsContent: Scalars['String'];
   contactContent: Scalars['String'];
-  backgroundImageUrl: Scalars['String'];
+  aboutUsImage?: Maybe<Scalars['ID']>;
+  backgroundImage?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
 
 export type VideoPageInput = {
   description?: Maybe<Scalars['String']>;
-  imageUrl?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -1963,7 +1915,14 @@ export type HomeQuery = (
   { __typename?: 'Query' }
   & { home?: Maybe<(
     { __typename?: 'Home' }
-    & Pick<Home, 'backgroundVideoUrl' | 'backgroundImageUrl' | 'aboutUsImageUrl' | 'aboutUsContent' | 'contactContent'>
+    & Pick<Home, 'backgroundVideoUrl' | 'aboutUsContent' | 'contactContent'>
+    & { aboutUsImage?: Maybe<(
+      { __typename?: 'UploadFile' }
+      & Pick<UploadFile, 'caption' | 'alternativeText' | 'formats'>
+    )>, backgroundImage?: Maybe<(
+      { __typename?: 'UploadFile' }
+      & Pick<UploadFile, 'caption' | 'alternativeText' | 'formats'>
+    )> }
   )> }
 );
 
@@ -1977,7 +1936,11 @@ export type PhotosQuery = (
   { __typename?: 'Query' }
   & { photos?: Maybe<Array<Maybe<(
     { __typename?: 'Photo' }
-    & Pick<Photo, 'id' | 'url' | 'width' | 'height' | 'title'>
+    & Pick<Photo, 'id' | 'title'>
+    & { image?: Maybe<(
+      { __typename?: 'UploadFile' }
+      & Pick<UploadFile, 'width' | 'height' | 'url' | 'caption' | 'alternativeText' | 'formats'>
+    )> }
   )>>> }
 );
 
@@ -2024,7 +1987,11 @@ export type VideoPageQuery = (
   { __typename?: 'Query' }
   & { videoPage?: Maybe<(
     { __typename?: 'VideoPage' }
-    & Pick<VideoPage, 'description' | 'imageUrl'>
+    & Pick<VideoPage, 'description'>
+    & { image?: Maybe<(
+      { __typename?: 'UploadFile' }
+      & Pick<UploadFile, 'caption' | 'alternativeText' | 'formats'>
+    )> }
   )> }
 );
 
@@ -2039,8 +2006,11 @@ export type VideosQuery = (
   { __typename?: 'Query' }
   & { videos?: Maybe<Array<Maybe<(
     { __typename?: 'Video' }
-    & Pick<Video, 'id' | 'url' | 'thumbnailUrl' | 'title' | 'description'>
-    & { tags?: Maybe<Array<Maybe<(
+    & Pick<Video, 'id' | 'url' | 'title' | 'description'>
+    & { thumbnail?: Maybe<(
+      { __typename?: 'UploadFile' }
+      & Pick<UploadFile, 'caption' | 'alternativeText' | 'formats'>
+    )>, tags?: Maybe<Array<Maybe<(
       { __typename?: 'Tag' }
       & Pick<Tag, 'id' | 'name'>
     )>>> }
@@ -2139,10 +2109,18 @@ export const HomeDocument = gql`
     query Home {
   home {
     backgroundVideoUrl
-    backgroundImageUrl
-    aboutUsImageUrl
     aboutUsContent
     contactContent
+    aboutUsImage {
+      caption
+      alternativeText
+      formats
+    }
+    backgroundImage {
+      caption
+      alternativeText
+      formats
+    }
   }
 }
     `;
@@ -2175,9 +2153,14 @@ export const PhotosDocument = gql`
     query Photos($limit: Int!, $start: Int) {
   photos(limit: $limit, start: $start) {
     id
-    url
-    width
-    height
+    image {
+      width
+      height
+      url
+      caption
+      alternativeText
+      formats
+    }
     title
   }
 }
@@ -2315,7 +2298,11 @@ export const VideoPageDocument = gql`
     query VideoPage {
   videoPage {
     description
-    imageUrl
+    image {
+      caption
+      alternativeText
+      formats
+    }
   }
 }
     `;
@@ -2349,7 +2336,11 @@ export const VideosDocument = gql`
   videos(limit: $limit, start: $start, where: $where) {
     id
     url
-    thumbnailUrl
+    thumbnail {
+      caption
+      alternativeText
+      formats
+    }
     title
     description
     tags {

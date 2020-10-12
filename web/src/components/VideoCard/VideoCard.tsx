@@ -14,7 +14,11 @@ import {
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 
 export interface IVideoCard {
-  thumbnailUrl: string;
+  thumbnail: {
+    url: string;
+    alt?: string | null;
+    title?: string | null;
+  };
   title: string;
   description: string;
   sourceUrl: string;
@@ -30,7 +34,7 @@ export interface IVideoCard {
 }
 
 const VideoCard: React.FC<IVideoCard> = ({
-  thumbnailUrl,
+  thumbnail,
   title,
   description,
   sourceUrl,
@@ -58,9 +62,9 @@ const VideoCard: React.FC<IVideoCard> = ({
               <div className="relative w-full pb-7/12">
                 <img
                   className="absolute w-full h-full object-cover"
-                  src={thumbnailUrl}
-                  alt={title}
-                  title={title}
+                  src={thumbnail.url}
+                  alt={thumbnail.alt || title}
+                  title={thumbnail.title || title}
                 />
               </div>
             </div>

@@ -13,10 +13,6 @@
       "type": "string",
       "required": true
     },
-    "aboutUsImageUrl": {
-      "type": "string",
-      "required": true
-    },
     "aboutUsContent": {
       "type": "richtext",
       "required": true
@@ -25,8 +21,22 @@
       "type": "richtext",
       "required": true
     },
-    "backgroundImageUrl": {
-      "type": "string",
+    "aboutUsImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "backgroundImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
       "required": true
     }
   }

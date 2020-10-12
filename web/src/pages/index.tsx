@@ -21,6 +21,9 @@ import {
   useVideosQuery,
 } from "../generated/graphql";
 import Layout from "../layouts/Layout";
+import { createMediaUrl } from "../utils/createMediaUrl";
+import { createSrcSet } from "../utils/createSrcSet";
+import { createSizes } from "../utils/createSizes";
 import { isServer } from "../utils/isServer";
 import { useResetStore } from "../utils/useResetStore";
 import { withApollo } from "../utils/withApollo";
@@ -60,7 +63,12 @@ const IndexPage = () => {
             type: "video/mp4",
           },
         ]}
-        imgSrc={homePageData?.home?.backgroundImageUrl}
+        image={{
+          url: createMediaUrl(
+            homePageData?.home?.backgroundImage?.formats.large.url
+          ),
+          title: homePageData?.home?.backgroundImage?.caption,
+        }}
         options={{
           autoPlay: true,
           loop: true,
@@ -77,7 +85,13 @@ const IndexPage = () => {
             <Header>O nas</Header>
           </div>
           <div className="col-span-12 md:col-span-5 mt-8 md:mt-0">
-            <img src={homePageData?.home?.aboutUsImageUrl} />
+            <img
+              src={createMediaUrl(
+                homePageData?.home?.aboutUsImage?.formats.medium.url
+              )}
+              alt={homePageData?.home?.aboutUsImage?.alternativeText || ""}
+              title={homePageData?.home?.aboutUsImage?.caption || ""}
+            />
           </div>
           <div className="col-span-12 md:col-span-7 md:ml-16 mt-4 md:mt-0">
             <div className="hidden md:block">
@@ -112,6 +126,11 @@ const IndexPage = () => {
                       sourceUrl={video.url}
                       tags={video.tags as Tag[]}
                       {...video}
+                      thumbnail={{
+                        url: createMediaUrl(video.thumbnail?.formats.small.url),
+                        alt: video.thumbnail?.alternativeText,
+                        title: video.thumbnail?.caption,
+                      }}
                     />
                   )
               )}
@@ -141,9 +160,18 @@ const IndexPage = () => {
             <div className="mt-12">
               <MyGallery
                 photos={photosData.photos.map((photo) => ({
-                  src: photo?.url || "",
-                  width: photo?.width || 1,
-                  height: photo?.height || 1,
+                  key: photo?.id,
+                  src: createMediaUrl(photo?.image?.url as string),
+                  srcSet: createSrcSet({
+                    ...photo?.image?.formats,
+                    original: {
+                      url: photo?.image?.url,
+                      width: photo?.image?.width,
+                    },
+                  }),
+                  sizes: createSizes(photo?.image?.width || 0),
+                  width: photo?.image?.width || 1,
+                  height: photo?.image?.height || 1,
                   alt: photo?.title,
                 }))}
               />

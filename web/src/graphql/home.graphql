@@ -1,9 +1,17 @@
 query Home {
   home {
     backgroundVideoUrl
-    backgroundImageUrl
-    aboutUsImageUrl
     aboutUsContent
     contactContent
+    aboutUsImage {
+      caption
+      alternativeText
+      formats
+    }
+    backgroundImage {
+      caption
+      alternativeText
+      formats
+    }
   }
 }

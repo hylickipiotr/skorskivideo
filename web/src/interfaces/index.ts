@@ -1,24 +1,29 @@
 import { ReactChild, ReactNode } from "react";
 
 export interface MenuItem {
-    label: string;
-    href: string;
-    active?: boolean;
+  label: string;
+  href: string;
+  active?: boolean;
 }
 
 export interface SocialItem {
-    name: string,
-    href: string;
-    icon: ReactChild,
+  name: string;
+  href: string;
+  icon: ReactChild;
 }
 
 export interface VideoSource {
-    src: string;
-    type: string;
+  src: string;
+  type: string;
 }
 
 export interface FaqItem {
-    question: string;
-    answer: string;
-    isOpen?: boolean;
+  question: string;
+  answer: string;
+  isOpen?: boolean;
+}
+
+export interface ImageFormat {
+  url: string;
+  width: number;
 }

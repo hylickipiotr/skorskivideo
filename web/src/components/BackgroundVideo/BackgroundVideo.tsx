@@ -3,7 +3,11 @@ import { VideoSource } from "../../interfaces";
 
 interface IBackgroundVideo {
   sources: VideoSource[];
-  imgSrc?: string;
+  image?: {
+    url: string;
+    alt?: string | null;
+    title?: string | null;
+  };
   options?: {
     autoPlay?: boolean;
     muted?: boolean;
@@ -14,13 +18,13 @@ interface IBackgroundVideo {
 const BackgroundVideo: React.FC<IBackgroundVideo> = ({
   sources,
   options,
-  imgSrc,
+  image,
 }) => {
   return (
     <div className="w-full h-screen relative z-n1">
       <video
         className={`${
-          imgSrc ? "hidden md:block" : ""
+          image ? "hidden md:block" : ""
         } w-full h-full object-cover`}
         {...options}
       >
@@ -28,9 +32,11 @@ const BackgroundVideo: React.FC<IBackgroundVideo> = ({
           <source key={src} src={src} type={type} />
         ))}
       </video>
-      {imgSrc && (
+      {image && (
         <img
-          src={imgSrc}
+          src={image.url}
+          alt={image.alt || ""}
+          title={image.title || ""}
           className="md:hidden w-full h-full object-cover"
         ></img>
       )}

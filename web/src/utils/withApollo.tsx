@@ -3,7 +3,7 @@ import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 import fetch from "isomorphic-unfetch";
 
 const httpLink = createHttpLink({
-  uri: process.env.NEXT_PUBLIC_API_URL as string,
+  uri: process.env.NEXT_PUBLIC_GRAPHQL_URL as string,
   credentials: "include",
   fetch,
 });

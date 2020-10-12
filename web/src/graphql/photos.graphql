@@ -1,9 +1,14 @@
 query Photos($limit: Int!, $start: Int) {
   photos(limit: $limit, start: $start) {
     id
-    url
-    width
-    height
+    image {
+      width
+      height
+      url
+      caption
+      alternativeText
+      formats
+    }
     title
   }
 }
