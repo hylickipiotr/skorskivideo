@@ -9,6 +9,17 @@ module.exports = {
   important: false,
   separator: ":",
   theme: {
+    extend: {
+      keyframes: {
+        videoplayer: {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
+      },
+      animation: {
+        videoplayer: "videoplayer .2s ease-in-out",
+      },
+    },
     screens: {
       sm: "640px",
       md: "768px",
