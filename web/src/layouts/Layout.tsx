@@ -10,17 +10,19 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, title, lang }) => (
-  <div>
+  <>
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
       <meta lang={lang} />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-    <Navbar />
-    {children}
-    <Footer />
-  </div>
+    <div className="min-h-screen flex flex-col justify-between">
+      <Navbar />
+      {children}
+      <Footer />
+    </div>
+  </>
 );
 
 export default Layout;

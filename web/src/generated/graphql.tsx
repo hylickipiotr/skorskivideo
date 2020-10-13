@@ -52,6 +52,7 @@ export type Query = {
   user?: Maybe<UsersPermissionsUser>;
   users?: Maybe<Array<Maybe<UsersPermissionsUser>>>;
   usersConnection?: Maybe<UsersPermissionsUserConnection>;
+  photosCountPublished: Scalars['Int'];
   videosCountPublished: Scalars['Int'];
   me?: Maybe<UsersPermissionsMe>;
 };
@@ -217,6 +218,11 @@ export type QueryUsersConnectionArgs = {
   limit?: Maybe<Scalars['Int']>;
   start?: Maybe<Scalars['Int']>;
   where?: Maybe<Scalars['JSON']>;
+};
+
+
+export type QueryPhotosCountPublishedArgs = {
+  tagName?: Maybe<Scalars['String']>;
 };
 
 
@@ -1944,6 +1950,14 @@ export type PhotosQuery = (
   )>>> }
 );
 
+export type PhotosCountPublishedQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PhotosCountPublishedQuery = (
+  { __typename?: 'Query' }
+  & Pick<Query, 'photosCountPublished'>
+);
+
 export type SendEmailMutationVariables = Exact<{
   options: EmailOptions;
 }>;
@@ -2192,6 +2206,36 @@ export function usePhotosLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Pho
 export type PhotosQueryHookResult = ReturnType<typeof usePhotosQuery>;
 export type PhotosLazyQueryHookResult = ReturnType<typeof usePhotosLazyQuery>;
 export type PhotosQueryResult = Apollo.QueryResult<PhotosQuery, PhotosQueryVariables>;
+export const PhotosCountPublishedDocument = gql`
+    query PhotosCountPublished {
+  photosCountPublished
+}
+    `;
+
+/**
+ * __usePhotosCountPublishedQuery__
+ *
+ * To run a query within a React component, call `usePhotosCountPublishedQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePhotosCountPublishedQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePhotosCountPublishedQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function usePhotosCountPublishedQuery(baseOptions?: Apollo.QueryHookOptions<PhotosCountPublishedQuery, PhotosCountPublishedQueryVariables>) {
+        return Apollo.useQuery<PhotosCountPublishedQuery, PhotosCountPublishedQueryVariables>(PhotosCountPublishedDocument, baseOptions);
+      }
+export function usePhotosCountPublishedLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PhotosCountPublishedQuery, PhotosCountPublishedQueryVariables>) {
+          return Apollo.useLazyQuery<PhotosCountPublishedQuery, PhotosCountPublishedQueryVariables>(PhotosCountPublishedDocument, baseOptions);
+        }
+export type PhotosCountPublishedQueryHookResult = ReturnType<typeof usePhotosCountPublishedQuery>;
+export type PhotosCountPublishedLazyQueryHookResult = ReturnType<typeof usePhotosCountPublishedLazyQuery>;
+export type PhotosCountPublishedQueryResult = Apollo.QueryResult<PhotosCountPublishedQuery, PhotosCountPublishedQueryVariables>;
 export const SendEmailDocument = gql`
     mutation SendEmail($options: EmailOptions!) {
   sendEmail(options: $options)
