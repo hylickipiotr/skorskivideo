@@ -54,17 +54,26 @@ const IndexPage = () => {
   return (
     <Layout title="SórskiVideo" lang="pl-PL">
       <BackgroundVideo
-        sources={[
-          {
-            src: homePageData?.home?.backgroundVideoUrl as string,
-            type: "video/mp4",
-          },
-        ]}
+        source={
+          homePageData?.home?.backgroundVideo && {
+            src: createMediaUrl(homePageData.home.backgroundVideo.url),
+            type: homePageData.home.backgroundVideo.mime as string,
+          }
+        }
         image={{
-          url: createMediaUrl(
-            homePageData?.home?.backgroundImage?.formats.large.url
+          src: createMediaUrl(
+            homePageData?.home?.backgroundImage?.url as string
           ),
-          title: homePageData?.home?.backgroundImage?.caption,
+          title: homePageData?.home?.backgroundImage?.caption as string,
+          alt: homePageData?.home?.backgroundImage?.alternativeText as string,
+          srcSet: createSrcSet({
+            ...homePageData?.home?.backgroundImage?.formats,
+            original: {
+              url: homePageData?.home?.backgroundImage?.url,
+              width: homePageData?.home?.backgroundImage?.width,
+            },
+          }),
+          sizes: createSizes(homePageData?.home?.backgroundImage?.width || 0),
         }}
         options={{
           autoPlay: true,
@@ -84,8 +93,16 @@ const IndexPage = () => {
           <div className="col-span-12 md:col-span-5 mt-8 md:mt-0">
             <img
               src={createMediaUrl(
-                homePageData?.home?.aboutUsImage?.formats.medium.url
+                homePageData?.home?.aboutUsImage?.url as string
               )}
+              srcSet={createSrcSet({
+                ...homePageData?.home?.aboutUsImage?.formats,
+                original: {
+                  url: homePageData?.home?.aboutUsImage?.url,
+                  width: homePageData?.home?.aboutUsImage?.width,
+                },
+              })}
+              sizes={createSizes(homePageData?.home?.aboutUsImage?.width || 0)}
               alt={homePageData?.home?.aboutUsImage?.alternativeText || ""}
               title={homePageData?.home?.aboutUsImage?.caption || ""}
             />
@@ -160,14 +177,14 @@ const IndexPage = () => {
                   return {
                     key: photo?.id,
                     src: createMediaUrl(photo?.image?.url as string),
-                    // srcSet: createSrcSet({
-                    //   ...photo?.image?.formats,
-                    //   original: {
-                    //     url: photo?.image?.url,
-                    //     width: photo?.image?.width,
-                    //   },
-                    // }),
-                    // sizes: createSizes(photo?.image?.width || 0),
+                    srcSet: createSrcSet({
+                      ...photo?.image?.formats,
+                      original: {
+                        url: photo?.image?.url,
+                        width: photo?.image?.width,
+                      },
+                    }),
+                    sizes: createSizes(photo?.image?.width || 0),
                     width: photo?.image?.width || 1,
                     height: photo?.image?.height || 1,
                     alt: photo?.title,

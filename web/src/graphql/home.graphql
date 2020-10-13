@@ -1,17 +1,26 @@
 query Home {
   home {
-    backgroundVideoUrl
+    backgroundVideo {
+      url
+      mime
+    }
     aboutUsContent
     contactContent
     aboutUsImage {
       caption
       alternativeText
       formats
+      url
+      width
+      height
     }
     backgroundImage {
       caption
       alternativeText
       formats
+      url
+      width
+      height
     }
   }
 }

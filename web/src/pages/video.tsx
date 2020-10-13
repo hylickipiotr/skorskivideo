@@ -16,6 +16,8 @@ import {
 } from "../generated/graphql";
 import Layout from "../layouts/Layout";
 import { createMediaUrl } from "../utils/createMediaUrl";
+import { createSizes } from "../utils/createSizes";
+import { createSrcSet } from "../utils/createSrcSet";
 import { useResetStore } from "../utils/useResetStore";
 import { withApollo } from "../utils/withApollo";
 
@@ -109,9 +111,15 @@ const VideoPage = () => {
           {videoPageData?.videoPage?.image && (
             <div className="col-span-5">
               <img
-                src={createMediaUrl(
-                  videoPageData.videoPage.image.formats.large.url
-                )}
+                src={createMediaUrl(videoPageData.videoPage.image.url)}
+                srcSet={createSrcSet({
+                  ...videoPageData.videoPage.image.formats,
+                  original: {
+                    url: videoPageData.videoPage.image.url,
+                    width: videoPageData.videoPage.image.width,
+                  },
+                })}
+                sizes={createSizes(videoPageData.videoPage.image.width || 0)}
                 alt={videoPageData.videoPage.image.alternativeText || ""}
                 title={videoPageData.videoPage.image.caption || ""}
               />

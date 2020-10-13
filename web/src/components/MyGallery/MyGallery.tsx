@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import Carousel, { Modal, ModalGateway } from "react-images";
 import Gallery, { PhotoProps } from "react-photo-gallery";
+import { isServer } from "../../utils/isServer";
 
 interface IMyGallery {
   photos: PhotoProps[];
@@ -19,6 +20,8 @@ const MyGallery: React.FC<IMyGallery> = ({ photos }) => {
     setCurrentImage(0);
     setViewerIsOpen(false);
   };
+
+  if (isServer()) return null;
 
   return (
     <div>

@@ -9,10 +9,6 @@
     "timestamps": true
   },
   "attributes": {
-    "backgroundVideoUrl": {
-      "type": "string",
-      "required": true
-    },
     "aboutUsContent": {
       "type": "richtext",
       "required": true
@@ -38,6 +34,15 @@
       ],
       "plugin": "upload",
       "required": true
+    },
+    "backgroundVideo": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
     }
   }
 }

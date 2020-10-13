@@ -1,13 +1,12 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import { VideoSource } from "../../interfaces";
 
 interface IBackgroundVideo {
-  sources: VideoSource[];
-  image?: {
-    url: string;
-    alt?: string | null;
-    title?: string | null;
-  };
+  source?: VideoSource | null | undefined;
+  image?: React.DetailedHTMLProps<
+    React.ImgHTMLAttributes<HTMLImageElement>,
+    HTMLImageElement
+  >;
   options?: {
     autoPlay?: boolean;
     muted?: boolean;
@@ -16,28 +15,26 @@ interface IBackgroundVideo {
 }
 
 const BackgroundVideo: React.FC<IBackgroundVideo> = ({
-  sources,
+  source,
   options,
   image,
 }) => {
   return (
     <div className="w-full h-screen relative z-n1">
-      <video
-        className={`${
-          image ? "hidden md:block" : ""
-        } w-full h-full object-cover`}
-        {...options}
-      >
-        {sources.map(({ src, type }) => (
-          <source key={src} src={src} type={type} />
-        ))}
-      </video>
+      {source && (
+        <video
+          className={`${
+            image ? "hidden md:block" : ""
+          } w-full h-full object-cover`}
+          {...options}
+        >
+          <source src={source?.src} type={source?.type} />
+        </video>
+      )}
       {image && (
         <img
-          src={image.url}
-          alt={image.alt || ""}
-          title={image.title || ""}
-          className="md:hidden w-full h-full object-cover"
+          {...image}
+          className={`${source ? "md:hidden" : ""} w-full h-full object-cover`}
         ></img>
       )}
     </div>

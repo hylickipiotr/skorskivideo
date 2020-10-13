@@ -5,6 +5,9 @@ query VideoPage {
       caption
       alternativeText
       formats
+      url
+      width
+      height
     }
   }
 }

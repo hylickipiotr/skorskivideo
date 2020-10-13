@@ -15,6 +15,10 @@ textarea::placeholder {
   @apply text-gray-300;
 }
 
+.react-images__pager {
+  max-width: 100vw !important;
+}
+
 .react-images__view-image {
   max-height: 100vh !important;
   max-width: 100vw !important;

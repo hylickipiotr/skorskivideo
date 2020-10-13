@@ -340,11 +340,11 @@ export type Home = {
   id: Scalars['ID'];
   created_at: Scalars['DateTime'];
   updated_at: Scalars['DateTime'];
-  backgroundVideoUrl: Scalars['String'];
   aboutUsContent: Scalars['String'];
   contactContent: Scalars['String'];
   aboutUsImage?: Maybe<UploadFile>;
   backgroundImage?: Maybe<UploadFile>;
+  backgroundVideo?: Maybe<UploadFile>;
 };
 
 export type UploadFile = {
@@ -1523,11 +1523,11 @@ export type UpdateHomeInput = {
 };
 
 export type EditHomeInput = {
-  backgroundVideoUrl?: Maybe<Scalars['String']>;
   aboutUsContent?: Maybe<Scalars['String']>;
   contactContent?: Maybe<Scalars['String']>;
   aboutUsImage?: Maybe<Scalars['ID']>;
   backgroundImage?: Maybe<Scalars['ID']>;
+  backgroundVideo?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -1800,11 +1800,11 @@ export type ComponentContactFormPlaceholdersContactFormPlaceholderInput = {
 };
 
 export type HomeInput = {
-  backgroundVideoUrl: Scalars['String'];
   aboutUsContent: Scalars['String'];
   contactContent: Scalars['String'];
   aboutUsImage?: Maybe<Scalars['ID']>;
   backgroundImage?: Maybe<Scalars['ID']>;
+  backgroundVideo?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -1921,13 +1921,16 @@ export type HomeQuery = (
   { __typename?: 'Query' }
   & { home?: Maybe<(
     { __typename?: 'Home' }
-    & Pick<Home, 'backgroundVideoUrl' | 'aboutUsContent' | 'contactContent'>
-    & { aboutUsImage?: Maybe<(
+    & Pick<Home, 'aboutUsContent' | 'contactContent'>
+    & { backgroundVideo?: Maybe<(
       { __typename?: 'UploadFile' }
-      & Pick<UploadFile, 'caption' | 'alternativeText' | 'formats'>
+      & Pick<UploadFile, 'url' | 'mime'>
+    )>, aboutUsImage?: Maybe<(
+      { __typename?: 'UploadFile' }
+      & Pick<UploadFile, 'caption' | 'alternativeText' | 'formats' | 'url' | 'width' | 'height'>
     )>, backgroundImage?: Maybe<(
       { __typename?: 'UploadFile' }
-      & Pick<UploadFile, 'caption' | 'alternativeText' | 'formats'>
+      & Pick<UploadFile, 'caption' | 'alternativeText' | 'formats' | 'url' | 'width' | 'height'>
     )> }
   )> }
 );
@@ -2004,7 +2007,7 @@ export type VideoPageQuery = (
     & Pick<VideoPage, 'description'>
     & { image?: Maybe<(
       { __typename?: 'UploadFile' }
-      & Pick<UploadFile, 'caption' | 'alternativeText' | 'formats'>
+      & Pick<UploadFile, 'caption' | 'alternativeText' | 'formats' | 'url' | 'width' | 'height'>
     )> }
   )> }
 );
@@ -2122,18 +2125,27 @@ export type FaqsQueryResult = Apollo.QueryResult<FaqsQuery, FaqsQueryVariables>;
 export const HomeDocument = gql`
     query Home {
   home {
-    backgroundVideoUrl
+    backgroundVideo {
+      url
+      mime
+    }
     aboutUsContent
     contactContent
     aboutUsImage {
       caption
       alternativeText
       formats
+      url
+      width
+      height
     }
     backgroundImage {
       caption
       alternativeText
       formats
+      url
+      width
+      height
     }
   }
 }
@@ -2346,6 +2358,9 @@ export const VideoPageDocument = gql`
       caption
       alternativeText
       formats
+      url
+      width
+      height
     }
   }
 }
