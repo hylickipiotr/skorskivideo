@@ -93,7 +93,7 @@ const VideoPage: NextPage = () => {
   };
 
   return (
-    <Layout title="SórskiVideo | Video" lang="pl-PL">
+    <Layout title="SkórskiVideo | Video" lang="pl-PL">
       <div
         className="container mx-auto grid grid-flow-row row-gap-8 md:row-gap-24 pt-40 pb-16 px-4 xl:px-12"
         style={{ gridTemplateColumns: "minmax(0, 1fr)" }}

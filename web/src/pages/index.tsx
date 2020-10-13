@@ -53,7 +53,7 @@ const IndexPage: NextPage = () => {
   });
 
   return (
-    <Layout title="SórskiVideo" lang="pl-PL">
+    <Layout title="SkórskiVideo" lang="pl-PL">
       <BackgroundVideo
         source={
           homePageData?.home?.backgroundVideo && {
