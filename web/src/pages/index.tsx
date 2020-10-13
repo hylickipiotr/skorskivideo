@@ -1,7 +1,6 @@
 import { useApolloClient } from "@apollo/client";
 import { IconName } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Field, Form, Formik } from "formik";
 import NextLink from "next/link";
 import React from "react";
 import { Element } from "react-scroll";
@@ -22,9 +21,8 @@ import {
 } from "../generated/graphql";
 import Layout from "../layouts/Layout";
 import { createMediaUrl } from "../utils/createMediaUrl";
-import { createSrcSet } from "../utils/createSrcSet";
 import { createSizes } from "../utils/createSizes";
-import { isServer } from "../utils/isServer";
+import { createSrcSet } from "../utils/createSrcSet";
 import { useResetStore } from "../utils/useResetStore";
 import { withApollo } from "../utils/withApollo";
 
@@ -49,9 +47,8 @@ const IndexPage = () => {
 
   const { data: photosData } = usePhotosQuery({
     variables: {
-      limit: 10,
+      limit: 5,
     },
-    skip: isServer(),
   });
 
   return (
@@ -219,7 +216,7 @@ const IndexPage = () => {
                 <div className="mt-12 ml-4 grid row-gap-6">
                   {socialsData.socials.map((social) => (
                     <div key={social?.id}>
-                      <NextLink href={social?.url as string}>
+                      <a href={social?.url as string}>
                         <div className="inline-flex items-center cursor-pointer">
                           <div className="flex justify-center items-center h-4 w-4">
                             <FontAwesomeIcon
@@ -235,7 +232,7 @@ const IndexPage = () => {
                           </div>
                           <p className="ml-4 capitalize">{social?.label}</p>
                         </div>
-                      </NextLink>
+                      </a>
                     </div>
                   ))}
                 </div>

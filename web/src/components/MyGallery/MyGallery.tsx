@@ -29,8 +29,9 @@ const MyGallery: React.FC<IMyGallery> = ({ photos }) => {
             <Carousel
               currentIndex={currentImage}
               views={photos.map((x) => ({
-                ...x,
+                key: x.src,
                 source: x.src,
+                ...x,
               }))}
             />
           </Modal>

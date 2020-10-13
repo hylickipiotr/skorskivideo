@@ -73,7 +73,7 @@ const ContactForm: React.FC<{}> = ({}) => {
         }}
         onSubmit={(values, helpers) => handleFormSubmit(values, helpers)}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, initialValues }) => (
           <Form className="grid grid-cols-2 gap-4">
             <Field
               type="text"
@@ -129,8 +129,9 @@ const ContactForm: React.FC<{}> = ({}) => {
                     }
                   }}
                   required
+                  // defaultValue={initialValues.style}
                 >
-                  <option value="" disabled selected hidden>
+                  <option value="" disabled hidden>
                     {placeholders.style?.placeholder || "Styl uroczystości"}
                   </option>
                   {contactFormConfig.contactForm.styles.map((style) => (

@@ -12,13 +12,13 @@ const Footer: React.FC<{}> = ({}) => {
       {socialsData?.socials && (
         <div className="grid grid-flow-col col-gap-8">
           {socialsData.socials.map((social) => (
-            <NextLink key={social?.id} href={social?.url as string}>
+            <a key={social?.id} href={social?.url as string}>
               <FontAwesomeIcon
                 key={social?.id}
                 icon={["fab", social?.icon as IconName]}
                 className="cursor-pointer transform easy-in-out text-xl duration-200 hover:scale-110"
               />
-            </NextLink>
+            </a>
           ))}
         </div>
       )}

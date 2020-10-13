@@ -12,12 +12,11 @@ import Layout from "../layouts/Layout";
 import { createMediaUrl } from "../utils/createMediaUrl";
 import { createSizes } from "../utils/createSizes";
 import { createSrcSet } from "../utils/createSrcSet";
-import { isServer } from "../utils/isServer";
 import { useResetStore } from "../utils/useResetStore";
 import { withApollo } from "../utils/withApollo";
 
 const initPhotoQueryVariables: PhotosQueryVariables = {
-  limit: 30,
+  limit: 7,
 };
 
 const PhotoPage = () => {
@@ -29,7 +28,6 @@ const PhotoPage = () => {
     fetchMore: fetchMorePhotos,
   } = usePhotosQuery({
     variables: initPhotoQueryVariables,
-    skip: isServer(),
   });
 
   const { data: photosCountPublishedData } = usePhotosCountPublishedQuery();
@@ -94,6 +92,7 @@ const PhotoPage = () => {
                       ? "bg-yellow-500"
                       : "bg-gray-700 text-gray-300"
                   }`}
+                  disabled={loadingPhotos}
                 >
                   {!loadingPhotos ? "Załaduj więcej" : "Ładowanie..."}
                 </button>

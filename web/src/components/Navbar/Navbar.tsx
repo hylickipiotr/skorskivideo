@@ -7,6 +7,7 @@ import { ROUTES } from "../../constans/router";
 import { useSocialsQuery } from "../../generated/graphql";
 import { MenuItems } from "../../utils/menuItems";
 import Logo from "../Logo/Logo";
+import MyLink from "../MyLink/MyLink";
 
 const Navbar: React.FC<{}> = () => {
   const { data: socialsData } = useSocialsQuery();
@@ -16,33 +17,17 @@ const Navbar: React.FC<{}> = () => {
     <header className="fixed flex w-full bg-black text-white z-50">
       <div className={`md:hidden p-6 w-full ${isMenuOpen ? "h-screen" : ""}`}>
         <div className="grid grid-cols-3 items-center w-full">
-          <div className="flex items-center">
-            <button
-              onClick={() => {
-                setIsMenuOpen(!isMenuOpen);
-              }}
-            >
-              <svg
-                className="block h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  className={isMenuOpen ? "hidden" : "block"}
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-                <path
-                  className={isMenuOpen ? "block" : "hidden"}
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-          </div>
+          <button
+            className="flex items-center"
+            onClick={() => {
+              setIsMenuOpen(!isMenuOpen);
+            }}
+          >
+            <FontAwesomeIcon
+              className="text-xl"
+              icon={["fas", isMenuOpen ? "times" : "bars"]}
+            />
+          </button>
           <div className="flex justify-center">
             <NextLink href={ROUTES.HOME}>
               <div className="cursor-pointer">
@@ -58,7 +43,7 @@ const Navbar: React.FC<{}> = () => {
         >
           {MenuItems.map(({ label, href }) => (
             <div key={label} className="py-4 uppercase text-xl">
-              <Link
+              <MyLink
                 to={href}
                 spy={true}
                 smooth={true}
@@ -67,7 +52,7 @@ const Navbar: React.FC<{}> = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 {label}
-              </Link>
+              </MyLink>
             </div>
           ))}
         </div>
@@ -83,7 +68,7 @@ const Navbar: React.FC<{}> = () => {
             <div className="grid grid-flow-col col-gap-6 xl:col-gap-12 items-center ml-12 xl:ml-16">
               {MenuItems.map(({ label, href, active }) => (
                 <div key={label}>
-                  <Link
+                  <MyLink
                     to={href}
                     spy={true}
                     smooth={true}
@@ -107,7 +92,7 @@ const Navbar: React.FC<{}> = () => {
                         ></div>
                       )}
                     </div>
-                  </Link>
+                  </MyLink>
                 </div>
               ))}
             </div>
@@ -115,12 +100,14 @@ const Navbar: React.FC<{}> = () => {
           {socialsData?.socials && (
             <div className="grid grid-flow-col col-gap-8 xl:col-gap-12">
               {socialsData?.socials?.map((social) => (
-                <NextLink href={social?.url as string} key={social?.id}>
+                <a href={social?.url as string} key={social?.id}>
                   <FontAwesomeIcon
+                    key={social?.id}
+                    href={social?.url as string}
                     icon={["fab", social?.icon as IconName]}
                     className="cursor-pointer transform easy-in-out text-xl duration-200 hover:scale-110"
                   />
-                </NextLink>
+                </a>
               ))}
             </div>
           )}
