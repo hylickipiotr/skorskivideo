@@ -1,16 +1,8 @@
-import React, { createRef, useRef, useState } from "react";
-import ReactPlayer from "react-player";
-import { Maybe, Tag as TTag } from "../../generated/graphql";
-import PlayIcon from "../Icon/PlayIcon";
-import Tag from "../Tag/Tag";
-import screenfull from "screenfull";
-import { findDOMNode } from "react-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  PlayerConsumer,
-  PlayerProvider,
-  usePlayerContext,
-} from "../VideoPlayer/PlayerContext";
+import React from "react";
+import { Maybe, Tag as TTag } from "../../generated/graphql";
+import Tag from "../Tag/Tag";
+import { PlayerConsumer, PlayerProvider } from "../VideoPlayer/PlayerContext";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 
 export interface IVideoCard {
@@ -50,7 +42,7 @@ const VideoCard: React.FC<IVideoCard> = ({
   return (
     <PlayerProvider value={{ isOpen: false }}>
       <PlayerConsumer>
-        {({ isOpen, setIsOpen }) => (
+        {({ setIsOpen }) => (
           <div>
             <div
               className="relative cursor-pointer"
@@ -58,7 +50,6 @@ const VideoCard: React.FC<IVideoCard> = ({
             >
               <div className="group absolute flex justify-center items-center w-full h-full bg-gray-800 bg-opacity-0 hover:bg-opacity-50 transition-all ease-in-out duration-200">
                 <div className="flex items-center opacity-0 group-hover:opacity-100 transition-all ease-in-out duration-200 ">
-                  {/* <PlayIcon className="w-12 h-12 fill-current text-white  /> */}
                   <FontAwesomeIcon
                     className="text-2xl text-white"
                     icon={["fas", "play"]}
@@ -74,7 +65,12 @@ const VideoCard: React.FC<IVideoCard> = ({
                 />
               </div>
             </div>
-            <p className="mt-4 text-xl font-semibold">{title}</p>
+            <p
+              className="mt-4 text-xl font-semibold cursor-pointer"
+              onClick={() => handleVideoClick(setIsOpen)}
+            >
+              {title}
+            </p>
             <p className="mt-1 text-sm font-secondary leading-6 text-gray-700">
               {description}
             </p>

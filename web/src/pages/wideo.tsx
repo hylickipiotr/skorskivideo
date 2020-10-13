@@ -98,34 +98,38 @@ const VideoPage: NextPage = () => {
         className="container mx-auto grid grid-flow-row row-gap-8 md:row-gap-24 pt-40 pb-16 px-4 xl:px-12"
         style={{ gridTemplateColumns: "minmax(0, 1fr)" }}
       >
-        <div className="md:grid flex-col grid-cols-12 col-gap-16">
-          <div
-            className={`${
-              videoPageData?.videoPage?.image ? "col-span-7" : "col-span-12"
-            }`}
-          >
+        <div>
+          <div>
             <Header>Video</Header>
-            <div className="mt-8 font-secondary leading-relaxed">
-              <RichText>{videoPageData?.videoPage?.description}</RichText>
-            </div>
           </div>
-          {videoPageData?.videoPage?.image && (
-            <div className="col-span-5">
-              <img
-                src={createMediaUrl(videoPageData.videoPage.image.url)}
-                srcSet={createSrcSet({
-                  ...videoPageData.videoPage.image.formats,
-                  original: {
-                    url: videoPageData.videoPage.image.url,
-                    width: videoPageData.videoPage.image.width,
-                  },
-                })}
-                sizes={createSizes(videoPageData.videoPage.image.width || 0)}
-                alt={videoPageData.videoPage.image.alternativeText || ""}
-                title={videoPageData.videoPage.image.caption || ""}
-              />
+          <div className="md:grid flex-col grid-cols-12 col-gap-16 mt-8">
+            <div
+              className={`${
+                videoPageData?.videoPage?.image ? "col-span-7" : "col-span-12"
+              }`}
+            >
+              <div className="font-secondary leading-relaxed">
+                <RichText>{videoPageData?.videoPage?.description}</RichText>
+              </div>
             </div>
-          )}
+            {videoPageData?.videoPage?.image && (
+              <div className="col-span-5">
+                <img
+                  src={createMediaUrl(videoPageData.videoPage.image.url)}
+                  srcSet={createSrcSet({
+                    ...videoPageData.videoPage.image.formats,
+                    original: {
+                      url: videoPageData.videoPage.image.url,
+                      width: videoPageData.videoPage.image.width,
+                    },
+                  })}
+                  sizes={createSizes(videoPageData.videoPage.image.width || 0)}
+                  alt={videoPageData.videoPage.image.alternativeText || ""}
+                  title={videoPageData.videoPage.image.caption || ""}
+                />
+              </div>
+            )}
+          </div>
         </div>
         <div className="grid row-gap-8">
           {tagsData?.tags && (

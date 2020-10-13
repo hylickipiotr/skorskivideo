@@ -2,10 +2,9 @@ import { IconName } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NextLink from "next/link";
 import React, { useState } from "react";
-import { Link } from "react-scroll";
 import { ROUTES } from "../../constans/router";
 import { useSocialsQuery } from "../../generated/graphql";
-import { MenuItems } from "../../utils/menuItems";
+import { MENU_ITEMS } from "../../constans/menuItems";
 import Logo from "../Logo/Logo";
 import MyLink from "../MyLink/MyLink";
 
@@ -41,7 +40,7 @@ const Navbar: React.FC<{}> = () => {
             isMenuOpen ? "flex" : "hidden"
           } w-full h-full flex-col justify-center items-center`}
         >
-          {MenuItems.map(({ label, href }) => (
+          {MENU_ITEMS.map(({ label, href }) => (
             <div key={label} className="py-4 uppercase text-xl">
               <MyLink
                 to={href}
@@ -66,7 +65,7 @@ const Navbar: React.FC<{}> = () => {
               </div>
             </NextLink>
             <div className="grid grid-flow-col col-gap-6 xl:col-gap-12 items-center ml-12 xl:ml-16">
-              {MenuItems.map(({ label, href, active }) => (
+              {MENU_ITEMS.map(({ label, href, active }) => (
                 <div key={label}>
                   <MyLink
                     to={href}

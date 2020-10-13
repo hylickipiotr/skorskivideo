@@ -1,5 +1,5 @@
 export enum ROUTES {
   HOME = "/",
-  VIDEO = "/video",
+  VIDEO = "/wideo",
   PHOTO = "/fotografia",
 }

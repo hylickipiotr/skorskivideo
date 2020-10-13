@@ -11,6 +11,7 @@ import Header from "../components/Header/Header";
 import MyGallery from "../components/MyGallery/MyGallery";
 import RichText from "../components/RichText/RichText";
 import VideoCard from "../components/VideoCard/VideoCard";
+import { SECTION } from "../constans/menuItems";
 import { ROUTES } from "../constans/router";
 import {
   Tag,
@@ -63,7 +64,7 @@ const IndexPage: NextPage = () => {
         }
         image={{
           src: createMediaUrl(
-            homePageData?.home?.backgroundImage?.url as string
+            homePageData?.home?.backgroundImage?.formats.large.url as string
           ),
           title: homePageData?.home?.backgroundImage?.caption as string,
           alt: homePageData?.home?.backgroundImage?.alternativeText as string,
@@ -87,7 +88,7 @@ const IndexPage: NextPage = () => {
         style={{ gridTemplateColumns: "minmax(0, 1fr)" }}
       >
         {/* O NAS */}
-        <Element name="onas" className="grid flex-col grid-cols-12">
+        <Element name={SECTION.ABOUT_US} className="grid flex-col grid-cols-12">
           <div className="md:hidden col-span-12">
             <Header>O nas</Header>
           </div>
@@ -119,9 +120,9 @@ const IndexPage: NextPage = () => {
         </Element>
         {/* Filmowanie */}
         {videosData?.videos && (
-          <Element name="video">
+          <Element name={SECTION.VIDEO}>
             <div className="flex w-full justify-between items-start">
-              <Header>Filmowanie</Header>
+              <Header>Wideo</Header>
               <div className="hidden md:block">
                 <NextLink href={ROUTES.VIDEO}>
                   <button className="font-semibold border-2 border-black px-4 py-2 hover:bg-yellow-500 translate duration-200 ease-in-out">
@@ -161,7 +162,7 @@ const IndexPage: NextPage = () => {
         )}
         {/* Fotografia */}
         {photosData?.photos && (
-          <Element name="fotografia">
+          <Element name={SECTION.PHOTO}>
             <div className="flex w-full justify-between items-start">
               <Header>Fotografia</Header>
               <div className="hidden md:block">
@@ -211,7 +212,7 @@ const IndexPage: NextPage = () => {
         )}
         {/* FAQ */}
         {faqsData?.faqs && (
-          <Element name="faq">
+          <Element name={SECTION.FAQ}>
             <Header>FAQ</Header>
             <div className="grid md:grid-cols-12 gap-8 md:gap-6 mt-12">
               {faqsData?.faqs?.map(
@@ -234,7 +235,7 @@ const IndexPage: NextPage = () => {
           </Element>
         )}
         {/* Kontakt */}
-        <Element name="kontakt">
+        <Element name={SECTION.CONTACT}>
           <Header>Kontakt</Header>
           <div className="grid grid-flow-row gap-16 md:grid-flow-col md:grid-cols-2 mt-8">
             <div className="font-secondary leading-relaxed">
