@@ -1,7 +1,9 @@
 import { useApolloClient } from "@apollo/client";
 import { title } from "process";
 import React, { useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import Header from "../components/Header/Header";
+import MyLoader from "../components/MyLoader/MyLoader";
 import RichText from "../components/RichText/RichText";
 import TagCard, { IOnClickTagCard } from "../components/TagCard/TagCard";
 import VideoCard from "../components/VideoCard/VideoCard";
@@ -22,7 +24,7 @@ import { useResetStore } from "../utils/useResetStore";
 import { withApollo } from "../utils/withApollo";
 
 const initVideoQueryVariables: VideosQueryVariables = {
-  limit: 3,
+  limit: 15,
 };
 
 const VideoPage = () => {
@@ -34,7 +36,6 @@ const VideoPage = () => {
   const {
     data: videosData,
     refetch: refetchVideos,
-    loading: loadingVideos,
     fetchMore: fetchMoreVideos,
   } = useVideosQuery({
     variables: initVideoQueryVariables,
@@ -45,7 +46,7 @@ const VideoPage = () => {
   } = useVideosCountPublishedQuery();
 
   const loadedVideosCount = videosData?.videos?.length as number;
-  const isMore =
+  const hasMore =
     (videosCountPublishedData?.videosCountPublished as number) >
     loadedVideosCount;
 
@@ -144,34 +145,42 @@ const VideoPage = () => {
               ))}
             </div>
           )}
+
           {videosData?.videos && (
-            <div>
-              <div
-                className={`grid grid-flow-row md:grid-cols-3 md:grid-rows-none col-gap-8 row-gap-12`}
-              >
-                {videosData.videos.map(
-                  (video) =>
-                    video && (
-                      <VideoCard
-                        {...video}
-                        key={video.id}
-                        sourceUrl={video.url}
-                        showTags={true}
-                        thumbnail={{
-                          url: createMediaUrl(
-                            video.thumbnail?.formats.small.url
-                          ),
-                          alt: video.thumbnail?.alternativeText,
-                          title: video.thumbnail?.caption,
-                        }}
-                        tags={video.tags as Tag[]}
-                      />
-                    )
-                )}
+            <InfiniteScroll
+              dataLength={videosData.videos.length}
+              next={handleLoadMore}
+              hasMore={hasMore}
+              loader={<MyLoader />}
+            >
+              <div>
+                <div
+                  className={`grid grid-flow-row md:grid-cols-3 md:grid-rows-none col-gap-8 row-gap-12`}
+                >
+                  {videosData.videos.map(
+                    (video) =>
+                      video && (
+                        <VideoCard
+                          {...video}
+                          key={video.id}
+                          sourceUrl={video.url}
+                          showTags={true}
+                          thumbnail={{
+                            url: createMediaUrl(
+                              video.thumbnail?.formats.small.url
+                            ),
+                            alt: video.thumbnail?.alternativeText,
+                            title: video.thumbnail?.caption,
+                          }}
+                          tags={video.tags as Tag[]}
+                        />
+                      )
+                  )}
+                </div>
               </div>
-            </div>
+            </InfiniteScroll>
           )}
-          {isMore && (
+          {/* {isMore && (
             <div className="flex justify-center">
               <button
                 onClick={() => handleLoadMore()}
@@ -182,7 +191,7 @@ const VideoPage = () => {
                 {!loadingVideos ? "Ładuj więcej" : "Ładowanie..."}
               </button>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </Layout>

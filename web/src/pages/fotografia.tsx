@@ -1,7 +1,9 @@
 import { useApolloClient } from "@apollo/client";
 import React from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import Header from "../components/Header/Header";
 import MyGallery from "../components/MyGallery/MyGallery";
+import MyLoader from "../components/MyLoader/MyLoader";
 import {
   Photo,
   PhotosQueryVariables,
@@ -16,24 +18,20 @@ import { useResetStore } from "../utils/useResetStore";
 import { withApollo } from "../utils/withApollo";
 
 const initPhotoQueryVariables: PhotosQueryVariables = {
-  limit: 7,
+  limit: 15,
 };
 
 const PhotoPage = () => {
   const client = useApolloClient();
   useResetStore(client);
-  const {
-    data: photosData,
-    loading: loadingPhotos,
-    fetchMore: fetchMorePhotos,
-  } = usePhotosQuery({
+  const { data: photosData, fetchMore: fetchMorePhotos } = usePhotosQuery({
     variables: initPhotoQueryVariables,
   });
 
   const { data: photosCountPublishedData } = usePhotosCountPublishedQuery();
 
   const loadedPhotosCount = photosData?.photos?.length as number;
-  const isMore =
+  const hasMore =
     (photosCountPublishedData?.photosCountPublished as number) >
     loadedPhotosCount;
 
@@ -66,45 +64,39 @@ const PhotoPage = () => {
         </div>
         {photosData?.photos && (
           <div>
-            <MyGallery
-              photos={photosData.photos.map((photo) => ({
-                key: photo?.id,
-                src: createMediaUrl(photo?.image?.url as string),
-                srcSet: createSrcSet({
-                  ...photo?.image?.formats,
-                  original: {
-                    url: photo?.image?.url,
-                    width: photo?.image?.width,
-                  },
-                }),
-                sizes: createSizes(photo?.image?.width || 0),
-                width: photo?.image?.width || 1,
-                height: photo?.image?.height || 1,
-                alt: photo?.title,
-              }))}
-              thumbnails={photosData.photos.map((photo) => ({
-                key: photo?.id,
-                src: createMediaUrl(photo?.image?.formats.small.url as string),
-                width: photo?.image?.width || 1,
-                height: photo?.image?.height || 1,
-                alt: photo?.title,
-              }))}
-            />
-            {isMore && (
-              <div className="flex w-full mt-12 justify-center">
-                <button
-                  onClick={() => handleLoadMore()}
-                  className={`py-2 px-4 font-semibold ${
-                    !loadingPhotos
-                      ? "bg-yellow-500"
-                      : "bg-gray-700 text-gray-300"
-                  }`}
-                  disabled={loadingPhotos}
-                >
-                  {!loadingPhotos ? "Załaduj więcej" : "Ładowanie..."}
-                </button>
-              </div>
-            )}
+            <InfiniteScroll
+              dataLength={photosData.photos.length}
+              next={handleLoadMore}
+              hasMore={hasMore}
+              loader={<MyLoader />}
+            >
+              <MyGallery
+                photos={photosData.photos.map((photo) => ({
+                  key: photo?.id,
+                  src: createMediaUrl(photo?.image?.url as string),
+                  srcSet: createSrcSet({
+                    ...photo?.image?.formats,
+                    original: {
+                      url: photo?.image?.url,
+                      width: photo?.image?.width,
+                    },
+                  }),
+                  sizes: createSizes(photo?.image?.width || 0),
+                  width: photo?.image?.width || 1,
+                  height: photo?.image?.height || 1,
+                  alt: photo?.title,
+                }))}
+                thumbnails={photosData.photos.map((photo) => ({
+                  key: photo?.id,
+                  src: createMediaUrl(
+                    photo?.image?.formats.small.url as string
+                  ),
+                  width: photo?.image?.width || 1,
+                  height: photo?.image?.height || 1,
+                  alt: photo?.title,
+                }))}
+              />
+            </InfiniteScroll>
           </div>
         )}
       </div>
