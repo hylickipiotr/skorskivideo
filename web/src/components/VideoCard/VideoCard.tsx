@@ -56,10 +56,16 @@ const VideoCard: React.FC<IVideoCard> = ({
               className="relative cursor-pointer"
               onClick={() => handleVideoClick(setIsOpen)}
             >
-              <div className="absolute flex justify-center items-center w-full h-full bg-gray-800 bg-opacity-25 hover:bg-opacity-0 transition-all ease-in-out duration-200 group">
-                <PlayIcon className="w-12 h-12 fill-current text-white" />
+              <div className="group absolute flex justify-center items-center w-full h-full bg-gray-800 bg-opacity-0 hover:bg-opacity-50 transition-all ease-in-out duration-200">
+                <div className="flex items-center opacity-0 group-hover:opacity-100 transition-all ease-in-out duration-200 ">
+                  {/* <PlayIcon className="w-12 h-12 fill-current text-white  /> */}
+                  <FontAwesomeIcon
+                    className="text-2xl text-white"
+                    icon={["fas", "play"]}
+                  />
+                </div>
               </div>
-              <div className="relative w-full pb-7/12">
+              <div className="relative w-full pb-7/12 z-n1">
                 <img
                   className="absolute w-full h-full object-cover"
                   src={thumbnail.url}

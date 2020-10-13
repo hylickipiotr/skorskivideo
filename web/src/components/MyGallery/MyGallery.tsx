@@ -27,6 +27,12 @@ const MyGallery: React.FC<IMyGallery> = ({ photos }) => {
         {viewerIsOpen ? (
           <Modal onClose={closeLightbox}>
             <Carousel
+              hideControlsWhenIdle={false}
+              styles={{
+                view: () => ({
+                  maxHeight: "100vh",
+                }),
+              }}
               currentIndex={currentImage}
               views={photos.map((x) => ({
                 key: x.src,
