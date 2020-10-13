@@ -5,9 +5,10 @@ import { isServer } from "../../utils/isServer";
 
 interface IMyGallery {
   photos: PhotoProps[];
+  thumbnails: PhotoProps[];
 }
 
-const MyGallery: React.FC<IMyGallery> = ({ photos }) => {
+const MyGallery: React.FC<IMyGallery> = ({ photos, thumbnails }) => {
   const [currentImage, setCurrentImage] = useState(0);
   const [viewerIsOpen, setViewerIsOpen] = useState(false);
 
@@ -25,7 +26,7 @@ const MyGallery: React.FC<IMyGallery> = ({ photos }) => {
 
   return (
     <div>
-      <Gallery photos={photos} onClick={openLightbox} />
+      <Gallery photos={thumbnails} onClick={openLightbox} />
       <ModalGateway>
         {viewerIsOpen ? (
           <Modal onClose={closeLightbox}>
@@ -37,10 +38,10 @@ const MyGallery: React.FC<IMyGallery> = ({ photos }) => {
                 }),
               }}
               currentIndex={currentImage}
-              views={photos.map((x) => ({
-                key: x.src,
-                source: x.src,
-                ...x,
+              views={photos.map((photo) => ({
+                key: photo.src,
+                source: photo.src,
+                ...photo,
               }))}
             />
           </Modal>

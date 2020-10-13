@@ -82,6 +82,13 @@ const PhotoPage = () => {
                 height: photo?.image?.height || 1,
                 alt: photo?.title,
               }))}
+              thumbnails={photosData.photos.map((photo) => ({
+                key: photo?.id,
+                src: createMediaUrl(photo?.image?.formats.small.url as string),
+                width: photo?.image?.width || 1,
+                height: photo?.image?.height || 1,
+                alt: photo?.title,
+              }))}
             />
             {isMore && (
               <div className="flex w-full mt-12 justify-center">

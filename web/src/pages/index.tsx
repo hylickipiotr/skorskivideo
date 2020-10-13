@@ -173,23 +173,30 @@ const IndexPage = () => {
             </div>
             <div className="mt-12">
               <MyGallery
-                photos={photosData.photos.map((photo) => {
-                  return {
-                    key: photo?.id,
-                    src: createMediaUrl(photo?.image?.url as string),
-                    srcSet: createSrcSet({
-                      ...photo?.image?.formats,
-                      original: {
-                        url: photo?.image?.url,
-                        width: photo?.image?.width,
-                      },
-                    }),
-                    sizes: createSizes(photo?.image?.width || 0),
-                    width: photo?.image?.width || 1,
-                    height: photo?.image?.height || 1,
-                    alt: photo?.title,
-                  };
-                })}
+                photos={photosData.photos.map((photo) => ({
+                  key: photo?.id,
+                  src: createMediaUrl(photo?.image?.url as string),
+                  srcSet: createSrcSet({
+                    ...photo?.image?.formats,
+                    original: {
+                      url: photo?.image?.url,
+                      width: photo?.image?.width,
+                    },
+                  }),
+                  sizes: createSizes(photo?.image?.width || 0),
+                  width: photo?.image?.width || 1,
+                  height: photo?.image?.height || 1,
+                  alt: photo?.title,
+                }))}
+                thumbnails={photosData.photos.map((photo) => ({
+                  key: photo?.id,
+                  src: createMediaUrl(
+                    photo?.image?.formats.small.url as string
+                  ),
+                  width: photo?.image?.width || 1,
+                  height: photo?.image?.height || 1,
+                  alt: photo?.title,
+                }))}
               />
             </div>
             <div className="md:hidden mt-8">
