@@ -19,7 +19,6 @@ const Navbar: React.FC<{}> = () => {
           <div className="flex items-center">
             <button
               onClick={() => {
-                console.log(isMenuOpen);
                 setIsMenuOpen(!isMenuOpen);
               }}
             >

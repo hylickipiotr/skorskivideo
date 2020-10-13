@@ -47,11 +47,6 @@ const VideoPage = () => {
     (videosCountPublishedData?.videosCountPublished as number) >
     loadedVideosCount;
 
-  console.log(
-    loadedVideosCount,
-    videosCountPublishedData?.videosCountPublished
-  );
-
   const handleTagCardClick = async ({ tag, isActive }: IOnClickTagCard) => {
     if (isActive) return;
 
