@@ -6,7 +6,11 @@
     "build": "next build",
     "start": "next start",
     "gen": "graphql-codegen --config codegen.yml",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "pm2:start": "yarn build && pm2 start yarn --interpreter bash --name sv-web -- start",
+    "pm2:stop": "pm2 stop sv-web",
+    "pm2:restart": "yarn build && pm2 restart sv-web",
+    "pm2:delete": "pm2 delete sv-web"
   },
   "dependencies": {
     "@apollo/client": "^3.2.2",
@@ -44,6 +48,7 @@
     "@types/react-loader-spinner": "^3.1.1",
     "@types/react-scroll": "^1.8.0",
     "@types/react-toast-notifications": "^2.4.0",
+    "pm2": "^4.5.0",
     "postcss-preset-env": "^6.7.0",
     "tailwindcss": "^1.8.10",
     "typescript": "4.0"
