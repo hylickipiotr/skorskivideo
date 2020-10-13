@@ -1,11 +1,11 @@
-import React from "react";
 import { AppProps } from "next/app";
-import "../styles/tailwind.css";
+import React from "react";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { initFontAwesome } from "../utils/initFontAwesome";
 import { ToastProvider } from "react-toast-notifications";
-import { useRouterLoading } from "../utils/useRouterLoading";
 import PageLoader from "../components/PageLoader/PageLoader";
+import "../styles/tailwind.css";
+import { initFontAwesome } from "../utils/initFontAwesome";
+import { useRouterLoading } from "../utils/useRouterLoading";
 
 initFontAwesome();
 

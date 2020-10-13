@@ -1,4 +1,5 @@
 import { useApolloClient } from "@apollo/client";
+import { NextPage } from "next";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Header from "../components/Header/Header";
@@ -21,7 +22,7 @@ const initPhotoQueryVariables: PhotosQueryVariables = {
   limit: 15,
 };
 
-const PhotoPage = () => {
+const PhotoPage: NextPage = () => {
   const client = useApolloClient();
   useResetStore(client);
   const { data: photosData, fetchMore: fetchMorePhotos } = usePhotosQuery({

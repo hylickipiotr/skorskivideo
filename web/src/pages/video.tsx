@@ -1,5 +1,5 @@
 import { useApolloClient } from "@apollo/client";
-import { title } from "process";
+import { NextPage } from "next";
 import React, { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Header from "../components/Header/Header";
@@ -27,7 +27,7 @@ const initVideoQueryVariables: VideosQueryVariables = {
   limit: 15,
 };
 
-const VideoPage = () => {
+const VideoPage: NextPage = () => {
   const client = useApolloClient();
   useResetStore(client);
   const [activeCard, setActiveCard] = useState("Wszystkie");

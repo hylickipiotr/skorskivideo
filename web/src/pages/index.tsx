@@ -1,6 +1,7 @@
 import { useApolloClient } from "@apollo/client";
 import { IconName } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { NextPage } from "next";
 import NextLink from "next/link";
 import React from "react";
 import { Element } from "react-scroll";
@@ -26,7 +27,7 @@ import { createSrcSet } from "../utils/createSrcSet";
 import { useResetStore } from "../utils/useResetStore";
 import { withApollo } from "../utils/withApollo";
 
-const IndexPage = () => {
+const IndexPage: NextPage = () => {
   const client = useApolloClient();
   useResetStore(client);
   const { data: homePageData } = useHomeQuery();
