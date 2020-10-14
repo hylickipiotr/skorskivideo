@@ -1,0 +1,7 @@
+query Footer {
+  footer {
+    bannerImageUrl
+    bannerImageHref
+    bannerImageAlt
+  }
+}

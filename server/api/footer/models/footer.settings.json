@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "footers",
+  "info": {
+    "name": "Footer"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "bannerImageUrl": {
+      "type": "string"
+    },
+    "bannerImageHref": {
+      "type": "string"
+    },
+    "bannerImageAlt": {
+      "type": "string"
+    }
+  }
+}

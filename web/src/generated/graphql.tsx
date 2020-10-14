@@ -29,6 +29,7 @@ export type Query = {
   faq?: Maybe<Faq>;
   faqs?: Maybe<Array<Maybe<Faq>>>;
   faqsConnection?: Maybe<FaqConnection>;
+  footer?: Maybe<Footer>;
   home?: Maybe<Home>;
   photo?: Maybe<Photo>;
   photos?: Maybe<Array<Maybe<Photo>>>;
@@ -335,6 +336,16 @@ export type FaqAggregator = {
   totalCount?: Maybe<Scalars['Int']>;
 };
 
+export type Footer = {
+  __typename?: 'Footer';
+  id: Scalars['ID'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  bannerImageUrl?: Maybe<Scalars['String']>;
+  bannerImageHref?: Maybe<Scalars['String']>;
+  bannerImageAlt?: Maybe<Scalars['String']>;
+};
+
 export type Home = {
   __typename?: 'Home';
   id: Scalars['ID'];
@@ -377,7 +388,7 @@ export type UploadFileRelatedArgs = {
   where?: Maybe<Scalars['JSON']>;
 };
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | ContactForm | UpdateContactFormPayload | DeleteContactFormPayload | Faq | FaqConnection | FaqAggregator | FaqGroupBy | FaqConnectionId | FaqConnectionCreated_At | FaqConnectionUpdated_At | FaqConnectionQuestion | FaqConnectionAnswer | FaqConnectionIsPublished | FaqConnectionPublishedAt | CreateFaqPayload | UpdateFaqPayload | DeleteFaqPayload | Home | UpdateHomePayload | DeleteHomePayload | Photo | PhotoConnection | PhotoAggregator | PhotoGroupBy | PhotoConnectionId | PhotoConnectionCreated_At | PhotoConnectionUpdated_At | PhotoConnectionTitle | PhotoConnectionIsPublished | PhotoConnectionPublishedAt | PhotoConnectionImage | CreatePhotoPayload | UpdatePhotoPayload | DeletePhotoPayload | Social | SocialConnection | SocialAggregator | SocialGroupBy | SocialConnectionId | SocialConnectionCreated_At | SocialConnectionUpdated_At | SocialConnectionUrl | SocialConnectionIcon | SocialConnectionIsPublished | SocialConnectionPublishedAt | SocialConnectionLabel | SocialConnectionColorHex | CreateSocialPayload | UpdateSocialPayload | DeleteSocialPayload | Tag | TagConnection | TagAggregator | TagGroupBy | TagConnectionId | TagConnectionCreated_At | TagConnectionUpdated_At | TagConnectionName | CreateTagPayload | UpdateTagPayload | DeleteTagPayload | VideoPage | UpdateVideoPagePayload | DeleteVideoPagePayload | Video | VideoConnection | VideoAggregator | VideoGroupBy | VideoConnectionId | VideoConnectionCreated_At | VideoConnectionUpdated_At | VideoConnectionUrl | VideoConnectionTitle | VideoConnectionDescription | VideoConnectionIsPublished | VideoConnectionPublishedAt | VideoConnectionThumbnail | CreateVideoPayload | UpdateVideoPayload | DeleteVideoPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentContactFormPlaceholdersContactFormPlaceholders | ComponentContantFormStyleContantFormStyle | ComponentTagTags;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | ContactForm | UpdateContactFormPayload | DeleteContactFormPayload | Faq | FaqConnection | FaqAggregator | FaqGroupBy | FaqConnectionId | FaqConnectionCreated_At | FaqConnectionUpdated_At | FaqConnectionQuestion | FaqConnectionAnswer | FaqConnectionIsPublished | FaqConnectionPublishedAt | CreateFaqPayload | UpdateFaqPayload | DeleteFaqPayload | Footer | UpdateFooterPayload | DeleteFooterPayload | Home | UpdateHomePayload | DeleteHomePayload | Photo | PhotoConnection | PhotoAggregator | PhotoGroupBy | PhotoConnectionId | PhotoConnectionCreated_At | PhotoConnectionUpdated_At | PhotoConnectionTitle | PhotoConnectionIsPublished | PhotoConnectionPublishedAt | PhotoConnectionImage | CreatePhotoPayload | UpdatePhotoPayload | DeletePhotoPayload | Social | SocialConnection | SocialAggregator | SocialGroupBy | SocialConnectionId | SocialConnectionCreated_At | SocialConnectionUpdated_At | SocialConnectionUrl | SocialConnectionIcon | SocialConnectionIsPublished | SocialConnectionPublishedAt | SocialConnectionLabel | SocialConnectionColorHex | CreateSocialPayload | UpdateSocialPayload | DeleteSocialPayload | Tag | TagConnection | TagAggregator | TagGroupBy | TagConnectionId | TagConnectionCreated_At | TagConnectionUpdated_At | TagConnectionName | CreateTagPayload | UpdateTagPayload | DeleteTagPayload | VideoPage | UpdateVideoPagePayload | DeleteVideoPagePayload | Video | VideoConnection | VideoAggregator | VideoGroupBy | VideoConnectionId | VideoConnectionCreated_At | VideoConnectionUpdated_At | VideoConnectionUrl | VideoConnectionTitle | VideoConnectionDescription | VideoConnectionIsPublished | VideoConnectionPublishedAt | VideoConnectionThumbnail | CreateVideoPayload | UpdateVideoPayload | DeleteVideoPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentContactFormPlaceholdersContactFormPlaceholders | ComponentContantFormStyleContantFormStyle | ComponentTagTags;
 
 export type UsersPermissionsMe = {
   __typename?: 'UsersPermissionsMe';
@@ -431,6 +442,16 @@ export type UpdateFaqPayload = {
 export type DeleteFaqPayload = {
   __typename?: 'deleteFaqPayload';
   faq?: Maybe<Faq>;
+};
+
+export type UpdateFooterPayload = {
+  __typename?: 'updateFooterPayload';
+  footer?: Maybe<Footer>;
+};
+
+export type DeleteFooterPayload = {
+  __typename?: 'deleteFooterPayload';
+  footer?: Maybe<Footer>;
 };
 
 export type UpdateHomePayload = {
@@ -1242,6 +1263,8 @@ export type Mutation = {
   createFaq?: Maybe<CreateFaqPayload>;
   updateFaq?: Maybe<UpdateFaqPayload>;
   deleteFaq?: Maybe<DeleteFaqPayload>;
+  updateFooter?: Maybe<UpdateFooterPayload>;
+  deleteFooter?: Maybe<DeleteFooterPayload>;
   updateHome?: Maybe<UpdateHomePayload>;
   deleteHome?: Maybe<DeleteHomePayload>;
   createPhoto?: Maybe<CreatePhotoPayload>;
@@ -1299,6 +1322,11 @@ export type MutationUpdateFaqArgs = {
 
 export type MutationDeleteFaqArgs = {
   input?: Maybe<DeleteFaqInput>;
+};
+
+
+export type MutationUpdateFooterArgs = {
+  input?: Maybe<UpdateFooterInput>;
 };
 
 
@@ -1516,6 +1544,18 @@ export type EditFaqInput = {
 
 export type DeleteFaqInput = {
   where?: Maybe<InputId>;
+};
+
+export type UpdateFooterInput = {
+  data?: Maybe<EditFooterInput>;
+};
+
+export type EditFooterInput = {
+  bannerImageUrl?: Maybe<Scalars['String']>;
+  bannerImageHref?: Maybe<Scalars['String']>;
+  bannerImageAlt?: Maybe<Scalars['String']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
 };
 
 export type UpdateHomeInput = {
@@ -1799,6 +1839,14 @@ export type ComponentContactFormPlaceholdersContactFormPlaceholderInput = {
   placeholder: Scalars['String'];
 };
 
+export type FooterInput = {
+  bannerImageUrl?: Maybe<Scalars['String']>;
+  bannerImageHref?: Maybe<Scalars['String']>;
+  bannerImageAlt?: Maybe<Scalars['String']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
 export type HomeInput = {
   aboutUsContent: Scalars['String'];
   contactContent: Scalars['String'];
@@ -1912,6 +1960,17 @@ export type FaqsQuery = (
     { __typename?: 'Faq' }
     & Pick<Faq, 'id' | 'created_at' | 'question' | 'answer'>
   )>>> }
+);
+
+export type FooterQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FooterQuery = (
+  { __typename?: 'Query' }
+  & { footer?: Maybe<(
+    { __typename?: 'Footer' }
+    & Pick<Footer, 'bannerImageUrl' | 'bannerImageHref' | 'bannerImageAlt'>
+  )> }
 );
 
 export type HomeQueryVariables = Exact<{ [key: string]: never; }>;
@@ -2122,6 +2181,40 @@ export function useFaqsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FaqsQ
 export type FaqsQueryHookResult = ReturnType<typeof useFaqsQuery>;
 export type FaqsLazyQueryHookResult = ReturnType<typeof useFaqsLazyQuery>;
 export type FaqsQueryResult = Apollo.QueryResult<FaqsQuery, FaqsQueryVariables>;
+export const FooterDocument = gql`
+    query Footer {
+  footer {
+    bannerImageUrl
+    bannerImageHref
+    bannerImageAlt
+  }
+}
+    `;
+
+/**
+ * __useFooterQuery__
+ *
+ * To run a query within a React component, call `useFooterQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFooterQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFooterQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFooterQuery(baseOptions?: Apollo.QueryHookOptions<FooterQuery, FooterQueryVariables>) {
+        return Apollo.useQuery<FooterQuery, FooterQueryVariables>(FooterDocument, baseOptions);
+      }
+export function useFooterLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FooterQuery, FooterQueryVariables>) {
+          return Apollo.useLazyQuery<FooterQuery, FooterQueryVariables>(FooterDocument, baseOptions);
+        }
+export type FooterQueryHookResult = ReturnType<typeof useFooterQuery>;
+export type FooterLazyQueryHookResult = ReturnType<typeof useFooterLazyQuery>;
+export type FooterQueryResult = Apollo.QueryResult<FooterQuery, FooterQueryVariables>;
 export const HomeDocument = gql`
     query Home {
   home {
