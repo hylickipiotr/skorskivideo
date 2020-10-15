@@ -2071,7 +2071,7 @@ export type VideoPageQuery = (
     & Pick<VideoPage, 'description'>
     & { image?: Maybe<(
       { __typename?: 'UploadFile' }
-      & Pick<UploadFile, 'caption' | 'alternativeText' | 'formats' | 'url' | 'width' | 'height'>
+      & ImageSnippetFragment
     )> }
   )> }
 );
@@ -2447,16 +2447,11 @@ export const VideoPageDocument = gql`
   videoPage {
     description
     image {
-      caption
-      alternativeText
-      formats
-      url
-      width
-      height
+      ...ImageSnippet
     }
   }
 }
-    `;
+    ${ImageSnippetFragmentDoc}`;
 
 /**
  * __useVideoPageQuery__
