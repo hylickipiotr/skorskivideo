@@ -3,9 +3,7 @@ query Videos($limit: Int!, $start: Int, $where: JSON) {
     id
     url
     thumbnail {
-      caption
-      alternativeText
-      formats
+      ...ImageSnippet
     }
     title
     description

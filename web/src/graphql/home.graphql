@@ -7,20 +7,10 @@ query Home {
     aboutUsContent
     contactContent
     aboutUsImage {
-      caption
-      alternativeText
-      formats
-      url
-      width
-      height
+      ...ImageSnippet
     }
     backgroundImage {
-      caption
-      alternativeText
-      formats
-      url
-      width
-      height
+      ...ImageSnippet
     }
   }
 }

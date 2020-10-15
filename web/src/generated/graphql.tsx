@@ -1973,6 +1973,11 @@ export type FooterQuery = (
   )> }
 );
 
+export type ImageSnippetFragment = (
+  { __typename?: 'UploadFile' }
+  & Pick<UploadFile, 'url' | 'width' | 'height' | 'caption' | 'alternativeText' | 'formats'>
+);
+
 export type HomeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1986,10 +1991,10 @@ export type HomeQuery = (
       & Pick<UploadFile, 'url' | 'mime'>
     )>, aboutUsImage?: Maybe<(
       { __typename?: 'UploadFile' }
-      & Pick<UploadFile, 'caption' | 'alternativeText' | 'formats' | 'url' | 'width' | 'height'>
+      & ImageSnippetFragment
     )>, backgroundImage?: Maybe<(
       { __typename?: 'UploadFile' }
-      & Pick<UploadFile, 'caption' | 'alternativeText' | 'formats' | 'url' | 'width' | 'height'>
+      & ImageSnippetFragment
     )> }
   )> }
 );
@@ -2007,7 +2012,7 @@ export type PhotosQuery = (
     & Pick<Photo, 'id' | 'title'>
     & { image?: Maybe<(
       { __typename?: 'UploadFile' }
-      & Pick<UploadFile, 'width' | 'height' | 'url' | 'caption' | 'alternativeText' | 'formats'>
+      & ImageSnippetFragment
     )> }
   )>>> }
 );
@@ -2085,7 +2090,7 @@ export type VideosQuery = (
     & Pick<Video, 'id' | 'url' | 'title' | 'description'>
     & { thumbnail?: Maybe<(
       { __typename?: 'UploadFile' }
-      & Pick<UploadFile, 'caption' | 'alternativeText' | 'formats'>
+      & ImageSnippetFragment
     )>, tags?: Maybe<Array<Maybe<(
       { __typename?: 'Tag' }
       & Pick<Tag, 'id' | 'name'>
@@ -2103,7 +2108,16 @@ export type VideosCountPublishedQuery = (
   & Pick<Query, 'videosCountPublished'>
 );
 
-
+export const ImageSnippetFragmentDoc = gql`
+    fragment ImageSnippet on UploadFile {
+  url
+  width
+  height
+  caption
+  alternativeText
+  formats
+}
+    `;
 export const ContactFormDocument = gql`
     query ContactForm {
   contactForm {
@@ -2225,24 +2239,14 @@ export const HomeDocument = gql`
     aboutUsContent
     contactContent
     aboutUsImage {
-      caption
-      alternativeText
-      formats
-      url
-      width
-      height
+      ...ImageSnippet
     }
     backgroundImage {
-      caption
-      alternativeText
-      formats
-      url
-      width
-      height
+      ...ImageSnippet
     }
   }
 }
-    `;
+    ${ImageSnippetFragmentDoc}`;
 
 /**
  * __useHomeQuery__
@@ -2273,17 +2277,12 @@ export const PhotosDocument = gql`
   photos(limit: $limit, start: $start) {
     id
     image {
-      width
-      height
-      url
-      caption
-      alternativeText
-      formats
+      ...ImageSnippet
     }
     title
   }
 }
-    `;
+    ${ImageSnippetFragmentDoc}`;
 
 /**
  * __usePhotosQuery__
@@ -2489,9 +2488,7 @@ export const VideosDocument = gql`
     id
     url
     thumbnail {
-      caption
-      alternativeText
-      formats
+      ...ImageSnippet
     }
     title
     description
@@ -2501,7 +2498,7 @@ export const VideosDocument = gql`
     }
   }
 }
-    `;
+    ${ImageSnippetFragmentDoc}`;
 
 /**
  * __useVideosQuery__

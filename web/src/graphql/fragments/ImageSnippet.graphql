@@ -1,0 +1,8 @@
+fragment ImageSnippet on UploadFile {
+  url
+  width
+  height
+  caption
+  alternativeText
+  formats
+}
