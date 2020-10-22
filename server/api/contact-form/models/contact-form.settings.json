@@ -9,10 +9,6 @@
     "timestamps": true
   },
   "attributes": {
-    "email": {
-      "type": "email",
-      "required": true
-    },
     "body": {
       "type": "richtext"
     },
@@ -34,6 +30,14 @@
       "repeatable": true,
       "component": "contact-form-placeholders.contact-form-placeholders",
       "required": false
+    },
+    "from": {
+      "type": "email",
+      "required": true
+    },
+    "to": {
+      "type": "email",
+      "required": true
     }
   }
 }

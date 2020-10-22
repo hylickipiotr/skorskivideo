@@ -25,7 +25,7 @@ module.exports = {
         resolver: (obj, { options }, { context }) => {
           return new Promise(async (resolve, reject) => {
             try {
-              const { email, body, subject } = await strapi.services[
+              const { to, from, body, subject } = await strapi.services[
                 "contact-form"
               ].find();
               const emailTemplate = {
@@ -35,8 +35,8 @@ module.exports = {
               };
               await strapi.plugins["email"].services.email.sendTemplatedEmail(
                 {
-                  to: email,
-                  from: email,
+                  to: to,
+                  from: from,
                   replyTo: options.email,
                 },
                 emailTemplate,
@@ -46,6 +46,7 @@ module.exports = {
               );
               resolve(true);
             } catch (err) {
+              console.log(err);
               resolve(false);
             }
           });
