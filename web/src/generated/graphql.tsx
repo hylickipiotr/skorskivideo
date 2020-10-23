@@ -34,6 +34,7 @@ export type Query = {
   photo?: Maybe<Photo>;
   photos?: Maybe<Array<Maybe<Photo>>>;
   photosConnection?: Maybe<PhotoConnection>;
+  privacyPolicy?: Maybe<PrivacyPolicy>;
   social?: Maybe<Social>;
   socials?: Maybe<Array<Maybe<Social>>>;
   socialsConnection?: Maybe<SocialConnection>;
@@ -236,12 +237,13 @@ export type ContactForm = {
   id: Scalars['ID'];
   created_at: Scalars['DateTime'];
   updated_at: Scalars['DateTime'];
-  email: Scalars['String'];
   body?: Maybe<Scalars['String']>;
   subject?: Maybe<Scalars['String']>;
   styles?: Maybe<Array<Maybe<ComponentContantFormStyleContantFormStyle>>>;
   agreement: Scalars['String'];
   placeholders?: Maybe<Array<Maybe<ComponentContactFormPlaceholdersContactFormPlaceholders>>>;
+  from: Scalars['String'];
+  to: Scalars['String'];
 };
 
 
@@ -388,7 +390,7 @@ export type UploadFileRelatedArgs = {
   where?: Maybe<Scalars['JSON']>;
 };
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | ContactForm | UpdateContactFormPayload | DeleteContactFormPayload | Faq | FaqConnection | FaqAggregator | FaqGroupBy | FaqConnectionId | FaqConnectionCreated_At | FaqConnectionUpdated_At | FaqConnectionQuestion | FaqConnectionAnswer | FaqConnectionIsPublished | FaqConnectionPublishedAt | CreateFaqPayload | UpdateFaqPayload | DeleteFaqPayload | Footer | UpdateFooterPayload | DeleteFooterPayload | Home | UpdateHomePayload | DeleteHomePayload | Photo | PhotoConnection | PhotoAggregator | PhotoGroupBy | PhotoConnectionId | PhotoConnectionCreated_At | PhotoConnectionUpdated_At | PhotoConnectionTitle | PhotoConnectionIsPublished | PhotoConnectionPublishedAt | PhotoConnectionImage | CreatePhotoPayload | UpdatePhotoPayload | DeletePhotoPayload | Social | SocialConnection | SocialAggregator | SocialGroupBy | SocialConnectionId | SocialConnectionCreated_At | SocialConnectionUpdated_At | SocialConnectionUrl | SocialConnectionIcon | SocialConnectionIsPublished | SocialConnectionPublishedAt | SocialConnectionLabel | SocialConnectionColorHex | CreateSocialPayload | UpdateSocialPayload | DeleteSocialPayload | Tag | TagConnection | TagAggregator | TagGroupBy | TagConnectionId | TagConnectionCreated_At | TagConnectionUpdated_At | TagConnectionName | CreateTagPayload | UpdateTagPayload | DeleteTagPayload | VideoPage | UpdateVideoPagePayload | DeleteVideoPagePayload | Video | VideoConnection | VideoAggregator | VideoGroupBy | VideoConnectionId | VideoConnectionCreated_At | VideoConnectionUpdated_At | VideoConnectionUrl | VideoConnectionTitle | VideoConnectionDescription | VideoConnectionIsPublished | VideoConnectionPublishedAt | VideoConnectionThumbnail | CreateVideoPayload | UpdateVideoPayload | DeleteVideoPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentContactFormPlaceholdersContactFormPlaceholders | ComponentContantFormStyleContantFormStyle | ComponentTagTags;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | ContactForm | UpdateContactFormPayload | DeleteContactFormPayload | Faq | FaqConnection | FaqAggregator | FaqGroupBy | FaqConnectionId | FaqConnectionCreated_At | FaqConnectionUpdated_At | FaqConnectionQuestion | FaqConnectionAnswer | FaqConnectionIsPublished | FaqConnectionPublishedAt | CreateFaqPayload | UpdateFaqPayload | DeleteFaqPayload | Footer | UpdateFooterPayload | DeleteFooterPayload | Home | UpdateHomePayload | DeleteHomePayload | Photo | PhotoConnection | PhotoAggregator | PhotoGroupBy | PhotoConnectionId | PhotoConnectionCreated_At | PhotoConnectionUpdated_At | PhotoConnectionTitle | PhotoConnectionIsPublished | PhotoConnectionPublishedAt | PhotoConnectionImage | CreatePhotoPayload | UpdatePhotoPayload | DeletePhotoPayload | PrivacyPolicy | UpdatePrivacyPolicyPayload | DeletePrivacyPolicyPayload | Social | SocialConnection | SocialAggregator | SocialGroupBy | SocialConnectionId | SocialConnectionCreated_At | SocialConnectionUpdated_At | SocialConnectionUrl | SocialConnectionIcon | SocialConnectionIsPublished | SocialConnectionPublishedAt | SocialConnectionLabel | SocialConnectionColorHex | CreateSocialPayload | UpdateSocialPayload | DeleteSocialPayload | Tag | TagConnection | TagAggregator | TagGroupBy | TagConnectionId | TagConnectionCreated_At | TagConnectionUpdated_At | TagConnectionName | CreateTagPayload | UpdateTagPayload | DeleteTagPayload | VideoPage | UpdateVideoPagePayload | DeleteVideoPagePayload | Video | VideoConnection | VideoAggregator | VideoGroupBy | VideoConnectionId | VideoConnectionCreated_At | VideoConnectionUpdated_At | VideoConnectionUrl | VideoConnectionTitle | VideoConnectionDescription | VideoConnectionIsPublished | VideoConnectionPublishedAt | VideoConnectionThumbnail | CreateVideoPayload | UpdateVideoPayload | DeleteVideoPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentContactFormPlaceholdersContactFormPlaceholders | ComponentContantFormStyleContantFormStyle | ComponentTagTags;
 
 export type UsersPermissionsMe = {
   __typename?: 'UsersPermissionsMe';
@@ -554,6 +556,24 @@ export type UpdatePhotoPayload = {
 export type DeletePhotoPayload = {
   __typename?: 'deletePhotoPayload';
   photo?: Maybe<Photo>;
+};
+
+export type PrivacyPolicy = {
+  __typename?: 'PrivacyPolicy';
+  id: Scalars['ID'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  content: Scalars['String'];
+};
+
+export type UpdatePrivacyPolicyPayload = {
+  __typename?: 'updatePrivacyPolicyPayload';
+  privacyPolicy?: Maybe<PrivacyPolicy>;
+};
+
+export type DeletePrivacyPolicyPayload = {
+  __typename?: 'deletePrivacyPolicyPayload';
+  privacyPolicy?: Maybe<PrivacyPolicy>;
 };
 
 export type Social = {
@@ -1270,6 +1290,8 @@ export type Mutation = {
   createPhoto?: Maybe<CreatePhotoPayload>;
   updatePhoto?: Maybe<UpdatePhotoPayload>;
   deletePhoto?: Maybe<DeletePhotoPayload>;
+  updatePrivacyPolicy?: Maybe<UpdatePrivacyPolicyPayload>;
+  deletePrivacyPolicy?: Maybe<DeletePrivacyPolicyPayload>;
   createSocial?: Maybe<CreateSocialPayload>;
   updateSocial?: Maybe<UpdateSocialPayload>;
   deleteSocial?: Maybe<DeleteSocialPayload>;
@@ -1347,6 +1369,11 @@ export type MutationUpdatePhotoArgs = {
 
 export type MutationDeletePhotoArgs = {
   input?: Maybe<DeletePhotoInput>;
+};
+
+
+export type MutationUpdatePrivacyPolicyArgs = {
+  input?: Maybe<UpdatePrivacyPolicyInput>;
 };
 
 
@@ -1490,12 +1517,13 @@ export type UpdateContactFormInput = {
 };
 
 export type EditContactFormInput = {
-  email?: Maybe<Scalars['String']>;
   body?: Maybe<Scalars['String']>;
   subject?: Maybe<Scalars['String']>;
   styles?: Maybe<Array<Maybe<EditComponentContantFormStyleContantFormStyleInput>>>;
   agreement?: Maybe<Scalars['String']>;
   placeholders?: Maybe<Array<Maybe<EditComponentContactFormPlaceholdersContactFormPlaceholderInput>>>;
+  from?: Maybe<Scalars['String']>;
+  to?: Maybe<Scalars['String']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -1601,6 +1629,16 @@ export type EditPhotoInput = {
 
 export type DeletePhotoInput = {
   where?: Maybe<InputId>;
+};
+
+export type UpdatePrivacyPolicyInput = {
+  data?: Maybe<EditPrivacyPolicyInput>;
+};
+
+export type EditPrivacyPolicyInput = {
+  content?: Maybe<Scalars['String']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
 };
 
 export type CreateSocialInput = {
@@ -1820,12 +1858,13 @@ export type Agreement = {
 };
 
 export type ContactFormInput = {
-  email: Scalars['String'];
   body?: Maybe<Scalars['String']>;
   subject?: Maybe<Scalars['String']>;
   styles?: Maybe<Array<ComponentContantFormStyleContantFormStyleInput>>;
   agreement: Scalars['String'];
   placeholders?: Maybe<Array<Maybe<ComponentContactFormPlaceholdersContactFormPlaceholderInput>>>;
+  from: Scalars['String'];
+  to: Scalars['String'];
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -1853,6 +1892,12 @@ export type HomeInput = {
   aboutUsImage?: Maybe<Scalars['ID']>;
   backgroundImage?: Maybe<Scalars['ID']>;
   backgroundVideo?: Maybe<Scalars['ID']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type PrivacyPolicyInput = {
+  content: Scalars['String'];
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -2023,6 +2068,17 @@ export type PhotosCountPublishedQueryVariables = Exact<{ [key: string]: never; }
 export type PhotosCountPublishedQuery = (
   { __typename?: 'Query' }
   & Pick<Query, 'photosCountPublished'>
+);
+
+export type PrivacyPolicyQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PrivacyPolicyQuery = (
+  { __typename?: 'Query' }
+  & { privacyPolicy?: Maybe<(
+    { __typename?: 'PrivacyPolicy' }
+    & Pick<PrivacyPolicy, 'content'>
+  )> }
 );
 
 export type SendEmailMutationVariables = Exact<{
@@ -2340,6 +2396,38 @@ export function usePhotosCountPublishedLazyQuery(baseOptions?: Apollo.LazyQueryH
 export type PhotosCountPublishedQueryHookResult = ReturnType<typeof usePhotosCountPublishedQuery>;
 export type PhotosCountPublishedLazyQueryHookResult = ReturnType<typeof usePhotosCountPublishedLazyQuery>;
 export type PhotosCountPublishedQueryResult = Apollo.QueryResult<PhotosCountPublishedQuery, PhotosCountPublishedQueryVariables>;
+export const PrivacyPolicyDocument = gql`
+    query PrivacyPolicy {
+  privacyPolicy {
+    content
+  }
+}
+    `;
+
+/**
+ * __usePrivacyPolicyQuery__
+ *
+ * To run a query within a React component, call `usePrivacyPolicyQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePrivacyPolicyQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePrivacyPolicyQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function usePrivacyPolicyQuery(baseOptions?: Apollo.QueryHookOptions<PrivacyPolicyQuery, PrivacyPolicyQueryVariables>) {
+        return Apollo.useQuery<PrivacyPolicyQuery, PrivacyPolicyQueryVariables>(PrivacyPolicyDocument, baseOptions);
+      }
+export function usePrivacyPolicyLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PrivacyPolicyQuery, PrivacyPolicyQueryVariables>) {
+          return Apollo.useLazyQuery<PrivacyPolicyQuery, PrivacyPolicyQueryVariables>(PrivacyPolicyDocument, baseOptions);
+        }
+export type PrivacyPolicyQueryHookResult = ReturnType<typeof usePrivacyPolicyQuery>;
+export type PrivacyPolicyLazyQueryHookResult = ReturnType<typeof usePrivacyPolicyLazyQuery>;
+export type PrivacyPolicyQueryResult = Apollo.QueryResult<PrivacyPolicyQuery, PrivacyPolicyQueryVariables>;
 export const SendEmailDocument = gql`
     mutation SendEmail($options: EmailOptions!) {
   sendEmail(options: $options)

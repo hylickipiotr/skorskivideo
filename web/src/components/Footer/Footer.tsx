@@ -3,6 +3,7 @@ import NextLink from "next/link";
 import { useFooterQuery, useSocialsQuery } from "../../generated/graphql";
 import { IconName } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ROUTES } from "../../constans/router";
 
 const Footer: React.FC<{}> = ({}) => {
   const { data: socialsData } = useSocialsQuery();
@@ -38,7 +39,9 @@ const Footer: React.FC<{}> = ({}) => {
       )}
       <div className="flex justify-center">
         <p className="text-xs font-secondary">
-          Copyright Skórski Video. All Right Reserved {new Date().getFullYear()}
+          <NextLink href={ROUTES.PRIVACY_POLICY}>Polityka Prywatności</NextLink>
+          {" | "}Copyright Skórski Video. All Right Reserved{" "}
+          {new Date().getFullYear()}
         </p>
       </div>
     </footer>

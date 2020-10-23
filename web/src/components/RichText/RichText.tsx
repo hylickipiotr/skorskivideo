@@ -6,7 +6,11 @@ interface IRichText {
 }
 
 const RichText: React.FC<IRichText> = ({ children }) => {
-  return <Markdown>{children || ""}</Markdown>;
+  return (
+    <div className="rich-text">
+      <Markdown>{children || ""}</Markdown>
+    </div>
+  );
 };
 
 export default RichText;

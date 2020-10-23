@@ -24,3 +24,33 @@ textarea::placeholder {
   max-width: 100vw !important;
   margin: 0 auto !important;
 }
+
+.rich-text div {
+  @apply font-secondary;
+  @apply flex;
+  @apply flex-col;
+  @apply gap-4;
+  @apply leading-relaxed;
+}
+
+.rich-text ol {
+  @apply list-decimal;
+  @apply list-inside;
+  @apply pl-4;
+  @apply block;
+}
+
+.rich-text ul {
+  @apply list-disc;
+  @apply list-inside;
+  @apply pl-4;
+  @apply block;
+}
+
+.rich-text li > * {
+  @apply inline;
+}
+
+.rich-text li {
+  @apply mt-2;
+}
