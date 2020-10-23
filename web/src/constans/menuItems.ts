@@ -14,7 +14,7 @@ export const MENU_ITEMS: MenuItem[] = [
     href: SECTION.ABOUT_US,
   },
   {
-    label: "Wideo",
+    label: "Video",
     href: SECTION.VIDEO,
   },
   {

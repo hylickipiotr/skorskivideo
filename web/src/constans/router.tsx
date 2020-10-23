@@ -1,6 +1,6 @@
 export enum ROUTES {
   HOME = "/",
-  VIDEO = "/wideo",
+  VIDEO = "/video",
   PHOTO = "/fotografia",
   PRIVACY_POLICY = "/privacy-policy",
 }

@@ -122,7 +122,7 @@ const IndexPage: NextPage = () => {
         {videosData?.videos && (
           <Element name={SECTION.VIDEO}>
             <div className="flex w-full justify-between items-start">
-              <Header>Wideo</Header>
+              <Header>Video</Header>
               <div className="hidden md:block">
                 <NextLink href={ROUTES.VIDEO}>
                   <button className="font-semibold border-2 border-black px-4 py-2 hover:bg-yellow-500 translate duration-200 ease-in-out">
