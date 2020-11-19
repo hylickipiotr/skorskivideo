@@ -65,7 +65,7 @@ const Navbar: React.FC<{}> = () => {
                 <Logo className="fill-current text-white h-10 w-auto" />
               </div>
             </MyLink>
-            <div className="grid grid-flow-col col-gap-6 xl:col-gap-12 items-center ml-12 xl:ml-16">
+            <div className="grid grid-flow-col gap-x-6 xl:gap-x-12 items-center ml-12 xl:ml-16">
               {MENU_ITEMS.map(({ label, href, active }) => (
                 <div key={label}>
                   <MyLink
@@ -98,7 +98,7 @@ const Navbar: React.FC<{}> = () => {
             </div>
           </div>
           {socialsData?.socials && (
-            <div className="grid grid-flow-col col-gap-8 xl:col-gap-12">
+            <div className="grid grid-flow-col gap-x-8 xl:gap-x-12">
               {socialsData?.socials?.map((social) => (
                 <div className="flex items-center">
                   <div>

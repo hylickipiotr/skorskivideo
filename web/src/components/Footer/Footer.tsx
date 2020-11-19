@@ -10,7 +10,7 @@ const Footer: React.FC<{}> = ({}) => {
   const { data: footerData } = useFooterQuery();
 
   return (
-    <footer className="sticky grid row-gap-4 w-full justify-center items-center bg-black text-white p-8 pt-6">
+    <footer className="sticky grid gap-y-4 w-full justify-center items-center bg-black text-white p-8 pt-6">
       {footerData?.footer?.bannerImageUrl && (
         <div className="flex justify-center">
           <a href={footerData.footer.bannerImageHref as string}>

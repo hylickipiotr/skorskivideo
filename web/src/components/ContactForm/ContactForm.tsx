@@ -174,7 +174,7 @@ const ContactForm: React.FC<{}> = ({}) => {
                       </option>
                     ))}
                   </Field>
-                  <div className="hidden lg:flex flex-wrap col-gap-4 row-gap-2">
+                  <div className="hidden lg:flex flex-wrap gap-x-4 gap-y-2">
                     {contactFormConfig.contactForm.styles.map((style) => (
                       <label key={style?.name}>
                         <Field

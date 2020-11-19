@@ -12,7 +12,7 @@ const PrivacyPolicy: NextPage = () => {
   return (
     <Layout title="SkórskiVideo | Polityka Prywatności" lang="pl-PL">
       <div
-        className="container mx-auto grid grid-flow-row row-gap-8 pt-40 pb-16 px-4 xl:px-12"
+        className="container mx-auto grid grid-flow-row gap-y-8 pt-40 pb-16 px-4 xl:px-12"
         style={{ gridTemplateColumns: "minmax(0, 1fr)" }}
       >
         <div>

@@ -95,14 +95,14 @@ const VideoPage: NextPage = () => {
   return (
     <Layout title="SkórskiVideo | Video" lang="pl-PL">
       <div
-        className="container mx-auto grid grid-flow-row row-gap-8 md:row-gap-24 pt-40 pb-16 px-4 xl:px-12"
+        className="container mx-auto grid grid-flow-row gap-y-8 md:gap-y-24 pt-40 pb-16 px-4 xl:px-12"
         style={{ gridTemplateColumns: "minmax(0, 1fr)" }}
       >
         <div>
           <div>
             <Header>Video</Header>
           </div>
-          <div className="md:grid flex-col grid-cols-12 col-gap-16 mt-8">
+          <div className="md:grid flex-col grid-cols-12 gap-x-16 mt-8">
             <div
               className={`${
                 videoPageData?.videoPage?.image ? "col-span-7" : "col-span-12"
@@ -131,7 +131,7 @@ const VideoPage: NextPage = () => {
             )}
           </div>
         </div>
-        <div className="grid row-gap-8">
+        <div className="grid gap-y-8">
           {tagsData?.tags && (
             <div className="flex flex-wrap gap-4">
               <TagCard
@@ -159,7 +159,7 @@ const VideoPage: NextPage = () => {
             >
               <div>
                 <div
-                  className={`grid grid-flow-row md:grid-cols-3 md:grid-rows-none col-gap-8 row-gap-12`}
+                  className={`grid grid-flow-row md:grid-cols-3 md:grid-rows-none gap-x-8 gap-y-12`}
                 >
                   {videosData.videos.map(
                     (video) =>

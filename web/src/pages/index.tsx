@@ -84,7 +84,7 @@ const IndexPage: NextPage = () => {
         }}
       />
       <div
-        className="container mx-auto grid grid-flow-row row-gap-8 md:row-gap-16 py-16 px-4 xl:px-12"
+        className="container mx-auto grid grid-flow-row gap-y-8 md:gap-y-16 py-16 px-4 xl:px-12"
         style={{ gridTemplateColumns: "minmax(0, 1fr)" }}
       >
         {/* O NAS */}
@@ -241,7 +241,7 @@ const IndexPage: NextPage = () => {
             <div className="font-secondary leading-relaxed">
               <RichText>{homePageData?.home?.contactContent}</RichText>
               {socialsData?.socials && (
-                <div className="mt-12 ml-4 grid row-gap-6">
+                <div className="mt-12 ml-4 grid gap-y-6">
                   {socialsData.socials.map((social) => (
                     <div key={social?.id}>
                       <a href={social?.url as string}>
