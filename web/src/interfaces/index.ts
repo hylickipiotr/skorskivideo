@@ -1,4 +1,4 @@
-import { ReactChild, ReactNode } from "react";
+import { ReactChild } from "react";
 
 export interface MenuItem {
   label: string;

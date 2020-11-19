@@ -1,9 +1,7 @@
-import React, { ReactNode, useEffect } from "react";
 import Head from "next/head";
-import Navbar from "../components/Navbar/Navbar";
+import React, { ReactNode } from "react";
 import Footer from "../components/Footer/Footer";
-import { useRouter } from "next/dist/client/router";
-import { scroller } from "react-scroll";
+import Navbar from "../components/Navbar/Navbar";
 
 interface LayoutProps {
   children?: ReactNode;

@@ -1,5 +1,4 @@
-import React, { HTMLAttributes } from "react";
-import { IOnClickTagCard } from "../TagCard/TagCard";
+import React from "react";
 
 export type TagVariant = "small";
 

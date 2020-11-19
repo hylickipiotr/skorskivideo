@@ -1,4 +1,4 @@
-import React, { EventHandler } from "react";
+import React from "react";
 import Tag, { TagVariant } from "../Tag/Tag";
 
 export interface IOnClickTagCard {
