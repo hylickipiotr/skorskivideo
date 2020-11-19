@@ -164,7 +164,6 @@ const ContactForm: React.FC<{}> = ({}) => {
                       }
                     }}
                     required
-                    // defaultValue={initialValues.style}
                   >
                     <option value="" disabled hidden>
                       {placeholders.style?.placeholder || "Styl uroczystości"}

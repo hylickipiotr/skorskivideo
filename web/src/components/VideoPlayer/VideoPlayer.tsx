@@ -13,9 +13,7 @@ interface IVideoPlayer {
 }
 
 const RATIO = 1280 / 720;
-const REM = parseFloat(
-  window.getComputedStyle(document.documentElement).fontSize
-);
+const REM = 16;
 const PADDING_VIDEO = 4 * REM;
 
 const VideoPlayer: React.FC<IVideoPlayer> = ({ url }) => {
