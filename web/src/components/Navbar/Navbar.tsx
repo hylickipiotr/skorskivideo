@@ -1,10 +1,9 @@
 import { IconName } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import NextLink from "next/link";
 import React, { useState } from "react";
+import { MENU_ITEMS } from "../../constans/menuItems";
 import { ROUTES } from "../../constans/router";
 import { useSocialsQuery } from "../../generated/graphql";
-import { MENU_ITEMS } from "../../constans/menuItems";
 import Logo from "../Logo/Logo";
 import MyLink from "../MyLink/MyLink";
 
@@ -30,11 +29,11 @@ const Navbar: React.FC<{}> = () => {
             </button>
           </div>
           <div className="flex justify-center">
-            <NextLink href={ROUTES.HOME}>
+            <MyLink to={ROUTES.HOME}>
               <div className="cursor-pointer">
                 <Logo className="fill-current text-white h-8 w-auto" />
               </div>
-            </NextLink>
+            </MyLink>
           </div>
         </div>
         <div
@@ -61,11 +60,11 @@ const Navbar: React.FC<{}> = () => {
       <div className="hidden w-full my-6 mx-12 md:block ">
         <div className="flex container mx-auto justify-between items-center">
           <div className="flex">
-            <NextLink href={ROUTES.HOME}>
+            <MyLink to={ROUTES.HOME}>
               <div className="cursor-pointer">
                 <Logo className="fill-current text-white h-10 w-auto" />
               </div>
-            </NextLink>
+            </MyLink>
             <div className="grid grid-flow-col col-gap-6 xl:col-gap-12 items-center ml-12 xl:ml-16">
               {MENU_ITEMS.map(({ label, href, active }) => (
                 <div key={label}>
@@ -101,14 +100,22 @@ const Navbar: React.FC<{}> = () => {
           {socialsData?.socials && (
             <div className="grid grid-flow-col col-gap-8 xl:col-gap-12">
               {socialsData?.socials?.map((social) => (
-                <a href={social?.url as string} key={social?.id}>
-                  <FontAwesomeIcon
-                    key={social?.id}
-                    href={social?.url as string}
-                    icon={["fab", social?.icon as IconName]}
-                    className="cursor-pointer transform easy-in-out text-xl duration-200 hover:scale-110"
-                  />
-                </a>
+                <div className="flex items-center">
+                  <div>
+                    <a
+                      href={social?.url as string}
+                      key={social?.id}
+                      rel="nofollow"
+                    >
+                      <FontAwesomeIcon
+                        key={social?.id}
+                        href={social?.url as string}
+                        icon={["fab", social?.icon as IconName]}
+                        className="cursor-pointer transform easy-in-out text-xl duration-200 hover:scale-110"
+                      />
+                    </a>
+                  </div>
+                </div>
               ))}
             </div>
           )}

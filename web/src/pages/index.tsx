@@ -125,7 +125,7 @@ const IndexPage: NextPage = () => {
               <Header>Video</Header>
               <div className="hidden md:block">
                 <NextLink href={ROUTES.VIDEO}>
-                  <button className="font-semibold border-2 border-black px-4 py-2 hover:bg-yellow-500 translate duration-200 ease-in-out">
+                  <button className="font-semibold border-2 border-black px-4 py-2 hover:bg-yellow-500 translate duration-200 ease-in-out focus:bg-yellow-500">
                     Zobacz więcej
                   </button>
                 </NextLink>
@@ -167,7 +167,7 @@ const IndexPage: NextPage = () => {
               <Header>Fotografia</Header>
               <div className="hidden md:block">
                 <NextLink href={ROUTES.PHOTO}>
-                  <button className="font-semibold border-2 border-black px-4 py-2 hover:bg-yellow-500 translate duration-200 ease-in-out">
+                  <button className="font-semibold border-2 border-black px-4 py-2 hover:bg-yellow-500 translate duration-200 ease-in-out focus:bg-yellow-500">
                     Zobacz więcej
                   </button>
                 </NextLink>

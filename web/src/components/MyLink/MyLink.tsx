@@ -11,10 +11,18 @@ const MyLink: React.FC<ReactScrollLinkProps> = (props) => {
   const router = useRouter();
 
   if (router.pathname === ROUTES.HOME) {
-    return <Link {...props}>{children}</Link>;
+    return (
+      <button type="button">
+        <Link {...props}>{children}</Link>
+      </button>
+    );
   }
 
-  return <NextLink href={ROUTES.HOME}>{children}</NextLink>;
+  return (
+    <button type="button">
+      <NextLink href={props.to}>{children}</NextLink>
+    </button>
+  );
 };
 
 export default MyLink;

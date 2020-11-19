@@ -184,18 +184,6 @@ const VideoPage: NextPage = () => {
               </div>
             </InfiniteScroll>
           )}
-          {/* {isMore && (
-            <div className="flex justify-center">
-              <button
-                onClick={() => handleLoadMore()}
-                className={`py-2 px-4 font-semibold ${
-                  !loadingVideos ? "bg-yellow-500" : "bg-gray-700 text-gray-300"
-                }`}
-              >
-                {!loadingVideos ? "Ładuj więcej" : "Ładowanie..."}
-              </button>
-            </div>
-          )} */}
         </div>
       </div>
     </Layout>
