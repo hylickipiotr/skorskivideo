@@ -24,7 +24,7 @@ const Footer: React.FC<{}> = ({}) => {
       )}
       {socialsData?.socials && (
         <div className="flex justify-center">
-          <div className="grid grid-flow-col col-gap-8">
+          <div className="grid grid-flow-col gap-x-8">
             {socialsData.socials.map((social) => (
               <a key={social?.id} href={social?.url as string}>
                 <FontAwesomeIcon
