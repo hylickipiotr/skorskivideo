@@ -16,3 +16,11 @@ export const pageview = (url: string) => {
     path_path: url,
   });
 };
+
+export const event = ({ action, category, label, value }: any) => {
+  (window as MyWindow).gtag("event", action, {
+    event_category: category,
+    event_label: label,
+    value: value,
+  } as any);
+};
