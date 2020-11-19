@@ -16,17 +16,19 @@ const Navbar: React.FC<{}> = () => {
     <header className="fixed flex w-full bg-black text-white z-50">
       <div className={`md:hidden p-6 w-full ${isMenuOpen ? "h-screen" : ""}`}>
         <div className="grid grid-cols-3 items-center w-full">
-          <button
-            className="flex items-center"
-            onClick={() => {
-              setIsMenuOpen(!isMenuOpen);
-            }}
-          >
-            <FontAwesomeIcon
-              className="text-xl"
-              icon={["fas", isMenuOpen ? "times" : "bars"]}
-            />
-          </button>
+          <div>
+            <button
+              className="flex items-center"
+              onClick={() => {
+                setIsMenuOpen(!isMenuOpen);
+              }}
+            >
+              <FontAwesomeIcon
+                className="text-xl"
+                icon={["fas", isMenuOpen ? "times" : "bars"]}
+              />
+            </button>
+          </div>
           <div className="flex justify-center">
             <NextLink href={ROUTES.HOME}>
               <div className="cursor-pointer">
