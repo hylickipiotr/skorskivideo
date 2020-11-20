@@ -7,6 +7,7 @@ import {
 import { useToasts } from "react-toast-notifications";
 import { mapArrayToObject } from "../../utils/mapArrayToObject";
 import RichText from "../RichText/RichText";
+import { contactFormFields } from "../../constans/contactForm";
 
 interface FormValues {
   firstname: string;
@@ -76,64 +77,73 @@ const ContactForm: React.FC<{}> = ({}) => {
         {({ isSubmitting }) => (
           <Form className="grid grid-cols-2 gap-2 lg:gap-3">
             <label
-              htmlFor="firstname"
-              className="flex flex-col col-span-2 lg:col-span-1"
-            >
-              <span className="font-bold text-gray-700 text-sm py-1">Imię</span>
-              <Field
-                type="text"
-                name="firstname"
-                placeholder={placeholders.firstname?.placeholder || "Imię"}
-                className="border-gray-300 border-solid border-2 p-2"
-                required
-              />
-            </label>
-            <label
-              htmlFor="email"
+              htmlFor={contactFormFields.firstname.name}
               className="flex flex-col col-span-2 lg:col-span-1"
             >
               <span className="font-bold text-gray-700 text-sm py-1">
-                Email
-              </span>
-              <Field
-                type="email"
-                name="email"
-                placeholder={placeholders.email?.placeholder || "Twój email"}
-                className="border-gray-300 border-solid border-2 p-2"
-                required
-              />
-            </label>
-            <label
-              htmlFor="date"
-              className="flex flex-col  col-span-2 lg:col-span-1"
-            >
-              <span className="font-bold text-gray-700 text-sm py-1">
-                Data uroczystości
+                {contactFormFields.firstname.label}
               </span>
               <Field
                 type="text"
-                name="date"
-                onFocus={(e: any) => (e.target.type = "date")}
+                name={contactFormFields.firstname.name}
                 placeholder={
-                  placeholders.date?.placeholder || "Data uroczystości"
+                  placeholders.firstname?.placeholder ||
+                  contactFormFields.firstname.placeholder
                 }
                 className="border-gray-300 border-solid border-2 p-2"
                 required
               />
             </label>
             <label
-              htmlFor="place"
+              htmlFor={contactFormFields.email.name}
+              className="flex flex-col col-span-2 lg:col-span-1"
+            >
+              <span className="font-bold text-gray-700 text-sm py-1">
+                {contactFormFields.email.label}
+              </span>
+              <Field
+                type="email"
+                name={contactFormFields.email.name}
+                placeholder={
+                  placeholders.email?.placeholder ||
+                  contactFormFields.email.placeholder
+                }
+                className="border-gray-300 border-solid border-2 p-2"
+                required
+              />
+            </label>
+            <label
+              htmlFor={contactFormFields.date.name}
               className="flex flex-col  col-span-2 lg:col-span-1"
             >
               <span className="font-bold text-gray-700 text-sm py-1">
-                Miejsce uroczystości
+                {contactFormFields.date.label}
               </span>
               <Field
                 type="text"
-                name="place"
+                name={contactFormFields.date.name}
+                onFocus={(e: any) => (e.target.type = "date")}
+                placeholder={
+                  placeholders.date?.placeholder ||
+                  contactFormFields.date.placeholder
+                }
+                className="border-gray-300 border-solid border-2 p-2"
+                required
+              />
+            </label>
+            <label
+              htmlFor={contactFormFields.place.name}
+              className="flex flex-col  col-span-2 lg:col-span-1"
+            >
+              <span className="font-bold text-gray-700 text-sm py-1">
+                {contactFormFields.place.label}
+              </span>
+              <Field
+                type="text"
+                name={contactFormFields.place.name}
                 placeholder={
                   placeholders.place?.placeholder ||
-                  "Miejsce uroczystości (sala)"
+                  contactFormFields.place.placeholder
                 }
                 className="border-gray-300 border-solid border-2 p-2"
                 required
@@ -141,14 +151,17 @@ const ContactForm: React.FC<{}> = ({}) => {
             </label>
             {contactFormConfig?.contactForm?.styles && (
               <>
-                <label htmlFor="firstname" className="flex flex-col col-span-2">
+                <label
+                  htmlFor={contactFormFields.style.name}
+                  className="flex flex-col col-span-2"
+                >
                   <span className="font-bold text-gray-700 text-sm py-1">
-                    Styl uroczystości
+                    {contactFormFields.style.label}
                   </span>
                   <Field
                     component="select"
-                    name="style"
-                    className="lg:hidden bg-white border-gray-300 border-solid border-2 p-2 text-gray-300"
+                    name={contactFormFields.style.name}
+                    className="lg:hidden bg-white border-gray-300 border-solid border-2 px-1 py-2 text-gray-300"
                     onFocus={(e: any) => {
                       e.target.classList.replace(
                         "text-gray-300",
@@ -166,7 +179,8 @@ const ContactForm: React.FC<{}> = ({}) => {
                     required
                   >
                     <option value="" disabled hidden>
-                      {placeholders.style?.placeholder || "Styl uroczystości"}
+                      {placeholders.style?.placeholder ||
+                        contactFormFields.style.placeholder}
                     </option>
                     {contactFormConfig.contactForm.styles.map((style) => (
                       <option key={style?.name} value={style?.name}>
@@ -179,7 +193,7 @@ const ContactForm: React.FC<{}> = ({}) => {
                       <label key={style?.name}>
                         <Field
                           type="radio"
-                          name="style"
+                          name={contactFormFields.style.name}
                           value={style?.name}
                           className="form-radio"
                           required
@@ -191,15 +205,19 @@ const ContactForm: React.FC<{}> = ({}) => {
                 </label>
               </>
             )}
-            <label htmlFor="message" className="flex flex-col col-span-2">
+            <label
+              htmlFor={contactFormFields.message.name}
+              className="flex flex-col col-span-2"
+            >
               <span className="font-bold text-gray-700 text-sm py-1">
-                Teść wiadomości
+                {contactFormFields.message.label}
               </span>
               <Field
-                name="message"
+                name={contactFormFields.message.name}
                 component="textarea"
                 placeholder={
-                  placeholders.message?.placeholder || "W czy możemy Ci pomóc?"
+                  placeholders.message?.placeholder ||
+                  contactFormFields.message.placeholder
                 }
                 className="border-gray-300 border-solid border-2 p-2 h-auto col-span-2"
                 rows="10"
